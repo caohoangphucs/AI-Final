@@ -1,0 +1,24 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "backfill:panoramas": "node backfill-panorama-tiles.js",
+    "build:panoramas": "node stitch-panoramas.js",
+    "discover:assets": "node discover-tour-assets.js",
+    "discover:map": "node discover-tour-map.js",
+    "download:assets": "node download-discovered-assets.js",
+    "panorama": "node panorama-workflow.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "view:panoramas": "node viewer-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.60.0",
+    "sharp": "^0.34.5",
+    "three": "^0.184.0"
+  }
+}
