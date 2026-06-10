@@ -7,6 +7,9 @@ const MARKER_SCALE := Vector3(0.4, 0.4, 0.4)
 const PATH_MARKER_SCALE := Vector3(0.52, 0.52, 0.52)
 const MIN_SEARCH_STEPS_PER_TICK := 1
 const MAX_SEARCH_STEPS_PER_TICK := 64
+const USE_REMOTE_SOLVER := true
+const EDGE_LENGTH_WEIGHT := 1.0
+const ASCENT_COST_WEIGHT := 4.0
 
 enum SearchAlgorithm {
 	ASTAR,
@@ -20,6 +23,8 @@ enum SearchAlgorithm {
 @export_range(0.01, 1.0, 0.01) var search_tick_delay := 0.08
 @export_range(1, 64, 1) var visual_update_interval := 1
 @export_enum("A*", "BFS", "DFS") var search_algorithm: int = SearchAlgorithm.ASTAR
+@export var remote_solver_url := "http://127.0.0.1:8000/solve-path"
+@export_range(1.0, 60.0, 0.5) var remote_solver_timeout_sec := 10.0
 
 @onready var debug_root: Node3D = $Debug
 @onready var all_nodes_markers: MultiMeshInstance3D = $Debug/AllNodesMarkers
@@ -56,11 +61,14 @@ var _search_tick_timer := 0.0
 var _all_nodes_highlighted := false
 var _debug_canvas: CanvasLayer
 var _debug_label: Label
-var _debug_overlay_visible := false
+var _debug_overlay_visible := true
 var _visited_vertex_count := 0
 var _visited_edge_count := 0
 var _discovered_vertex_count := 0
 var _path_total_cost := 0.0
+var _using_remote_path := false
+var _remote_request_in_flight := false
+var _http_request: HTTPRequest
 
 
 func _ready() -> void:
@@ -69,6 +77,7 @@ func _ready() -> void:
 	_load_navigation_graph()
 	_setup_debug_meshes()
 	_setup_debug_overlay()
+	_setup_http_request()
 	_snap_to_start()
 	_begin_search()
 	print("PathBot: 1=A*, 2=BFS, 3=DFS, F3=toggle debug info, H=highlight all nodes")
@@ -99,7 +108,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not _search_finished:
+	if not _search_finished and not _using_remote_path:
 		_search_tick_timer += delta
 		if _search_tick_timer >= search_tick_delay:
 			_search_tick_timer = 0.0
@@ -135,10 +144,10 @@ func _setup_debug_overlay() -> void:
 	add_child(_debug_canvas)
 
 	_debug_label = Label.new()
-	_debug_label.position = Vector2(16.0, 16.0)
+	_debug_label.position = Vector2(max(get_viewport().get_visible_rect().size.x - 536.0, 16.0), 16.0)
 	_debug_label.size = Vector2(520.0, 260.0)
 	_debug_label.autowrap_mode = TextServer.AUTOWRAP_OFF
-	_debug_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	_debug_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_debug_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_debug_label.add_theme_font_size_override("font_size", 15)
 	_debug_label.add_theme_color_override("font_color", Color(0.95, 0.98, 1.0, 1.0))
@@ -146,6 +155,22 @@ func _setup_debug_overlay() -> void:
 	_debug_label.add_theme_constant_override("shadow_offset_x", 1)
 	_debug_label.add_theme_constant_override("shadow_offset_y", 1)
 	_debug_canvas.add_child(_debug_label)
+	get_viewport().size_changed.connect(_update_debug_overlay_layout)
+	_update_debug_overlay_layout()
+
+
+func _update_debug_overlay_layout() -> void:
+	if _debug_label == null:
+		return
+	var viewport_width: float = get_viewport().get_visible_rect().size.x
+	_debug_label.position = Vector2(maxf(viewport_width - _debug_label.size.x - 16.0, 16.0), 16.0)
+
+
+func _setup_http_request() -> void:
+	_http_request = HTTPRequest.new()
+	_http_request.timeout = remote_solver_timeout_sec
+	add_child(_http_request)
+	_http_request.request_completed.connect(_on_remote_request_completed)
 
 
 func _create_multimesh(mesh: Mesh, capacity: int) -> MultiMesh:
@@ -205,6 +230,13 @@ func _begin_search() -> void:
 		push_error("Could not resolve start/goal nodes")
 		return
 
+	_reset_search_state()
+	if USE_REMOTE_SOLVER and _start_remote_search_request():
+		return
+	_start_local_search()
+
+
+func _reset_search_state() -> void:
 	_search_frontier.clear()
 	_frontier_membership.clear()
 	_search_closed_order.clear()
@@ -225,14 +257,96 @@ func _begin_search() -> void:
 	_visited_vertex_count = 0
 	_visited_edge_count = 0
 	_discovered_vertex_count = 0
+	_using_remote_path = false
+	_remote_request_in_flight = false
 	velocity = Vector3.ZERO
 	global_position = _graph_positions[_search_start_id]
 	_travel_points = [global_position + Vector3(0.0, 0.1, 0.0)]
+
+
+func _start_local_search() -> void:
+	_using_remote_path = false
 
 	_g_score[_search_start_id] = 0.0
 	_f_score[_search_start_id] = _heuristic(_search_start_id, _search_goal_id)
 	_push_frontier(_search_start_id)
 	print("PathBot: searching from node %d to node %d with %s" % [_search_start_id, _search_goal_id, _get_algorithm_name()])
+	_refresh_debug_visuals()
+
+
+func _start_remote_search_request() -> bool:
+	if _http_request == null:
+		return false
+
+	var payload := JSON.stringify({
+		"start_id": _search_start_id,
+		"goal_id": _search_goal_id,
+		"algorithm": _get_algorithm_slug(),
+	})
+	var err := _http_request.request(
+		remote_solver_url,
+		["Content-Type: application/json"],
+		HTTPClient.METHOD_POST,
+		payload,
+	)
+	if err != OK:
+		print("PathBot: remote solver unavailable (request error %d), falling back to local search" % err)
+		return false
+
+	_using_remote_path = true
+	_remote_request_in_flight = true
+	print("PathBot: requesting remote %s path from node %d to node %d" % [_get_algorithm_name(), _search_start_id, _search_goal_id])
+	_refresh_debug_visuals()
+	return true
+
+
+func _on_remote_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	if not _remote_request_in_flight:
+		return
+	_remote_request_in_flight = false
+
+	if result != HTTPRequest.RESULT_SUCCESS or response_code < 200 or response_code >= 300:
+		print("PathBot: remote solver failed (result=%d, status=%d), falling back to local search" % [result, response_code])
+		_reset_search_state()
+		_start_local_search()
+		return
+
+	var body_text := body.get_string_from_utf8()
+	var parsed: Variant = JSON.parse_string(body_text)
+	if typeof(parsed) != TYPE_DICTIONARY:
+		print("PathBot: remote solver returned invalid JSON, falling back to local search")
+		_reset_search_state()
+		_start_local_search()
+		return
+
+	_apply_remote_solution(parsed)
+
+
+func _apply_remote_solution(payload: Dictionary) -> void:
+	_using_remote_path = true
+	_search_started = true
+	_search_finished = true
+	_path_found = bool(payload.get("found", false))
+	_visited_vertex_count = int(payload.get("visited_vertices", 0))
+	_visited_edge_count = int(payload.get("visited_edges", 0))
+	_discovered_vertex_count = int(payload.get("discovered_vertices", 0))
+	_path_total_cost = float(payload.get("path_cost", 0.0))
+	_path_node_ids.clear()
+	_path_points.clear()
+	_current_waypoint_idx = 0
+	_last_reported_waypoint = -1
+
+	for node_id_variant in payload.get("path_node_ids", []):
+		_path_node_ids.append(int(node_id_variant))
+
+	if _path_found:
+		for node_id in _path_node_ids:
+			var p: Vector3 = _graph_positions.get(node_id, Vector3.ZERO)
+			_path_points.append(Vector3(p.x, p.y + 0.1, p.z))
+		print("PathBot: remote %s path found with %d nodes, cost %.2f" % [_get_algorithm_name(), _path_node_ids.size(), _path_total_cost])
+	else:
+		print("PathBot: remote solver returned no path")
+
 	_refresh_debug_visuals()
 
 
@@ -403,11 +517,18 @@ func _find_nearest_node_id(world_pos: Vector3) -> int:
 
 
 func _heuristic(a: int, b: int) -> float:
-	return _graph_positions[a].distance_to(_graph_positions[b])
+	var from_pos: Vector3 = _graph_positions[a]
+	var to_pos: Vector3 = _graph_positions[b]
+	return from_pos.distance_to(to_pos) * EDGE_LENGTH_WEIGHT
 
 
 func _distance_between(a: int, b: int) -> float:
-	return _graph_positions[a].distance_to(_graph_positions[b])
+	var from_pos: Vector3 = _graph_positions[a]
+	var to_pos: Vector3 = _graph_positions[b]
+	var edge_length: float = from_pos.distance_to(to_pos)
+	var ascent_delta: float = to_pos.y - from_pos.y
+	var ascent: float = maxf(0.0, ascent_delta)
+	return edge_length * EDGE_LENGTH_WEIGHT + ascent * ASCENT_COST_WEIGHT
 
 
 func _refresh_debug_visuals() -> void:
@@ -513,9 +634,22 @@ func _get_algorithm_name() -> String:
 	return "Unknown"
 
 
+func _get_algorithm_slug() -> String:
+	match search_algorithm:
+		SearchAlgorithm.ASTAR:
+			return "astar"
+		SearchAlgorithm.BFS:
+			return "bfs"
+		SearchAlgorithm.DFS:
+			return "dfs"
+	return "astar"
+
+
 func _get_search_status() -> String:
 	if not _search_started:
 		return "idle"
+	if _remote_request_in_flight:
+		return "waiting remote"
 	if _path_found and _search_finished:
 		return "path found"
 	if _search_finished:
@@ -532,6 +666,7 @@ func _update_debug_overlay() -> void:
 	_debug_label.text = "\n".join([
 		"PathBot Debug",
 		"Algorithm: %s" % _get_algorithm_name(),
+		"Backend: %s" % ("Remote Python API" if _using_remote_path or _remote_request_in_flight else "Local GDScript"),
 		"Status: %s" % _get_search_status(),
 		"Start -> Goal: %d -> %d" % [_search_start_id, _search_goal_id],
 		"Visited vertices: %d" % _visited_vertex_count,

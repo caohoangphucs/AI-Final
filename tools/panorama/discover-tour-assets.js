@@ -2,8 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
 
+const ROOT = path.resolve(__dirname, "../..");
+const OUTPUT_DIR = path.join(ROOT, "data", "discovery");
 const TOUR_URL = "https://cloud.3dvista.com//hosting/8186875/0/index.htm";
-const OUTPUT_FILE = path.join(__dirname, "discovered-assets.json");
+const OUTPUT_FILE = path.join(OUTPUT_DIR, "discovered-assets.json");
 const WAIT_MS = Number.parseInt(process.env.DISCOVER_WAIT_MS || "45000", 10);
 
 function normalizeUrl(rawUrl) {
@@ -83,6 +85,7 @@ async function main() {
     assets: grouped,
   };
 
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
   console.log(`Saved asset discovery to ${OUTPUT_FILE}`);
   console.log(JSON.stringify(output.counts, null, 2));

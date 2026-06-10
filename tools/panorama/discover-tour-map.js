@@ -2,8 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
 
+const ROOT = path.resolve(__dirname, "../..");
+const OUTPUT_DIR = path.join(ROOT, "data", "discovery");
 const TOUR_URL = "https://cloud.3dvista.com//hosting/8186875/0/index.htm";
-const OUTPUT_FILE = path.join(__dirname, "discovered-map-assets.json");
+const OUTPUT_FILE = path.join(OUTPUT_DIR, "discovered-map-assets.json");
 const CLICK_WAIT_MS = Number.parseInt(process.env.DISCOVER_CLICK_WAIT_MS || "5000", 10);
 const INITIAL_WAIT_MS = Number.parseInt(process.env.DISCOVER_INITIAL_WAIT_MS || "7000", 10);
 const MAX_ITEMS = Number.parseInt(process.env.DISCOVER_MAX_ITEMS || "999", 10);
@@ -205,6 +207,7 @@ async function main() {
     assets: grouped,
   };
 
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
   console.log(`Saved map discovery to ${OUTPUT_FILE}`);
   console.log(JSON.stringify(output.counts, null, 2));

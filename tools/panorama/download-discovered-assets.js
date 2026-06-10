@@ -1,8 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const DISCOVERY_FILE = path.join(__dirname, "discovered-assets.json");
-const OUTPUT_DIR = path.join(__dirname, "downloaded_images");
+const ROOT = path.resolve(__dirname, "../..");
+const DISCOVERY_FILE = path.join(ROOT, "data", "discovery", "discovered-assets.json");
+const OUTPUT_DIR = path.join(ROOT, "downloaded_images");
 const DEFAULT_CONCURRENCY = 6;
 const REQUEST_TIMEOUT_MS = 30000;
 

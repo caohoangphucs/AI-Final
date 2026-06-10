@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backfill:panoramas": "node backfill-panorama-tiles.js",
-    "build:panoramas": "node stitch-panoramas.js",
-    "discover:assets": "node discover-tour-assets.js",
-    "discover:map": "node discover-tour-map.js",
-    "download:assets": "node download-discovered-assets.js",
-    "panorama": "node panorama-workflow.js",
+    "backfill:panoramas": "node tools/panorama/backfill-panorama-tiles.js",
+    "build:panoramas": "node tools/panorama/stitch-panoramas.js",
+    "discover:assets": "node tools/panorama/discover-tour-assets.js",
+    "discover:map": "node tools/panorama/discover-tour-map.js",
+    "download:assets": "node tools/panorama/download-discovered-assets.js",
+    "panorama": "node tools/panorama/panorama-workflow.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "view:panoramas": "node viewer-server.js"
+    "view:panoramas": "node tools/panorama/viewer-server.js"
   },
   "keywords": [],
   "author": "",

@@ -2,7 +2,7 @@ const fs = require("fs");
 const http = require("http");
 const path = require("path");
 
-const ROOT = __dirname;
+const ROOT = path.resolve(__dirname, "../..");
 const START_PORT = Number.parseInt(process.env.PORT || "4173", 10);
 const MAX_PORT_ATTEMPTS = 20;
 

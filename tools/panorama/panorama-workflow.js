@@ -1,14 +1,15 @@
 const { spawnSync, spawn } = require("child_process");
 const path = require("path");
 
-const ROOT = __dirname;
+const ROOT = path.resolve(__dirname, "../..");
+const SCRIPT_DIR = __dirname;
 const NODE = process.execPath;
 const args = new Set(process.argv.slice(2));
 
 function runStep(label, scriptFile, extraArgs = []) {
   console.log(`\n== ${label} ==`);
 
-  const result = spawnSync(NODE, [path.join(ROOT, scriptFile), ...extraArgs], {
+  const result = spawnSync(NODE, [path.join(SCRIPT_DIR, scriptFile), ...extraArgs], {
     cwd: ROOT,
     stdio: "inherit",
   });
@@ -21,7 +22,7 @@ function runStep(label, scriptFile, extraArgs = []) {
 function startViewer() {
   console.log(`\n== Start Viewer ==`);
 
-  const child = spawn(NODE, [path.join(ROOT, "viewer-server.js")], {
+  const child = spawn(NODE, [path.join(SCRIPT_DIR, "viewer-server.js")], {
     cwd: ROOT,
     stdio: "inherit",
   });
