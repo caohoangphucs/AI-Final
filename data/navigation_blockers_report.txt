@@ -1,0 +1,196 @@
+Checked edges: 3622
+Blocked edges: 300
+
+Top blockers:
+- Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B: 8
+- Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A: 8
+- Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B: 8
+- Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B: 7
+- Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B: 7
+- Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_F_A: 6
+- Khoi_A_Day_Trai_Stair_Wall_B_A: 5
+- Khoi_A_Day_Trai_Stair_Wall_F_A: 5
+- Khoi_A_Day_Phai_Stair_Wall_B_B: 5
+- Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B: 5
+- Khoi_A_Day_Phai_Stair_Wall_F_B: 4
+- Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B: 4
+- Bridge_C_D_Roof: 4
+- Khoi_C_Phong_Hoc_Dien_Stair_F0_MidLanding: 3
+- Khoi_C_Phong_Hoc_Dien_Stair_F3_MainLanding: 3
+- Khoi_C_Phong_Hoc_Dien_Stair_F3_MidLanding: 3
+- Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_F_B: 3
+- Khoi_D_Phong_Hoc_Dien_Stair_F0_MidLanding: 3
+- Khoi_D_Phong_Hoc_Dien_Stair_F3_MainLanding: 3
+- Khoi_D_Phong_Hoc_Dien_Stair_F3_MidLanding: 3
+- Khoi_E.0_Van_Phong_Co_Khi_F0_Part_6: 3
+- Khoi_L_Xuong_Sang_Tao_Stair_Wall_L_B: 3
+- Khoi_E.0_Van_Phong_Co_Khi_Stair_F0_MidLanding: 3
+- Khoi_L_Xuong_Sang_Tao_Stair_Wall_R_B: 3
+- Bridge_E2_E3_SideR: 3
+- Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_B_B: 3
+- Khoi_E.3_Xuong_Co_Khi_Stair_Wall_B_B: 3
+- Bridge_A_R_Lib_PanelL: 3
+- Khoi_K_Phong_Thi_Nghiem_Stair_F0_MidLanding: 3
+- Khoi_K_Phong_Thi_Nghiem_Stair_F3_MainLanding: 3
+
+Blocked edge samples:
+- edge 9 <-> 10 blocked by A1_Tower_Canopy at [-9.5, -87.8, 5.1] height=1.1 offset=0.0
+  from ['Khoi_A.2_Phong_Hoc_Corridor_F1:3'] to ['Khoi_A.2_Phong_Hoc_Corridor_F1:4']
+- edge 336 <-> 337 blocked by A1_Tower_Canopy at [19.5, -87.8, 5.1] height=1.1 offset=0.0
+  from ['Khoi_A.4_Phong_Hoc_Corridor_F1:0'] to ['Khoi_A.4_Phong_Hoc_Corridor_F1:1']
+- edge 349 <-> 4425 blocked by Khoi_A.4_Phong_Hoc_F3_WallCorr_1 at [26.2082, -86.6, 12.6] height=0.6 offset=0.0
+  from ['Khoi_A.4_Phong_Hoc_Corridor_F3:1'] to ['Bridge_A4_F1:0', 'Bridge_A4_F1_P1']
+- edge 663 <-> 664 blocked by Khoi_B_Ngang_F0_Rail_1 at [-12.1, 38.0, 0.6] height=0.6 offset=0.0
+  from ['Khoi_A_Day_Trai_Corridor_F0:3'] to ['Khoi_A_Day_Trai_Corridor_F0:4']
+- edge 666 <-> 667 blocked by Bridge_Lib_E2_SideR at [-12.1, -7.7453, 5.1] height=1.1 offset=0.0
+  from ['Khoi_A_Day_Trai_Corridor_F1:0'] to ['Khoi_A_Day_Trai_Corridor_F1:1']
+- edge 681 <-> 682 blocked by Khoi_B_Ngang_F3_Rail_1 at [-12.1, 38.0, 12.6] height=0.6 offset=0.0
+  from ['Khoi_A_Day_Trai_Corridor_F3:3'] to ['Khoi_A_Day_Trai_Corridor_F3:4']
+- edge 687 <-> 688 blocked by Khoi_B_Ngang_F4_Rail_1 at [-12.1, 38.0, 16.6] height=0.6 offset=0.0
+  from ['Khoi_A_Day_Trai_Corridor_F4:3'] to ['Khoi_A_Day_Trai_Corridor_F4:4']
+- edge 703 <-> 704 blocked by Khoi_A_Day_Trai_Stair_Wall_B_A at [-16.3382, 21.4136, 2.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F0:10'] to ['Khoi_A_Day_Trai_StairRun_F0:11']
+- edge 714 <-> 715 blocked by Khoi_A_Day_Trai_Stair_Wall_F_A at [-13.5, 17.549, 4.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F0:21', 'Khoi_A_Day_Trai_TopStep_F0'] to ['Khoi_A_Day_Trai_StairRun_F1:0', 'Khoi_A_Day_Trai_MainLanding_F1']
+- edge 725 <-> 726 blocked by Khoi_A_Day_Trai_Stair_Wall_B_A at [-16.3382, 21.4136, 6.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F1:10'] to ['Khoi_A_Day_Trai_StairRun_F1:11']
+- edge 736 <-> 737 blocked by Khoi_A_Day_Trai_Stair_Wall_F_A at [-13.5, 17.549, 8.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F1:21', 'Khoi_A_Day_Trai_TopStep_F1'] to ['Khoi_A_Day_Trai_StairRun_F2:0', 'Khoi_A_Day_Trai_MainLanding_F2']
+- edge 747 <-> 748 blocked by Khoi_A_Day_Trai_Stair_Wall_B_A at [-16.3382, 21.4136, 10.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F2:10'] to ['Khoi_A_Day_Trai_StairRun_F2:11']
+- edge 751 <-> 4408 blocked by Khoi_A_Day_Trai_Stair_Wall_F_A at [-13.9204, 17.6045, 10.9563] height=0.6 offset=0.0
+  from ['Khoi_A_Day_Trai_StairRun_F2:14'] to ['Bridge_A_L_Lib:0', 'Bridge_A_L_C:0', 'Bridge_A_L_Lib_P1']
+- edge 758 <-> 759 blocked by Khoi_A_Day_Trai_Stair_Wall_F_A at [-13.5, 17.549, 12.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F2:21', 'Khoi_A_Day_Trai_TopStep_F2'] to ['Khoi_A_Day_Trai_StairRun_F3:0', 'Khoi_A_Day_Trai_MainLanding_F3']
+- edge 769 <-> 770 blocked by Khoi_A_Day_Trai_Stair_Wall_B_A at [-16.3382, 21.4136, 14.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F3:10'] to ['Khoi_A_Day_Trai_StairRun_F3:11']
+- edge 780 <-> 781 blocked by Khoi_A_Day_Trai_Stair_Wall_F_A at [-13.5, 17.549, 16.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F3:21', 'Khoi_A_Day_Trai_TopStep_F3'] to ['Khoi_A_Day_Trai_StairRun_F4:0', 'Khoi_A_Day_Trai_MainLanding_F4']
+- edge 791 <-> 792 blocked by Khoi_A_Day_Trai_Stair_Wall_B_A at [-16.3382, 21.4136, 18.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Trai_StairRun_F4:10'] to ['Khoi_A_Day_Trai_StairRun_F4:11']
+- edge 806 <-> 807 blocked by Khoi_B_Ngang_F0_Rail_2 at [12.1, 38.0, 0.6] height=0.6 offset=0.0
+  from ['Khoi_A_Day_Phai_Corridor_F0:3'] to ['Khoi_A_Day_Phai_Corridor_F0:4']
+- edge 809 <-> 810 blocked by Bridge_A_R_Lib_SideL at [12.1, 7.5427, 5.1] height=1.1 offset=0.0
+  from ['Khoi_A_Day_Phai_Corridor_F1:0'] to ['Khoi_A_Day_Phai_Corridor_F1:1']
+- edge 824 <-> 825 blocked by Khoi_B_Ngang_F3_Rail_2 at [12.1, 38.0, 12.6] height=0.6 offset=0.0
+  from ['Khoi_A_Day_Phai_Corridor_F3:3'] to ['Khoi_A_Day_Phai_Corridor_F3:4']
+- edge 830 <-> 831 blocked by Khoi_B_Ngang_F4_Rail_2 at [12.1, 38.0, 16.6] height=0.6 offset=0.0
+  from ['Khoi_A_Day_Phai_Corridor_F4:3'] to ['Khoi_A_Day_Phai_Corridor_F4:4']
+- edge 846 <-> 847 blocked by Khoi_A_Day_Phai_Stair_Wall_B_B at [13.5, 21.4692, 2.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F0:10'] to ['Khoi_A_Day_Phai_StairRun_F0:11']
+- edge 857 <-> 858 blocked by Khoi_A_Day_Phai_Stair_Wall_F_B at [16.3382, 17.6045, 4.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F0:21', 'Khoi_A_Day_Phai_TopStep_F0'] to ['Khoi_A_Day_Phai_StairRun_F1:0', 'Khoi_A_Day_Phai_MainLanding_F1']
+- edge 868 <-> 869 blocked by Khoi_A_Day_Phai_Stair_Wall_B_B at [13.5, 21.4692, 6.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F1:10'] to ['Khoi_A_Day_Phai_StairRun_F1:11']
+- edge 879 <-> 880 blocked by Khoi_A_Day_Phai_Stair_Wall_F_B at [16.3382, 17.6045, 8.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F1:21', 'Khoi_A_Day_Phai_TopStep_F1'] to ['Khoi_A_Day_Phai_StairRun_F2:0', 'Khoi_A_Day_Phai_MainLanding_F2']
+- edge 890 <-> 891 blocked by Khoi_A_Day_Phai_Stair_Wall_B_B at [13.5, 21.4692, 10.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F2:10'] to ['Khoi_A_Day_Phai_StairRun_F2:11']
+- edge 901 <-> 902 blocked by Khoi_A_Day_Phai_Stair_Wall_F_B at [16.3382, 17.6045, 12.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F2:21', 'Khoi_A_Day_Phai_TopStep_F2'] to ['Khoi_A_Day_Phai_StairRun_F3:0', 'Khoi_A_Day_Phai_MainLanding_F3']
+- edge 912 <-> 913 blocked by Khoi_A_Day_Phai_Stair_Wall_B_B at [13.5, 21.4692, 14.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F3:10'] to ['Khoi_A_Day_Phai_StairRun_F3:11']
+- edge 923 <-> 924 blocked by Khoi_A_Day_Phai_Stair_Wall_F_B at [16.3382, 17.6045, 16.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F3:21', 'Khoi_A_Day_Phai_TopStep_F3'] to ['Khoi_A_Day_Phai_StairRun_F4:0', 'Khoi_A_Day_Phai_MainLanding_F4']
+- edge 934 <-> 935 blocked by Khoi_A_Day_Phai_Stair_Wall_B_B at [13.5, 21.4692, 18.6] height=0.6 offset=0.18
+  from ['Khoi_A_Day_Phai_StairRun_F4:10'] to ['Khoi_A_Day_Phai_StairRun_F4:11']
+- edge 946 <-> 947 blocked by Khoi_A_Day_Trai_F0_WallBack_2 at [-18.8, 39.1, 0.6] height=0.6 offset=0.0
+  from ['Khoi_B_Ngang_Corridor_F0:0'] to ['Khoi_B_Ngang_Corridor_F0:1']
+- edge 946 <-> 4516 blocked by Khoi_B_Ngang_F0_Rail_1 at [-19.0, 38.2, 0.6] height=0.6 offset=0.0
+  from ['Khoi_B_Ngang_Corridor_F0:0'] to ['OutStair_AL_side:0', 'OutStair_AL_side_Bottom']
+- edge 949 <-> 950 blocked by Khoi_A_Day_Phai_F0_Rail_2 at [11.0, 39.1, 0.6] height=0.6 offset=0.0
+  from ['Khoi_B_Ngang_Corridor_F0:3'] to ['Khoi_B_Ngang_Corridor_F0:4']
+- edge 964 <-> 965 blocked by Khoi_A_Day_Trai_F3_WallBack_2 at [-18.8, 39.1, 12.6] height=0.6 offset=0.0
+  from ['Khoi_B_Ngang_Corridor_F3:0'] to ['Khoi_B_Ngang_Corridor_F3:1']
+- edge 967 <-> 968 blocked by Khoi_A_Day_Phai_F3_Rail_2 at [11.0, 39.1, 12.6] height=0.6 offset=0.0
+  from ['Khoi_B_Ngang_Corridor_F3:3'] to ['Khoi_B_Ngang_Corridor_F3:4']
+- edge 970 <-> 971 blocked by Khoi_A_Day_Trai_F4_WallBack_2 at [-18.8, 39.1, 16.6] height=0.6 offset=0.0
+  from ['Khoi_B_Ngang_Corridor_F4:0'] to ['Khoi_B_Ngang_Corridor_F4:1']
+- edge 973 <-> 974 blocked by Khoi_A_Day_Phai_F4_Rail_2 at [11.0, 39.1, 16.6] height=0.6 offset=0.0
+  from ['Khoi_B_Ngang_Corridor_F4:3'] to ['Khoi_B_Ngang_Corridor_F4:4']
+- edge 1084 <-> 1085 blocked by Khoi_C_Phong_Hoc_Dien_F0_Part_0 at [-37.8, 10.1, 0.6] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_Corridor_F0:0'] to ['Khoi_C_Phong_Hoc_Dien_Corridor_F0:1']
+- edge 1087 <-> 1088 blocked by Khoi_C_Phong_Hoc_Dien_F0_Part_7 at [-37.8, 40.9, 0.6] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_Corridor_F0:3'] to ['Khoi_C_Phong_Hoc_Dien_Corridor_F0:4']
+- edge 1090 <-> 1091 blocked by Bridge_C_D_SideL at [-37.8, 23.2152, 5.3] height=1.1 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_Corridor_F1:0'] to ['Khoi_C_Phong_Hoc_Dien_Corridor_F1:1']
+- edge 1096 <-> 1097 blocked by Bridge_J_C_SideR at [-37.8, 28.9828, 10.0] height=1.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_Corridor_F2:0'] to ['Khoi_C_Phong_Hoc_Dien_Corridor_F2:1']
+- edge 1102 <-> 1103 blocked by Khoi_C_Phong_Hoc_Dien_F3_Part_0 at [-37.8, 10.1, 13.2] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_Corridor_F3:0'] to ['Khoi_C_Phong_Hoc_Dien_Corridor_F3:1']
+- edge 1105 <-> 1106 blocked by Khoi_C_Phong_Hoc_Dien_F3_Part_7 at [-37.8, 40.9, 13.2] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_Corridor_F3:3'] to ['Khoi_C_Phong_Hoc_Dien_Corridor_F3:4']
+- edge 1115 <-> 1116 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F0_MidLanding at [-36.8182, 34.85, 1.9925] height=1.1 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F0:4'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F0:5']
+- edge 1117 <-> 1118 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F0_MidLanding at [-36.8182, 35.3043, 1.89] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F0:6'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F0:7']
+- edge 1118 <-> 1119 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F0_MidLanding at [-36.8182, 35.5443, 2.1] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F0:7'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F0:8']
+- edge 1132 <-> 1133 blocked by Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B at [-33.6739, 32.55, 4.8] height=0.6 offset=0.18
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F0:21', 'Khoi_C_Phong_Hoc_Dien_TopStep_F0'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F1:0', 'Khoi_C_Phong_Hoc_Dien_MainLanding_F1']
+- edge 1134 <-> 4416 blocked by Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B at [-36.1392, 32.55, 5.2303] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F1:1'] to ['Bridge_C_D:0', 'Bridge_C_D_P1']
+- edge 1154 <-> 1155 blocked by Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B at [-33.6739, 32.55, 9.0] height=0.6 offset=0.18
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F1:21', 'Khoi_C_Phong_Hoc_Dien_TopStep_F1'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:0', 'Khoi_C_Phong_Hoc_Dien_MainLanding_F2']
+- edge 1160 <-> 4415 blocked by Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B at [-35.9218, 32.55, 10.3212] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:5'] to ['Bridge_A_L_C:2', 'Bridge_J_C:2', 'Bridge_A_L_C_P2']
+- edge 1170 <-> 1171 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F3_MainLanding at [-33.1818, 33.95, 12.4925] height=1.1 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:15'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:16']
+- edge 1172 <-> 1173 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F3_MainLanding at [-33.1818, 33.4957, 12.39] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:17'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:18']
+- edge 1173 <-> 1174 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F3_MainLanding at [-33.1818, 33.2557, 12.6] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:18'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:19']
+- edge 1176 <-> 1177 blocked by Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B at [-33.6739, 32.55, 13.2] height=0.6 offset=0.18
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F2:21', 'Khoi_C_Phong_Hoc_Dien_TopStep_F2'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F3:0', 'Khoi_C_Phong_Hoc_Dien_MainLanding_F3']
+- edge 1181 <-> 1182 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F3_MidLanding at [-36.8182, 34.85, 14.5925] height=1.1 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F3:4'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F3:5']
+- edge 1183 <-> 1184 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F3_MidLanding at [-36.8182, 35.3043, 14.49] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F3:6'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F3:7']
+- edge 1184 <-> 1185 blocked by Khoi_C_Phong_Hoc_Dien_Stair_F3_MidLanding at [-36.8182, 35.5443, 14.7] height=0.6 offset=0.0
+  from ['Khoi_C_Phong_Hoc_Dien_StairRun_F3:7'] to ['Khoi_C_Phong_Hoc_Dien_StairRun_F3:8']
+- edge 1199 <-> 1200 blocked by Khoi_D_Phong_Hoc_Dien_F0_Part_0 at [-50.8, -9.9, 0.6] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_Corridor_F0:0'] to ['Khoi_D_Phong_Hoc_Dien_Corridor_F0:1']
+- edge 1202 <-> 1203 blocked by Khoi_D_Phong_Hoc_Dien_F0_Part_7 at [-50.8, 20.9, 0.6] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_Corridor_F0:3'] to ['Khoi_D_Phong_Hoc_Dien_Corridor_F0:4']
+- edge 1205 <-> 1206 blocked by OutStair_E2_W_RailA at [-50.8, -6.825, 4.8] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_Corridor_F1:0'] to ['Khoi_D_Phong_Hoc_Dien_Corridor_F1:1']
+- edge 1211 <-> 1212 blocked by Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_F_B at [-50.8, -2.25, 9.0] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_Corridor_F2:0'] to ['Khoi_D_Phong_Hoc_Dien_Corridor_F2:1']
+- edge 1217 <-> 1218 blocked by Khoi_D_Phong_Hoc_Dien_F3_Part_0 at [-50.8, -9.9, 13.2] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_Corridor_F3:0'] to ['Khoi_D_Phong_Hoc_Dien_Corridor_F3:1']
+- edge 1220 <-> 1221 blocked by Khoi_D_Phong_Hoc_Dien_F3_Part_7 at [-50.8, 20.9, 13.2] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_Corridor_F3:3'] to ['Khoi_D_Phong_Hoc_Dien_Corridor_F3:4']
+- edge 1230 <-> 1231 blocked by Khoi_D_Phong_Hoc_Dien_Stair_F0_MidLanding at [-49.8182, 14.85, 1.9925] height=1.1 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F0:4'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F0:5']
+- edge 1232 <-> 1233 blocked by Khoi_D_Phong_Hoc_Dien_Stair_F0_MidLanding at [-49.8182, 15.3043, 1.89] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F0:6'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F0:7']
+- edge 1233 <-> 1234 blocked by Khoi_D_Phong_Hoc_Dien_Stair_F0_MidLanding at [-49.8182, 15.5443, 2.1] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F0:7'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F0:8']
+- edge 1247 <-> 1248 blocked by Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B at [-46.6739, 12.55, 4.8] height=0.6 offset=0.18
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F0:21', 'Khoi_D_Phong_Hoc_Dien_TopStep_F0'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:0', 'Khoi_D_Phong_Hoc_Dien_MainLanding_F1']
+- edge 1249 <-> 4418 blocked by Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B at [-49.1392, 12.55, 5.2303] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:1'] to ['Bridge_C_D:2', 'Bridge_D_E2:0', 'Bridge_C_D_P2']
+- edge 1259 <-> 1260 blocked by Bridge_C_D_PanelR at [-46.4062, 14.8374, 7.0841] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:11'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:12']
+- edge 1261 <-> 1262 blocked by Bridge_C_D_Roof at [-46.1818, 14.3986, 8.4] height=1.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:13'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:14']
+- edge 1262 <-> 1263 blocked by Bridge_C_D_Roof at [-46.1818, 14.17, 8.6] height=1.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:14'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:15']
+- edge 1264 <-> 1265 blocked by Bridge_C_D_Roof at [-46.1818, 13.5986, 8.6] height=1.1 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:16'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:17']
+- edge 1266 <-> 1267 blocked by Bridge_C_D_Roof at [-46.1818, 13.2557, 8.4] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:18'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:19']
+- edge 1269 <-> 1270 blocked by Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B at [-46.6739, 12.55, 9.0] height=0.6 offset=0.18
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F1:21', 'Khoi_D_Phong_Hoc_Dien_TopStep_F1'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F2:0', 'Khoi_D_Phong_Hoc_Dien_MainLanding_F2']
+- edge 1285 <-> 1286 blocked by Khoi_D_Phong_Hoc_Dien_Stair_F3_MainLanding at [-46.1818, 13.95, 12.4925] height=1.1 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F2:15'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F2:16']
+- edge 1287 <-> 1288 blocked by Khoi_D_Phong_Hoc_Dien_Stair_F3_MainLanding at [-46.1818, 13.4957, 12.39] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F2:17'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F2:18']
+- edge 1288 <-> 1289 blocked by Khoi_D_Phong_Hoc_Dien_Stair_F3_MainLanding at [-46.1818, 13.2557, 12.6] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F2:18'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F2:19']
+- edge 1291 <-> 1292 blocked by Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B at [-46.6739, 12.55, 13.2] height=0.6 offset=0.18
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F2:21', 'Khoi_D_Phong_Hoc_Dien_TopStep_F2'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F3:0', 'Khoi_D_Phong_Hoc_Dien_MainLanding_F3']
+- edge 1296 <-> 1297 blocked by Khoi_D_Phong_Hoc_Dien_Stair_F3_MidLanding at [-49.8182, 14.85, 14.5925] height=1.1 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F3:4'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F3:5']
+- edge 1298 <-> 1299 blocked by Khoi_D_Phong_Hoc_Dien_Stair_F3_MidLanding at [-49.8182, 15.3043, 14.49] height=0.6 offset=0.0
+  from ['Khoi_D_Phong_Hoc_Dien_StairRun_F3:6'] to ['Khoi_D_Phong_Hoc_Dien_StairRun_F3:7']

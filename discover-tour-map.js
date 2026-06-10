@@ -169,8 +169,6 @@ async function main() {
 
   await dismissOverlays(page);
   await page.waitForTimeout(INITIAL_WAIT_MS);
-  await page.screenshot({ path: path.join(__dirname, "discover-map-initial.png") }).catch(() => {});
-
   const items = await ensureMenuOpen(page);
   const limitedItems = items.slice(0, MAX_ITEMS);
   console.log(`Discovered ${items.length} clickable menu item(s). Visiting ${limitedItems.length}.`);
@@ -186,8 +184,6 @@ async function main() {
     await page.waitForTimeout(CLICK_WAIT_MS);
     await dismissOverlays(page);
   }
-
-  await page.screenshot({ path: path.join(__dirname, "discover-map-final.png") }).catch(() => {});
 
   const grouped = {};
   for (const asset of assets.values()) {

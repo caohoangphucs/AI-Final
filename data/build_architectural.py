@@ -7,6 +7,8 @@ import bpy
 import bmesh
 from mathutils import Vector
 
+HELPER_PREFIXES = ("StairEntry_", "BridgeEntry_", "Cut_")
+
 # ─── MATERIALS ───────────────────────────────────────────────────────────────
 def make_material(name, r, g, b, a=1.0, metallic=0.0, roughness=0.5):
     if name in bpy.data.materials:
@@ -34,6 +36,85 @@ mat_door     = make_material("Mat_Door",     0.4, 0.2, 0.1, roughness=0.7)
 mat_window   = make_material("Mat_WinFrame", 0.1, 0.1, 0.1, roughness=0.5)
 mat_stair    = make_material("Mat_Stair",    0.6, 0.6, 0.6, roughness=0.8)
 mat_louver   = make_material("Mat_Louver",   0.85, 0.85, 0.85, roughness=0.5)
+mat_terrain  = make_material("Mat_Terrain",  0.58, 0.56, 0.50, roughness=1.0)
+mat_path     = make_material("Mat_Path",     0.55, 0.54, 0.50, roughness=0.95)
+mat_road     = make_material("Mat_Road",     0.18, 0.18, 0.19, roughness=0.95)
+mat_grass    = make_material("Mat_Grass",    0.22, 0.36, 0.20, roughness=1.0)
+
+BLOCK_SPECS = [
+    ("Khoi_A.2_Phong_Hoc", 'S', 6, 4.0),
+    ("Khoi_A.3_Giang_Duong", 'S', 6, 4.0),
+    ("Khoi_A.4_Phong_Hoc", 'S', 6, 4.0),
+    ("Khoi_A.5_Giang_Duong", 'S', 6, 4.0),
+    ("Khoi_A_Day_Trai", 'E', 5, 4.0),
+    ("Khoi_A_Day_Phai", 'W', 5, 4.0),
+    ("Khoi_B_Ngang", 'S', 5, 4.0),
+    ("Khoi_C_Phong_Hoc_Dien", 'S', 4, 4.2),
+    ("Khoi_D_Phong_Hoc_Dien", 'S', 4, 4.2),
+    ("Khoi_E.0_Van_Phong_Co_Khi", 'S', 3, 4.0),
+    ("Khoi_E.1_Xuong_Chat_Luong_Cao", 'S', 3, 4.0),
+    ("Khoi_E.2_Can_Tin_Sieu_Thi", 'S', 3, 4.0),
+    ("Khoi_E.3_Xuong_Co_Khi", 'S', 3, 4.0),
+    ("Khoi_E.4_Lop_Hoc_Bat_Giac", 'S', 3, 4.0),
+    ("Khoi_F.1_Phong_Hoc_Xuong", 'S', 4, 4.0),
+    ("Khoi_G_Trung_Tam_Viet_Duc", 'S', 4, 4.0),
+    ("Khoi_Thu_Vien", 'S', 5, 4.2),
+    ("Hoi_Truong_Lon", 'S', 3, 4.5),
+    ("Xuong_Bien_O_To", 'S', 3, 4.0),
+    ("Xuong_Chung_Gam", 'S', 3, 4.0),
+    ("Xuong_Dong_Co", 'S', 3, 4.0),
+    ("Xuong_Nhiet_Dien_Lanh", 'S', 3, 4.0),
+    ("Xuong_Thuc_Tap_Go", 'S', 3, 4.0),
+]
+
+EXTRA_COMPLEXES = [
+    ("Khoi_H_Trung_Tam_Nghien_Cuu",  76.0, 102.0,  18.0,  42.0,  2.5, 'S', 8, 4.5),
+    ("Khoi_I_Hoc_Lieu_So",          106.0, 136.0,  10.0,  34.0,  2.5, 'S', 7, 4.5),
+    ("Khoi_J_Ky_Tuc_Xa_Tay",       -112.0, -84.0,  22.0,  56.0,  5.0, 'E', 8, 4.2),
+    ("Khoi_K_Phong_Thi_Nghiem",      82.0, 112.0, -54.0, -18.0,  0.0, 'N', 9, 4.4),
+    ("Khoi_L_Xuong_Sang_Tao",      -118.0, -86.0, -36.0,  -8.0,  0.0, 'S', 4, 4.2),
+    ("Khoi_M_Hanh_Chinh_Mo_Rong",   118.0, 148.0, -48.0, -16.0,  5.0, 'N', 6, 4.2),
+    ("Khoi_N_Thap_Dong",            154.0, 176.0,   4.0,  26.0,  2.5, 'W', 11, 4.6),
+    ("Khoi_O_Thap_Tay",             184.0, 206.0,   4.0,  26.0,  2.5, 'E', 10, 4.6),
+]
+
+EXTRA_SKYBRIDGES = [
+    ("Bridge_H_I",   (102.0, 30.0),  (106.0, 22.0), 18.0),
+    ("Bridge_H_K",   (90.0, 18.0),   (96.0, -18.0), 13.5),
+    ("Bridge_J_C",   (-84.0, 36.0),  (-35.0, 30.0), 10.0),
+    ("Bridge_L_E3",  (-86.0, -22.0), (-70.0, -25.0), 8.0),
+    ("Bridge_K_F1",  (82.0, -32.0),  (55.0, -35.0), 12.0),
+    ("Bridge_M_K",   (118.0, -26.0), (112.0, -30.0), 12.6),
+    ("Bridge_M_N",   (148.0, -22.0), (154.0, 10.0), 18.4),
+    ("Bridge_N_O_L3", (176.0, 10.0), (184.0, 10.0), 16.3),
+    ("Bridge_N_O_L5", (176.0, 16.0), (184.0, 16.0), 25.5),
+    ("Bridge_N_O_L7", (176.0, 22.0), (184.0, 22.0), 34.7),
+]
+
+EXTRA_OUTDOOR_STAIRS = [
+    ("OutStair_H_S",  88.0,  18.0,  2.5, 18.0, 'S', 3.5),
+    ("OutStair_I_S", 120.0,  10.0,  2.5, 13.5, 'S', 3.5),
+    ("OutStair_J_E", -84.0,  40.0,  5.0, 10.0, 'W', 3.5),
+    ("OutStair_K_N",  96.0, -18.0,  0.0, 13.5, 'S', 3.5),
+    ("OutStair_L_E", -86.0, -20.0,  0.0,  8.0, 'W', 3.5),
+    ("OutStair_M_W", 118.0, -28.0,  5.0, 12.6, 'E', 3.5),
+    ("OutStair_N_S", 165.0,   4.0,  2.5, 16.3, 'S', 3.5),
+    ("OutStair_O_S", 195.0,   4.0,  2.5, 16.3, 'S', 3.5),
+]
+
+EXTRA_GROUND_PATHS = [
+    ("Road_East_Spine", [(30.0, -5.0, 0.0), (62.0, -5.0, 0.0), (90.0, -5.0, 0.0), (118.0, -5.0, 0.0)]),
+    ("Road_East_North", [(90.0, -5.0, 0.0), (90.0, 16.0, 0.8), (90.0, 30.0, 2.5), (120.0, 30.0, 2.5)]),
+    ("Road_East_South", [(90.0, -5.0, 0.0), (96.0, -20.0, 0.0), (96.0, -36.0, 0.0), (128.0, -36.0, 5.0)]),
+    ("Road_West_Spine", [(-35.0, 10.0, 0.0), (-62.0, 10.0, 0.0), (-90.0, 10.0, 2.5), (-90.0, 38.0, 5.0)]),
+    ("Road_West_South", [(-55.0, -5.0, 0.0), (-82.0, -10.0, 0.0), (-102.0, -10.0, 0.0), (-102.0, -22.0, 0.0)]),
+    ("Walk_HI_Plaza", [(82.0, 24.0, 2.5), (104.0, 24.0, 2.5), (126.0, 24.0, 2.5)]),
+    ("Walk_HK_Ramp", [(92.0, 18.0, 2.5), (94.0, 2.0, 6.0), (96.0, -18.0, 10.5)]),
+    ("Walk_JTerrace", [(-90.0, 26.0, 5.0), (-90.0, 40.0, 5.0), (-84.0, 40.0, 5.0)]),
+    ("Walk_MK_Upper", [(128.0, -28.0, 5.0), (120.0, -28.0, 5.0), (112.0, -28.0, 5.0), (102.0, -28.0, 5.0)]),
+    ("Road_Tower_Axis", [(118.0, -5.0, 0.0), (146.0, -5.0, 1.2), (166.0, 0.0, 2.5), (196.0, 0.0, 2.5)]),
+    ("Walk_Tower_Podium", [(160.0, 10.0, 2.5), (170.0, 10.0, 2.5), (190.0, 10.0, 2.5), (200.0, 10.0, 2.5)]),
+]
 
 # ─── UTILS ───────────────────────────────────────────────────────────────────
 def add_box(name, cx, cy, cz, sx, sy, sz, mat, col):
@@ -85,7 +166,7 @@ def get_block_profile(prefix):
 
     return profile
 
-def build_staircase(prefix, cx, cy, z_base, z_top, width, depth, floor_h=4.0, open_side='S'):
+def build_staircase(prefix, cx, cy, z_base, z_top, width, depth, floor_h=4.0, open_side='S', corridor_width=2.4):
     """
     open_side: phía hành lang sẽ không có tường lõi ('S'=Nam, 'N'=Bắc, 'E'=Đông, 'W'=Tây)
     """
@@ -95,15 +176,59 @@ def build_staircase(prefix, cx, cy, z_base, z_top, width, depth, floor_h=4.0, op
     run_d = depth - 1.5
     h_total = z_top - z_base
 
-    # Tường lõi: chỉ vẽ 3 cạnh, BỎ cạnh hướng về hành lang (open_side)
-    if open_side != 'W':  # Tường trái (x-)
-        add_box(f"{prefix}_Wall_L", cx - width/2, cy, (z_base+z_top)/2, 0.2, depth, h_total, mat_wall, col_arch)
-    if open_side != 'E':  # Tường phải (x+)
-        add_box(f"{prefix}_Wall_R", cx + width/2, cy, (z_base+z_top)/2, 0.2, depth, h_total, mat_wall, col_arch)
-    if open_side != 'S':  # Tường hậu (y-)
-        add_box(f"{prefix}_Wall_F", cx, cy - depth/2, (z_base+z_top)/2, width, 0.2, h_total, mat_wall, col_arch)
-    if open_side != 'N':  # Tường hậu (y+)
-        add_box(f"{prefix}_Wall_B", cx, cy + depth/2, (z_base+z_top)/2, width, 0.2, h_total, mat_wall, col_arch)
+    z_center = (z_base + z_top) / 2
+    x_min = cx - width / 2
+    x_max = cx + width / 2
+    y_min = cy - depth / 2
+    y_max = cy + depth / 2
+
+    def add_wall_segments_y(name, wall_x, slot_center_y, slot_width):
+        slot_min_y = max(y_min + 0.3, slot_center_y - slot_width / 2)
+        slot_max_y = min(y_max - 0.3, slot_center_y + slot_width / 2)
+        seg_a = slot_min_y - y_min
+        seg_b = y_max - slot_max_y
+        if seg_a > 0.05:
+            add_box(f"{name}_A", wall_x, y_min + seg_a / 2, z_center, 0.2, seg_a, h_total, mat_wall, col_arch)
+        if seg_b > 0.05:
+            add_box(f"{name}_B", wall_x, slot_max_y + seg_b / 2, z_center, 0.2, seg_b, h_total, mat_wall, col_arch)
+
+    def add_wall_segments_x(name, wall_y, slot_center_x, slot_width):
+        slot_min_x = max(x_min + 0.3, slot_center_x - slot_width / 2)
+        slot_max_x = min(x_max - 0.3, slot_center_x + slot_width / 2)
+        seg_a = slot_min_x - x_min
+        seg_b = x_max - slot_max_x
+        if seg_a > 0.05:
+            add_box(f"{name}_A", x_min + seg_a / 2, wall_y, z_center, seg_a, 0.2, h_total, mat_wall, col_arch)
+        if seg_b > 0.05:
+            add_box(f"{name}_B", slot_max_x + seg_b / 2, wall_y, z_center, seg_b, 0.2, h_total, mat_wall, col_arch)
+
+    corridor_open_span = max(2.4, min(corridor_width + 0.6, depth - 0.6 if open_side in ("S", "N") else width - 0.6))
+
+    # Tường lõi: bỏ cạnh hướng về hành lang, đồng thời chừa khe mở ở 2 cạnh vuông góc
+    # để stair corridor nối vào hành lang thay vì bị tường trái/phải hoặc trước/sau chặn.
+    if open_side in ("S", "N"):
+        corridor_center_y = y_min + corridor_width / 2 if open_side == "S" else y_max - corridor_width / 2
+        if open_side != 'W':
+            add_wall_segments_y(f"{prefix}_Wall_L", x_min, corridor_center_y, corridor_open_span)
+        if open_side != 'E':
+            add_wall_segments_y(f"{prefix}_Wall_R", x_max, corridor_center_y, corridor_open_span)
+    else:
+        if open_side != 'W':
+            add_box(f"{prefix}_Wall_L", x_min, cy, z_center, 0.2, depth, h_total, mat_wall, col_arch)
+        if open_side != 'E':
+            add_box(f"{prefix}_Wall_R", x_max, cy, z_center, 0.2, depth, h_total, mat_wall, col_arch)
+
+    if open_side in ("E", "W"):
+        corridor_center_x = x_max - corridor_width / 2 if open_side == "E" else x_min + corridor_width / 2
+        if open_side != 'S':
+            add_wall_segments_x(f"{prefix}_Wall_F", y_min, corridor_center_x, corridor_open_span)
+        if open_side != 'N':
+            add_wall_segments_x(f"{prefix}_Wall_B", y_max, corridor_center_x, corridor_open_span)
+    else:
+        if open_side != 'S':
+            add_box(f"{prefix}_Wall_F", cx, y_min, z_center, width, 0.2, h_total, mat_wall, col_arch)
+        if open_side != 'N':
+            add_box(f"{prefix}_Wall_B", cx, y_max, z_center, width, 0.2, h_total, mat_wall, col_arch)
     
     num_steps = 10 # 10 steps per flight
     step_d = run_d / num_steps
@@ -127,6 +252,25 @@ def build_staircase(prefix, cx, cy, z_base, z_top, width, depth, floor_h=4.0, op
         start_y = cy + depth/2 - 1.5 - step_d/2
         for s in range(num_steps):
             add_box(f"{prefix}_F{f}_F2_{s}", cx + flight_w/2, start_y - s*step_d, zf + floor_h/2 + (s+0.5)*step_h, flight_w, step_d, step_h, mat_stair, col_arch)
+
+
+def add_internal_stair_cutters(prefix, z_min, num_floors, floor_h, is_x_long, corridor_side, corridor_width, stair_cx, stair_cy, stair_w, stair_d):
+    door_h = min(2.8, max(2.2, floor_h - 0.6))
+    cut_thick = 1.0
+    z_offset = min(1.4, floor_h / 2)
+
+    for f in range(num_floors):
+        z_center = z_min + f * floor_h + z_offset
+        if is_x_long:
+            corridor_y = stair_cy - stair_d / 2 + max(corridor_width / 2, 0.8) if corridor_side == 'S' else stair_cy + stair_d / 2 - max(corridor_width / 2, 0.8)
+            door_span_y = min(stair_d - 0.6, max(corridor_width + 0.6, 2.4))
+            add_cutter(f"Cut_{prefix}_StairEntryL_F{f}", stair_cx - stair_w / 2, corridor_y, z_center, cut_thick, door_span_y, door_h)
+            add_cutter(f"Cut_{prefix}_StairEntryR_F{f}", stair_cx + stair_w / 2, corridor_y, z_center, cut_thick, door_span_y, door_h)
+        else:
+            corridor_x = stair_cx + stair_w / 2 - max(corridor_width / 2, 0.8) if corridor_side == 'E' else stair_cx - stair_w / 2 + max(corridor_width / 2, 0.8)
+            door_span_x = min(stair_w - 0.6, max(corridor_width + 0.6, 2.4))
+            add_cutter(f"Cut_{prefix}_StairEntryF_F{f}", corridor_x, stair_cy - stair_d / 2, z_center, door_span_x, cut_thick, door_h)
+            add_cutter(f"Cut_{prefix}_StairEntryB_F{f}", corridor_x, stair_cy + stair_d / 2, z_center, door_span_x, cut_thick, door_h)
 
 # ─── PROCEDURAL BUILDING GENERATOR ───────────────────────────────────────────
 def build_detailed_block(prefix, x_min, x_max, y_min, y_max, z_min, z_max, corridor_side='S', num_floors=4):
@@ -288,12 +432,16 @@ def build_detailed_block(prefix, x_min, x_max, y_min, y_max, z_min, z_max, corri
     # Build integrated stair — open_side = phía hành lang
     if is_x_long:
         stair_cx = x_min + col_size/2 + (stair_index + 0.5) * dx
+        stair_w = dx - 0.5
         open_s = 'S' if corridor_side == 'S' else 'N'
-        build_staircase(f"{prefix}_Stair", stair_cx, (y_min+y_max)/2, z_min, z_max, dx-0.5, depth_y, floor_h, open_side=open_s)
+        stair_cy = (y_min + y_max) / 2
+        build_staircase(f"{prefix}_Stair", stair_cx, stair_cy, z_min, z_max, stair_w, depth_y, floor_h, open_side=open_s, corridor_width=corr_width)
     else:
         stair_cy = y_min + col_size/2 + (stair_index + 0.5) * dy
+        stair_d = dy - 0.5
         open_s = 'E' if corridor_side == 'E' else 'W'
-        build_staircase(f"{prefix}_Stair", (x_min+x_max)/2, stair_cy, z_min, z_max, width_x, dy-0.5, floor_h, open_side=open_s)
+        stair_cx = (x_min + x_max) / 2
+        build_staircase(f"{prefix}_Stair", stair_cx, stair_cy, z_min, z_max, width_x, stair_d, floor_h, open_side=open_s, corridor_width=corr_width)
 
 # ─── PASSAGEWAYS (BOOLEAN CUTTERS) ───────────────────────────────────
 print("Setting up boolean cutters...")
@@ -305,6 +453,7 @@ def add_cutter(name, cx, cy, cz, sx, sy, sz):
     c.scale = (sx, sy, sz)
     c.display_type = 'WIRE'
     c.hide_render = True
+    c.hide_viewport = True
     bpy.ops.object.transform_apply(scale=True)
     for coll in c.users_collection: coll.objects.unlink(c)
     col_arch.objects.link(c)
@@ -318,6 +467,7 @@ def add_rotated_cutter(name, cx, cy, cz, sx, sy, sz, angle):
     c.scale = (sx, sy, sz)
     c.display_type = 'WIRE'
     c.hide_render = True
+    c.hide_viewport = True
     for coll in c.users_collection: coll.objects.unlink(c)
     col_arch.objects.link(c)
     cutters.append(c)
@@ -379,6 +529,76 @@ def build_skybridge(name, pt1, pt2, z_base, width=2.5, height=3.5, closed=True):
     # Cutter for opening walls at ends
     # Kích thước cutter: Dọc theo cầu dài bằng length, rộng hơn 1 chút (width), cao 2.5m (bằng cửa đi)
     add_rotated_cutter(f"{name}_Cutter", cx, cy, z_base + 1.25, length, width - 0.2, 2.5, angle)
+
+
+def build_path_segment(name, pt1, pt2, width=4.0, thickness=0.12, z_offset=0.0, mat=mat_path):
+    import math
+    x1, y1, z1 = pt1
+    x2, y2, z2 = pt2
+    dx = x2 - x1
+    dy = y2 - y1
+    length = math.hypot(dx, dy)
+    if length < 0.1:
+        return
+    angle = math.atan2(dy, dx)
+    cx = (x1 + x2) / 2
+    cy = (y1 + y2) / 2
+    cz = (z1 + z2) / 2 + z_offset
+    if abs(z2 - z1) < 0.01:
+        add_rotated_box(name, cx, cy, cz - thickness / 2, length, width, thickness, angle, mat, col_arch)
+        return
+
+    segments = max(6, int(length / 2.4))
+    for i in range(segments):
+        t1 = i / segments
+        t2 = (i + 1) / segments
+        sx1 = x1 + dx * t1
+        sy1 = y1 + dy * t1
+        sz1 = z1 + (z2 - z1) * t1
+        sx2 = x1 + dx * t2
+        sy2 = y1 + dy * t2
+        sz2 = z1 + (z2 - z1) * t2
+        seg_len = math.hypot(sx2 - sx1, sy2 - sy1)
+        scx = (sx1 + sx2) / 2
+        scy = (sy1 + sy2) / 2
+        scz = (sz1 + sz2) / 2 + z_offset
+        add_rotated_box(f"{name}_{i}", scx, scy, scz - thickness / 2, seg_len, width, thickness, angle, mat, col_arch)
+
+
+def build_polyline_path(name, points, width=4.0, thickness=0.12, mat=mat_path):
+    for i in range(len(points) - 1):
+        build_path_segment(f"{name}_{i}", points[i], points[i + 1], width=width, thickness=thickness, mat=mat)
+
+
+def build_terrain_terrace(name, cx, cy, top_z, sx, sy, thickness=2.0):
+    add_box(name, cx, cy, top_z - thickness / 2, sx, sy, thickness, mat_terrain, col_arch)
+    add_box(f"{name}_Green", cx, cy, top_z + 0.03, sx - 1.2, sy - 1.2, 0.06, mat_grass, col_arch)
+    edge_t = 0.3
+    wall_h = max(0.8, top_z)
+    add_box(f"{name}_RetainN", cx, cy + sy / 2, wall_h / 2, sx, edge_t, wall_h, mat_wall, col_arch)
+    add_box(f"{name}_RetainS", cx, cy - sy / 2, wall_h / 2, sx, edge_t, wall_h, mat_wall, col_arch)
+    add_box(f"{name}_RetainE", cx + sx / 2, cy, wall_h / 2, edge_t, sy, wall_h, mat_wall, col_arch)
+    add_box(f"{name}_RetainW", cx - sx / 2, cy, wall_h / 2, edge_t, sy, wall_h, mat_wall, col_arch)
+
+
+def build_campus_expansion():
+    terrain_specs = [
+        ("Terrain_East_Base",    104.0,  -6.0, 0.8, 104.0, 108.0, 1.6),
+        ("Terrain_East_Upper",   108.0,  24.0, 2.5,  74.0,  46.0, 2.4),
+        ("Terrain_East_South",   122.0, -30.0, 5.0,  52.0,  30.0, 3.0),
+        ("Terrain_Tower_Podium", 180.0,  12.0, 2.5,  68.0,  34.0, 2.4),
+        ("Terrain_Tower_Upper",  180.0,  20.0, 7.0,  44.0,  18.0, 4.0),
+        ("Terrain_West_Base",    -96.0,  10.0, 2.5,  58.0,  72.0, 2.6),
+        ("Terrain_West_Upper",   -98.0,  38.0, 5.0,  38.0,  36.0, 3.0),
+        ("Terrain_West_South",  -102.0, -22.0, 0.0,  48.0,  36.0, 1.4),
+    ]
+    for spec in terrain_specs:
+        build_terrain_terrace(*spec)
+
+    for name, points in EXTRA_GROUND_PATHS:
+        width = 5.5 if name.startswith("Road_") else 3.0
+        mat = mat_road if name.startswith("Road_") else mat_path
+        build_polyline_path(name, points, width=width, thickness=0.14, mat=mat)
 
 
 def build_field_fence(field_obj, inset=1.2, fence_h=4.0, post_spacing=6.0):
@@ -472,35 +692,9 @@ def relocate_field_clear_of_buildings(field_obj, blocker_names, clearance=8.0):
 
 
 # ─── REPLACE BLOCKS ──────────────────────────────────────────────────────────
-blocks_to_replace = [
-    ("Khoi_A.2_Phong_Hoc", 'S', 4),
-    ("Khoi_A.3_Giang_Duong", 'S', 4),
-    ("Khoi_A.4_Phong_Hoc", 'S', 4),
-    ("Khoi_A.5_Giang_Duong", 'S', 4),
-    # Khu A thực sự và Khu B
-    ("Khoi_A_Day_Trai", 'E', 3),  # Left wing, corridor faces East (center)
-    ("Khoi_A_Day_Phai", 'W', 3),  # Right wing, corridor faces West (center)
-    ("Khoi_B_Ngang", 'S', 3),     # Base of U, corridor faces South
-    # Các khu còn lại (1 lầu -> 2 tầng / 3 tầng)
-    ("Khoi_C_Phong_Hoc_Dien", 'S', 3), # Tăng lên 3 tầng (mỗi tầng 5m) để khớp Khu A
-    ("Khoi_D_Phong_Hoc_Dien", 'S', 3), # Tăng lên 3 tầng để khớp Khu A
-    ("Khoi_E.0_Van_Phong_Co_Khi", 'S', 2),
-    ("Khoi_E.1_Xuong_Chat_Luong_Cao", 'S', 2),
-    ("Khoi_E.2_Can_Tin_Sieu_Thi", 'S', 2),
-    ("Khoi_E.3_Xuong_Co_Khi", 'S', 2),
-    ("Khoi_E.4_Lop_Hoc_Bat_Giac", 'S', 2),
-    ("Khoi_F.1_Phong_Hoc_Xuong", 'S', 2),
-    ("Khoi_G_Trung_Tam_Viet_Duc", 'S', 2),
-    ("Khoi_Thu_Vien", 'S', 3),         # Tăng lên 3 tầng để khớp Khu A
-    ("Hoi_Truong_Lon", 'S', 2),
-    ("Xuong_Bien_O_To", 'S', 2),
-    ("Xuong_Chung_Gam", 'S', 2),
-    ("Xuong_Dong_Co", 'S', 2),
-    ("Xuong_Nhiet_Dien_Lanh", 'S', 2),
-    ("Xuong_Thuc_Tap_Go", 'S', 2)
-]
+build_campus_expansion()
 
-for name, side, fl in blocks_to_replace:
+for name, side, fl, floor_h in BLOCK_SPECS:
     obj = bpy.data.objects.get(name)
     if obj:
         obj.hide_render = True
@@ -510,7 +704,12 @@ for name, side, fl in blocks_to_replace:
         xs = [c.x for c in wc]
         ys = [c.y for c in wc]
         zs = [c.z for c in wc]
-        build_detailed_block(name, min(xs), max(xs), min(ys), max(ys), min(zs), max(zs), side, fl)
+        z_min = min(zs)
+        z_max = z_min + fl * floor_h
+        build_detailed_block(name, min(xs), max(xs), min(ys), max(ys), z_min, z_max, side, fl)
+
+for name, x_min, x_max, y_min, y_max, z_min, side, fl, floor_h in EXTRA_COMPLEXES:
+    build_detailed_block(name, x_min, x_max, y_min, y_max, z_min, z_min + fl * floor_h, side, fl)
 
 # ─── BUILD SKYBRIDGES ────────────────────────────────────────────────────────
 skybridges = [
@@ -524,6 +723,7 @@ skybridges = [
     ("Bridge_A4_F1", (25, -85), (55, -35), 12.0),  # Kết nối tầng 3 (12m) của A4 và F1 (tầng 2)
     ("Bridge_F1_G", (55, -35), (55, -58), 6.0)     # Kết nối tầng 1 (6m) của F1 và G
 ]
+skybridges.extend(EXTRA_SKYBRIDGES)
 for sb in skybridges:
     build_skybridge(sb[0], sb[1], sb[2], sb[3])
 
@@ -617,6 +817,9 @@ build_outdoor_stair("OutStair_D",      -48,    6,  0, 10.0, facing='S')
 build_outdoor_stair("OutStair_A1_L",   -8,  -78,  0, 20.0, facing='N', w=2.5)
 build_outdoor_stair("OutStair_A1_R",   18,  -78,  0, 20.0, facing='N', w=2.5)
 
+for name, cx, cy, z_bottom, z_top, facing, w in EXTRA_OUTDOOR_STAIRS:
+    build_outdoor_stair(name, cx, cy, z_bottom, z_top, facing=facing, w=w)
+
 
 
 # ─── A1 CENTRAL TOWER DETAILS ────────────────────────────────────────────────
@@ -629,8 +832,8 @@ def build_a1_tower(name, a1_obj):
     y_min, y_max = min([c.y for c in wc]), max([c.y for c in wc])
     z_min, z_max = min([c.z for c in wc]), max([c.z for c in wc])
     
-    num_floors = 5
-    floor_h = 4.0
+    num_floors = 8
+    floor_h = (z_max - z_min) / num_floors
     
     cx, cy = (x_min + x_max)/2, (y_min + y_max)/2
     width_x = x_max - x_min
@@ -690,15 +893,15 @@ def build_a1_tower(name, a1_obj):
         # Lối đi cắt thông 2 bên lầu (Chỉ từ tầng 1 đến 4)
         # Đặt theo đúng dải hành lang phía trước để thông với A3/A5,
         # thay vì cắt giữa nhà khiến lối ra bị lệch khỏi corridor.
-        if f < 4:
+        if f < num_floors - 1:
             corridor_y = y_min + 1.1
             add_cutter(f"Cut_A1_Left_F{f}", x_min, corridor_y, z_slab + 1.25, 2.0, 3.0, 2.5)
             add_cutter(f"Cut_A1_Right_F{f}", x_max, corridor_y, z_slab + 1.25, 2.0, 3.0, 2.5)
 
     # Mái hiên
     add_box(f"{name}_Canopy", cx, y_min - 4, z_min + 5, width_x + 4, 8, 0.5, mat_slab, col_arch)
-    add_box(f"{name}_Canopy_ColL", x_min - 1, y_min - 7, z_min + 2.5, 0.6, 0.6, 5, mat_column, col_arch)
-    add_box(f"{name}_Canopy_ColR", x_max + 1, y_min - 7, z_min + 2.5, 0.6, 0.6, 5, mat_column, col_arch)
+    add_box(f"{name}_Canopy_ColL", x_min - 1, y_min - 9, z_min + 2.5, 0.6, 0.6, 5, mat_column, col_arch)
+    add_box(f"{name}_Canopy_ColR", x_max + 1, y_min - 9, z_min + 2.5, 0.6, 0.6, 5, mat_column, col_arch)
 
 a1 = bpy.data.objects.get("Khoi_A.1_Trung_Tam_Hanh_Chinh")
 if a1:
@@ -765,6 +968,14 @@ _stair_entries = [
     ( 55, -54,  12.0, 'S', 3.5),
     (-35,  26,   5.0, 'S', 3.5),
     (-48,   6,  10.0, 'S', 3.5),
+    ( 88,  18,  18.0, 'S', 3.5),
+    (120,  10,  13.5, 'S', 3.5),
+    (-84,  40,  10.0, 'W', 3.5),
+    ( 96, -18,  13.5, 'S', 3.5),
+    (-86, -20,   8.0, 'W', 3.5),
+    (118, -28,  12.6, 'E', 3.5),
+    (165,   4,  16.3, 'S', 3.5),
+    (195,   4,  16.3, 'S', 3.5),
 ]
 for _cx, _cy, _zt, _face, _w in _stair_entries:
     _off = 1.5
@@ -778,14 +989,41 @@ for _cx, _cy, _zt, _face, _w in _stair_entries:
 cutter_set = set(c.name for c in cutters)
 WALL_KEYWORDS = [
     "_WallL", "_WallR", "_WallCorr", "_WallBack",
+    "_Wall_L", "_Wall_R", "_Wall_F", "_Wall_B",
     "_GlassFront", "_GlassBack",
     "_Rail_", "_Part_",
 ]
+
+
+def world_bounds(obj):
+    corners = [obj.matrix_world @ Vector(corner) for corner in obj.bound_box]
+    xs = [corner.x for corner in corners]
+    ys = [corner.y for corner in corners]
+    zs = [corner.z for corner in corners]
+    return (
+        min(xs), max(xs),
+        min(ys), max(ys),
+        min(zs), max(zs),
+    )
+
+
+def bounds_overlap(a, b, padding=0.05):
+    return not (
+        a[1] < b[0] - padding or b[1] < a[0] - padding or
+        a[3] < b[2] - padding or b[3] < a[2] - padding or
+        a[5] < b[4] - padding or b[5] < a[4] - padding
+    )
+
+
+cut_bounds = {cut.name: world_bounds(cut) for cut in cutters}
 for obj in col_arch.objects:
     if obj.type == 'MESH' and obj.name not in cutter_set:
         if any(k in obj.name for k in WALL_KEYWORDS):
+            obj_bounds = world_bounds(obj)
             for cut in cutters:
                 if cut.name == obj.name:
+                    continue
+                if not bounds_overlap(obj_bounds, cut_bounds[cut.name]):
                     continue
                 mod = obj.modifiers.new(name="Passageway", type='BOOLEAN')
                 mod.operation = 'DIFFERENCE'

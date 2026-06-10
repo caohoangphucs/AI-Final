@@ -25,6 +25,9 @@ BLEND_PATH = f"{OUT_DIR}/Untitled_arch_navigation.blend"
 COLLECTION_NAME = "NavigationGraph"
 NODE_TOLERANCE = 0.15
 GROUND_Z = 0.0
+GROUND_PATH_SEGMENT_MAX = 3.0
+GROUND_LINK_RADIUS = 6.5
+GROUND_LINKS_PER_NODE = 4
 
 
 def get_block_profile(prefix):
@@ -53,30 +56,41 @@ def get_block_profile(prefix):
     return profile
 
 
-BLOCKS_TO_REPLACE = [
-    ("Khoi_A.2_Phong_Hoc", "S", 4),
-    ("Khoi_A.3_Giang_Duong", "S", 4),
-    ("Khoi_A.4_Phong_Hoc", "S", 4),
-    ("Khoi_A.5_Giang_Duong", "S", 4),
-    ("Khoi_A_Day_Trai", "E", 3),
-    ("Khoi_A_Day_Phai", "W", 3),
-    ("Khoi_B_Ngang", "S", 3),
-    ("Khoi_C_Phong_Hoc_Dien", "S", 3),
-    ("Khoi_D_Phong_Hoc_Dien", "S", 3),
-    ("Khoi_E.0_Van_Phong_Co_Khi", "S", 2),
-    ("Khoi_E.1_Xuong_Chat_Luong_Cao", "S", 2),
-    ("Khoi_E.2_Can_Tin_Sieu_Thi", "S", 2),
-    ("Khoi_E.3_Xuong_Co_Khi", "S", 2),
-    ("Khoi_E.4_Lop_Hoc_Bat_Giac", "S", 2),
-    ("Khoi_F.1_Phong_Hoc_Xuong", "S", 2),
-    ("Khoi_G_Trung_Tam_Viet_Duc", "S", 2),
-    ("Khoi_Thu_Vien", "S", 3),
-    ("Hoi_Truong_Lon", "S", 2),
-    ("Xuong_Bien_O_To", "S", 2),
-    ("Xuong_Chung_Gam", "S", 2),
-    ("Xuong_Dong_Co", "S", 2),
-    ("Xuong_Nhiet_Dien_Lanh", "S", 2),
-    ("Xuong_Thuc_Tap_Go", "S", 2),
+BLOCK_SPECS = [
+    ("Khoi_A.2_Phong_Hoc", "S", 6, 4.0),
+    ("Khoi_A.3_Giang_Duong", "S", 6, 4.0),
+    ("Khoi_A.4_Phong_Hoc", "S", 6, 4.0),
+    ("Khoi_A.5_Giang_Duong", "S", 6, 4.0),
+    ("Khoi_A_Day_Trai", "E", 5, 4.0),
+    ("Khoi_A_Day_Phai", "W", 5, 4.0),
+    ("Khoi_B_Ngang", "S", 5, 4.0),
+    ("Khoi_C_Phong_Hoc_Dien", "S", 4, 4.2),
+    ("Khoi_D_Phong_Hoc_Dien", "S", 4, 4.2),
+    ("Khoi_E.0_Van_Phong_Co_Khi", "S", 3, 4.0),
+    ("Khoi_E.1_Xuong_Chat_Luong_Cao", "S", 3, 4.0),
+    ("Khoi_E.2_Can_Tin_Sieu_Thi", "S", 3, 4.0),
+    ("Khoi_E.3_Xuong_Co_Khi", "S", 3, 4.0),
+    ("Khoi_E.4_Lop_Hoc_Bat_Giac", "S", 3, 4.0),
+    ("Khoi_F.1_Phong_Hoc_Xuong", "S", 4, 4.0),
+    ("Khoi_G_Trung_Tam_Viet_Duc", "S", 4, 4.0),
+    ("Khoi_Thu_Vien", "S", 5, 4.2),
+    ("Hoi_Truong_Lon", "S", 3, 4.5),
+    ("Xuong_Bien_O_To", "S", 3, 4.0),
+    ("Xuong_Chung_Gam", "S", 3, 4.0),
+    ("Xuong_Dong_Co", "S", 3, 4.0),
+    ("Xuong_Nhiet_Dien_Lanh", "S", 3, 4.0),
+    ("Xuong_Thuc_Tap_Go", "S", 3, 4.0),
+]
+
+EXTRA_COMPLEXES = [
+    ("Khoi_H_Trung_Tam_Nghien_Cuu", 76.0, 102.0, 18.0, 42.0, 2.5, "S", 8, 4.5),
+    ("Khoi_I_Hoc_Lieu_So", 106.0, 136.0, 10.0, 34.0, 2.5, "S", 7, 4.5),
+    ("Khoi_J_Ky_Tuc_Xa_Tay", -112.0, -84.0, 22.0, 56.0, 5.0, "E", 8, 4.2),
+    ("Khoi_K_Phong_Thi_Nghiem", 82.0, 112.0, -54.0, -18.0, 0.0, "N", 9, 4.4),
+    ("Khoi_L_Xuong_Sang_Tao", -118.0, -86.0, -36.0, -8.0, 0.0, "S", 4, 4.2),
+    ("Khoi_M_Hanh_Chinh_Mo_Rong", 118.0, 148.0, -48.0, -16.0, 5.0, "N", 6, 4.2),
+    ("Khoi_N_Thap_Dong", 154.0, 176.0, 4.0, 26.0, 2.5, "W", 11, 4.6),
+    ("Khoi_O_Thap_Tay", 184.0, 206.0, 4.0, 26.0, 2.5, "E", 10, 4.6),
 ]
 
 SKYBRIDGES = [
@@ -89,6 +103,16 @@ SKYBRIDGES = [
     ("Bridge_E2_E3", (-55.0, -5.0), (-70.0, -25.0), 4.0),
     ("Bridge_A4_F1", (25.0, -85.0), (55.0, -35.0), 12.0),
     ("Bridge_F1_G", (55.0, -35.0), (55.0, -58.0), 6.0),
+    ("Bridge_H_I", (102.0, 30.0), (106.0, 22.0), 18.0),
+    ("Bridge_H_K", (90.0, 18.0), (96.0, -18.0), 13.5),
+    ("Bridge_J_C", (-84.0, 36.0), (-35.0, 30.0), 10.0),
+    ("Bridge_L_E3", (-86.0, -22.0), (-70.0, -25.0), 8.0),
+    ("Bridge_K_F1", (82.0, -32.0), (55.0, -35.0), 12.0),
+    ("Bridge_M_K", (118.0, -26.0), (112.0, -30.0), 12.6),
+    ("Bridge_M_N", (148.0, -22.0), (154.0, 10.0), 18.4),
+    ("Bridge_N_O_L3", (176.0, 10.0), (184.0, 10.0), 16.3),
+    ("Bridge_N_O_L5", (176.0, 16.0), (184.0, 16.0), 25.5),
+    ("Bridge_N_O_L7", (176.0, 22.0), (184.0, 22.0), 34.7),
 ]
 
 OUTDOOR_STAIRS = [
@@ -108,6 +132,14 @@ OUTDOOR_STAIRS = [
     ("OutStair_D", -48.0, 6.0, 0.0, 10.0, "S", 3.5),
     ("OutStair_A1_L", -8.0, -78.0, 0.0, 20.0, "N", 2.5),
     ("OutStair_A1_R", 18.0, -78.0, 0.0, 20.0, "N", 2.5),
+    ("OutStair_H_S", 88.0, 18.0, 2.5, 18.0, "S", 3.5),
+    ("OutStair_I_S", 120.0, 10.0, 2.5, 13.5, "S", 3.5),
+    ("OutStair_J_E", -84.0, 40.0, 5.0, 10.0, "W", 3.5),
+    ("OutStair_K_N", 96.0, -18.0, 0.0, 13.5, "S", 3.5),
+    ("OutStair_L_E", -86.0, -20.0, 0.0, 8.0, "W", 3.5),
+    ("OutStair_M_W", 118.0, -28.0, 5.0, 12.6, "E", 3.5),
+    ("OutStair_N_S", 165.0, 4.0, 2.5, 16.3, "S", 3.5),
+    ("OutStair_O_S", 195.0, 4.0, 2.5, 16.3, "S", 3.5),
 ]
 
 A1_FRONT_STAIRS = [
@@ -120,8 +152,12 @@ A1_FRONT_STAIRS = [
 
 GROUND_PATHS = [
     ("Walk_A_Front", [(-35.0, -92.0, 0.0), (45.0, -92.0, 0.0)]),
+    ("Walk_A_Mid_Front", [(-35.0, -84.0, 0.0), (45.0, -84.0, 0.0)]),
+    ("Walk_A_Mid_Back", [(-35.0, -78.0, 0.0), (45.0, -78.0, 0.0)]),
     ("Walk_A_Back", [(-35.0, -66.0, 0.0), (45.0, -66.0, 0.0)]),
     ("Walk_A23_Left", [(-33.5, -90.0, 0.0), (-33.5, -68.0, 0.0)]),
+    ("Walk_A23_Inner_Left", [(-8.0, -92.0, 0.0), (-8.0, -66.0, 0.0)]),
+    ("Walk_A45_Inner_Right", [(18.0, -92.0, 0.0), (18.0, -66.0, 0.0)]),
     ("Walk_A45_Right", [(43.0, -90.0, 0.0), (43.0, -68.0, 0.0)]),
     ("Walk_Main_Path", [(5.0, -93.0, 0.0), (5.0, -78.0, 0.0)]),
     ("Walk_Front_To_A23", [(-20.0, -92.0, 0.0), (-20.0, -69.0, 0.0)]),
@@ -129,6 +165,17 @@ GROUND_PATHS = [
     ("Walk_Back_Left_Connector", [(-33.5, -66.0, 0.0), (-20.0, -66.0, 0.0), (-20.0, -69.0, 0.0)]),
     ("Walk_Back_Right_Connector", [(43.0, -66.0, 0.0), (25.0, -66.0, 0.0), (25.0, -69.0, 0.0)]),
     ("Walk_A1_Front_Plaza", [(5.0, -92.0, 0.0), (5.0, -78.0, 0.0), (5.0, -69.0, 0.0)]),
+    ("Road_East_Spine", [(30.0, -5.0, 0.0), (62.0, -5.0, 0.0), (90.0, -5.0, 0.0), (118.0, -5.0, 0.0)]),
+    ("Road_East_North", [(90.0, -5.0, 0.0), (90.0, 16.0, 0.8), (90.0, 30.0, 2.5), (120.0, 30.0, 2.5)]),
+    ("Road_East_South", [(90.0, -5.0, 0.0), (96.0, -20.0, 0.0), (96.0, -36.0, 0.0), (128.0, -36.0, 5.0)]),
+    ("Road_West_Spine", [(-35.0, 10.0, 0.0), (-62.0, 10.0, 0.0), (-90.0, 10.0, 2.5), (-90.0, 38.0, 5.0)]),
+    ("Road_West_South", [(-55.0, -5.0, 0.0), (-82.0, -10.0, 0.0), (-102.0, -10.0, 0.0), (-102.0, -22.0, 0.0)]),
+    ("Walk_HI_Plaza", [(82.0, 24.0, 2.5), (104.0, 24.0, 2.5), (126.0, 24.0, 2.5)]),
+    ("Walk_HK_Ramp", [(92.0, 18.0, 2.5), (94.0, 2.0, 6.0), (96.0, -18.0, 10.5)]),
+    ("Walk_JTerrace", [(-90.0, 26.0, 5.0), (-90.0, 40.0, 5.0), (-84.0, 40.0, 5.0)]),
+    ("Walk_MK_Upper", [(128.0, -28.0, 5.0), (120.0, -28.0, 5.0), (112.0, -28.0, 5.0), (102.0, -28.0, 5.0)]),
+    ("Road_Tower_Axis", [(118.0, -5.0, 0.0), (146.0, -5.0, 1.2), (166.0, 0.0, 2.5), (196.0, 0.0, 2.5)]),
+    ("Walk_Tower_Podium", [(160.0, 10.0, 2.5), (170.0, 10.0, 2.5), (190.0, 10.0, 2.5), (200.0, 10.0, 2.5)]),
 ]
 
 
@@ -496,8 +543,8 @@ def add_a1_internal_graph(graph):
     if not a1:
         return
     x_min, x_max, y_min, y_max, z_min, z_max = get_bounds(a1)
-    floor_h = 4.0
-    num_floors = 5
+    num_floors = 8
+    floor_h = (z_max - z_min) / num_floors
     cx = (x_min + x_max) / 2.0
     corridor_y = y_min + 1.1
     left_x = x_min
@@ -520,9 +567,29 @@ def add_a1_internal_graph(graph):
         )
 
 
+def subdivide_polyline(points, max_segment_length):
+    if len(points) <= 1:
+        return list(points)
+
+    dense = [points[0]]
+    for start, end in zip(points, points[1:]):
+        dist = math.dist(start, end)
+        steps = max(1, int(math.ceil(dist / max_segment_length)))
+        for step in range(1, steps + 1):
+            t = step / steps
+            dense.append(
+                (
+                    start[0] + (end[0] - start[0]) * t,
+                    start[1] + (end[1] - start[1]) * t,
+                    start[2] + (end[2] - start[2]) * t,
+                )
+            )
+    return dense
+
+
 def add_ground_paths(graph):
     for name, points in GROUND_PATHS:
-        graph.add_polyline(name, points, "ground_path")
+        graph.add_polyline(name, subdivide_polyline(points, GROUND_PATH_SEGMENT_MAX), "ground_path")
 
 
 def ccw(a, b, c):
@@ -606,7 +673,7 @@ def connect_access_points(graph, block_bounds):
         node = graph.nodes[node_id]
         candidate_ids = []
         for other in graph.nodes:
-            if other["id"] == node_id or abs(other["z"]) > 0.25:
+            if other["id"] == node_id or abs(other["z"] - node["z"]) > 0.75:
                 continue
             dist = math.dist((node["x"], node["y"], 0.0), (other["x"], other["y"], 0.0))
             if dist <= 40.0:
@@ -628,6 +695,160 @@ def connect_access_points(graph, block_bounds):
                 continue
             graph.add_edge(node_id, other_id, "ground_access")
             added += 1
+
+
+def compute_connected_components(graph):
+    seen = set()
+    components = []
+    for node in graph.nodes:
+        node_id = node["id"]
+        if node_id in seen:
+            continue
+        stack = [node_id]
+        seen.add(node_id)
+        comp = []
+        while stack:
+            current = stack.pop()
+            comp.append(current)
+            for neighbor_id in graph.adjacency[current]:
+                if neighbor_id not in seen:
+                    seen.add(neighbor_id)
+                    stack.append(neighbor_id)
+        components.append(comp)
+    return components
+
+
+def build_obstacle_rects(block_bounds):
+    obstacles = []
+    for bounds in block_bounds.values():
+        x_min, x_max, y_min, y_max, _, _ = bounds
+        obstacles.append((x_min + 0.5, x_max - 0.5, y_min + 0.5, y_max - 0.5))
+    return obstacles
+
+
+def connect_ground_path_network(graph, block_bounds):
+    obstacles = build_obstacle_rects(block_bounds)
+    ground_node_ids = [
+        node["id"]
+        for node in graph.nodes
+        if "ground_path" in node["kinds"] and abs(node["z"] - GROUND_Z) <= 0.25
+    ]
+
+    for node_id in ground_node_ids:
+        node = graph.nodes[node_id]
+        candidates = []
+        for other_id in ground_node_ids:
+            if other_id == node_id or other_id in graph.adjacency[node_id]:
+                continue
+            other = graph.nodes[other_id]
+            if abs(other["z"] - node["z"]) > 0.2:
+                continue
+            dist = math.dist((node["x"], node["y"]), (other["x"], other["y"]))
+            if dist <= 0.05 or dist > GROUND_LINK_RADIUS:
+                continue
+            p1 = (node["x"], node["y"])
+            p2 = (other["x"], other["y"])
+            blocked = False
+            for rect in obstacles:
+                if segment_intersects_rect(p1, p2, rect):
+                    blocked = True
+                    break
+            if blocked:
+                continue
+            candidates.append((dist, other_id))
+
+        candidates.sort(key=lambda item: item[0])
+        added = 0
+        for _dist, other_id in candidates:
+            if added >= GROUND_LINKS_PER_NODE:
+                break
+            if other_id in graph.adjacency[node_id]:
+                continue
+            graph.add_edge(node_id, other_id, "ground_path_link")
+            added += 1
+
+
+def is_connector_kind(node):
+    connector_kinds = {
+        "access",
+        "ground_access",
+        "ground_path",
+        "skybridge",
+        "outdoor_stair",
+        "entry_stair",
+        "corridor",
+        "stair_access",
+        "stair_landing",
+        "stair_step",
+    }
+    return any(kind in connector_kinds for kind in node["kinds"])
+
+
+def can_stitch_pair(node_a, node_b, obstacles):
+    pos_a = (node_a["x"], node_a["y"], node_a["z"])
+    pos_b = (node_b["x"], node_b["y"], node_b["z"])
+    z_diff = abs(pos_a[2] - pos_b[2])
+    planar_dist = math.dist((pos_a[0], pos_a[1]), (pos_b[0], pos_b[1]))
+    dist = math.dist(pos_a, pos_b)
+
+    local_kinds = {"corridor", "stair_access", "stair_landing", "stair_step", "access", "outdoor_stair"}
+    node_a_local = any(kind in local_kinds for kind in node_a["kinds"])
+    node_b_local = any(kind in local_kinds for kind in node_b["kinds"])
+    if node_a_local and node_b_local and z_diff <= 0.75 and dist <= 3.6:
+        return True
+
+    if not (is_connector_kind(node_a) and is_connector_kind(node_b)):
+        return False
+    if z_diff > 1.5 or planar_dist > 8.5 or dist > 9.0:
+        return False
+
+    p1 = (pos_a[0], pos_a[1])
+    p2 = (pos_b[0], pos_b[1])
+    for rect in obstacles:
+        if segment_intersects_rect(p1, p2, rect):
+            return False
+    return True
+
+
+def stitch_graph_components(graph, block_bounds):
+    obstacles = build_obstacle_rects(block_bounds)
+    total_added = 0
+
+    while True:
+        components = sorted(compute_connected_components(graph), key=len, reverse=True)
+        if len(components) <= 1:
+            break
+
+        comp_index_by_node = {}
+        for comp_index, comp in enumerate(components):
+            for node_id in comp:
+                comp_index_by_node[node_id] = comp_index
+
+        best_pair = None
+        best_dist = None
+        for node in graph.nodes:
+            node_id = node["id"]
+            if not is_connector_kind(node):
+                continue
+            comp_a = comp_index_by_node[node_id]
+            for other in graph.nodes:
+                other_id = other["id"]
+                if comp_index_by_node[other_id] == comp_a or not is_connector_kind(other):
+                    continue
+                if not can_stitch_pair(node, other, obstacles):
+                    continue
+                dist = math.dist((node["x"], node["y"], node["z"]), (other["x"], other["y"], other["z"]))
+                if best_dist is None or dist < best_dist:
+                    best_dist = dist
+                    best_pair = (node_id, other_id)
+
+        if best_pair is None:
+            break
+
+        graph.add_edge(best_pair[0], best_pair[1], "component_stitch")
+        total_added += 1
+
+    return total_added
 
 
 def export_graph_text(graph):
@@ -719,12 +940,19 @@ def main():
     graph = GraphBuilder()
 
     block_bounds = {}
-    for name, side, floors in BLOCKS_TO_REPLACE:
+    for name, side, floors, floor_h in BLOCK_SPECS:
         obj = bpy.data.objects.get(name)
         if not obj:
             print(f"[WARN] Missing block: {name}")
             continue
-        bounds = get_bounds(obj)
+        x_min, x_max, y_min, y_max, z_min, _ = get_bounds(obj)
+        bounds = (x_min, x_max, y_min, y_max, z_min, z_min + floors * floor_h)
+        block_bounds[name] = bounds
+        add_corridor_graph(graph, name, bounds, side, floors)
+        add_internal_stair_graph(graph, name, bounds, side, floors)
+
+    for name, x_min, x_max, y_min, y_max, z_min, side, floors, floor_h in EXTRA_COMPLEXES:
+        bounds = (x_min, x_max, y_min, y_max, z_min, z_min + floors * floor_h)
         block_bounds[name] = bounds
         add_corridor_graph(graph, name, bounds, side, floors)
         add_internal_stair_graph(graph, name, bounds, side, floors)
@@ -741,12 +969,17 @@ def main():
         add_a1_front_stair_graph(graph, name, cx, cy, n_steps, step_w, step_d, step_h)
 
     add_ground_paths(graph)
+    connect_ground_path_network(graph, block_bounds)
     connect_access_points(graph, block_bounds)
+    before_components = len(compute_connected_components(graph))
+    stitched_edges = stitch_graph_components(graph, block_bounds)
+    after_components = len(compute_connected_components(graph))
     export_graph_text(graph)
     build_visual_overlay(graph)
     bpy.ops.wm.save_as_mainfile(filepath=BLEND_PATH)
 
     print(f"[OK] nodes={len(graph.nodes)} edges={len(graph.edges)}")
+    print(f"[OK] stitched_edges={stitched_edges} components {before_components} -> {after_components}")
     print(f"[OK] wrote {JSON_PATH}")
     print(f"[OK] wrote {TXT_PATH}")
     print(f"[OK] wrote {OBJ_PATH}")

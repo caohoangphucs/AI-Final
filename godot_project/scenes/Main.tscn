@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnyyny6e1a5n8"]
+
+[ext_resource type="PackedScene" uid="uid://dxe554d7fc2uj" path="res://assets/campus.glb" id="1"]
+[ext_resource type="Script" uid="uid://ckj4u8m1vi8jm" path="res://scripts/main.gd" id="2"]
+[ext_resource type="Script" uid="uid://bubnslbn0smhl" path="res://scripts/player.gd" id="3"]
+[ext_resource type="Script" uid="uid://dswd8kxk4tgkn" path="res://scripts/path_bot.gd" id="4"]
+
+[sub_resource type="Environment" id="1"]
+background_mode = 1
+background_color = Color(0.72, 0.78, 0.86, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.92, 0.94, 0.98, 1)
+ambient_light_energy = 1.35
+tonemap_mode = 2
+
+[sub_resource type="CapsuleShape3D" id="2"]
+radius = 0.42
+height = 1.15
+
+[sub_resource type="CapsuleShape3D" id="3"]
+radius = 0.35
+height = 0.9
+
+[sub_resource type="StandardMaterial3D" id="5"]
+shading_mode = 0
+albedo_color = Color(0.15, 0.85, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="4"]
+radius = 0.35
+
+[node name="Main" type="Node3D"]
+script = ExtResource("2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("1")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.813798, -0.296198, 0.5, 0, 0.860066, 0.510184, -0.581148, -0.41527, 0.699543, 0, 48, 0)
+light_energy = 0.22
+
+[node name="Campus" parent="." instance=ExtResource("1")]
+
+[node name="Spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2.2, 102)
+
+[node name="BotStart" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 0.6, 87.8)
+
+[node name="BotGoal" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.591927, 17.74987, 87.83035)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 96)
+script = ExtResource("3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("2")
+
+[node name="Pivot" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Pivot"]
+current = true
+far = 2000.0
+
+[node name="PathBot" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 0.6, 87.8)
+script = ExtResource("4")
+start_marker_path = NodePath("../BotStart")
+goal_marker_path = NodePath("../BotGoal")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PathBot"]
+shape = SubResource("3")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="PathBot"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0.95, 0)
+material_override = SubResource("5")
+mesh = SubResource("4")
+
+[node name="Debug" type="Node3D" parent="PathBot"]
+
+[node name="AllNodesMarkers" type="MultiMeshInstance3D" parent="PathBot/Debug"]
+
+[node name="FrontierMarkers" type="MultiMeshInstance3D" parent="PathBot/Debug"]
+
+[node name="ClosedMarkers" type="MultiMeshInstance3D" parent="PathBot/Debug"]
+
+[node name="PathMarkers" type="MultiMeshInstance3D" parent="PathBot/Debug"]
+
+[node name="SearchLines" type="MeshInstance3D" parent="PathBot/Debug"]
+
+[node name="PathLines" type="MeshInstance3D" parent="PathBot/Debug"]
+
+[node name="TraveledLines" type="MeshInstance3D" parent="PathBot/Debug"]

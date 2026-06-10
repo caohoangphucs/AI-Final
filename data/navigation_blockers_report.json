@@ -1,0 +1,9533 @@
+{
+  "node_count": 5938,
+  "edge_count": 5780,
+  "checked_edge_count": 3622,
+  "blocked_edge_count": 300,
+  "top_blockers": [
+    [
+      "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      8
+    ],
+    [
+      "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      8
+    ],
+    [
+      "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      8
+    ],
+    [
+      "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B",
+      7
+    ],
+    [
+      "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B",
+      7
+    ],
+    [
+      "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_F_A",
+      6
+    ],
+    [
+      "Khoi_A_Day_Trai_Stair_Wall_B_A",
+      5
+    ],
+    [
+      "Khoi_A_Day_Trai_Stair_Wall_F_A",
+      5
+    ],
+    [
+      "Khoi_A_Day_Phai_Stair_Wall_B_B",
+      5
+    ],
+    [
+      "Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B",
+      5
+    ],
+    [
+      "Khoi_A_Day_Phai_Stair_Wall_F_B",
+      4
+    ],
+    [
+      "Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B",
+      4
+    ],
+    [
+      "Bridge_C_D_Roof",
+      4
+    ],
+    [
+      "Khoi_C_Phong_Hoc_Dien_Stair_F0_MidLanding",
+      3
+    ],
+    [
+      "Khoi_C_Phong_Hoc_Dien_Stair_F3_MainLanding",
+      3
+    ],
+    [
+      "Khoi_C_Phong_Hoc_Dien_Stair_F3_MidLanding",
+      3
+    ],
+    [
+      "Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_F_B",
+      3
+    ],
+    [
+      "Khoi_D_Phong_Hoc_Dien_Stair_F0_MidLanding",
+      3
+    ],
+    [
+      "Khoi_D_Phong_Hoc_Dien_Stair_F3_MainLanding",
+      3
+    ],
+    [
+      "Khoi_D_Phong_Hoc_Dien_Stair_F3_MidLanding",
+      3
+    ],
+    [
+      "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_6",
+      3
+    ],
+    [
+      "Khoi_L_Xuong_Sang_Tao_Stair_Wall_L_B",
+      3
+    ],
+    [
+      "Khoi_E.0_Van_Phong_Co_Khi_Stair_F0_MidLanding",
+      3
+    ],
+    [
+      "Khoi_L_Xuong_Sang_Tao_Stair_Wall_R_B",
+      3
+    ],
+    [
+      "Bridge_E2_E3_SideR",
+      3
+    ],
+    [
+      "Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_B_B",
+      3
+    ],
+    [
+      "Khoi_E.3_Xuong_Co_Khi_Stair_Wall_B_B",
+      3
+    ],
+    [
+      "Bridge_A_R_Lib_PanelL",
+      3
+    ],
+    [
+      "Khoi_K_Phong_Thi_Nghiem_Stair_F0_MidLanding",
+      3
+    ],
+    [
+      "Khoi_K_Phong_Thi_Nghiem_Stair_F3_MainLanding",
+      3
+    ]
+  ],
+  "blocked_edges": [
+    {
+      "edge": [
+        9,
+        10
+      ],
+      "from": [
+        -12.62,
+        -87.8,
+        4.0
+      ],
+      "to": [
+        -7.5,
+        -87.8,
+        4.0
+      ],
+      "distance": 5.12,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "A1_Tower_Canopy",
+      "hit_position": [
+        -9.5,
+        -87.8,
+        5.1
+      ],
+      "start_labels": [
+        "Khoi_A.2_Phong_Hoc_Corridor_F1:3"
+      ],
+      "end_labels": [
+        "Khoi_A.2_Phong_Hoc_Corridor_F1:4"
+      ]
+    },
+    {
+      "edge": [
+        336,
+        337
+      ],
+      "from": [
+        10.0,
+        -87.8,
+        4.0
+      ],
+      "to": [
+        27.1143,
+        -87.8,
+        4.0
+      ],
+      "distance": 17.1143,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "A1_Tower_Canopy",
+      "hit_position": [
+        19.5,
+        -87.8,
+        5.1
+      ],
+      "start_labels": [
+        "Khoi_A.4_Phong_Hoc_Corridor_F1:0"
+      ],
+      "end_labels": [
+        "Khoi_A.4_Phong_Hoc_Corridor_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        349,
+        4425
+      ],
+      "from": [
+        27.1143,
+        -87.8,
+        12.0
+      ],
+      "to": [
+        25.0,
+        -85.0,
+        12.0
+      ],
+      "distance": 3.5086,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_A.4_Phong_Hoc_F3_WallCorr_1",
+      "hit_position": [
+        26.2082,
+        -86.6,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_A.4_Phong_Hoc_Corridor_F3:1"
+      ],
+      "end_labels": [
+        "Bridge_A4_F1:0",
+        "Bridge_A4_F1_P1"
+      ]
+    },
+    {
+      "edge": [
+        663,
+        664
+      ],
+      "from": [
+        -12.1,
+        21.7636,
+        0.0
+      ],
+      "to": [
+        -12.1,
+        40.0,
+        0.0
+      ],
+      "distance": 18.2364,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_B_Ngang_F0_Rail_1",
+      "hit_position": [
+        -12.1,
+        38.0,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        666,
+        667
+      ],
+      "from": [
+        -12.1,
+        -10.0,
+        4.0
+      ],
+      "to": [
+        -12.1,
+        17.2545,
+        4.0
+      ],
+      "distance": 27.2545,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Bridge_Lib_E2_SideR",
+      "hit_position": [
+        -12.1,
+        -7.7453,
+        5.1
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_Corridor_F1:0"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_Corridor_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        681,
+        682
+      ],
+      "from": [
+        -12.1,
+        21.7636,
+        12.0
+      ],
+      "to": [
+        -12.1,
+        40.0,
+        12.0
+      ],
+      "distance": 18.2364,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_B_Ngang_F3_Rail_1",
+      "hit_position": [
+        -12.1,
+        38.0,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_Corridor_F3:3"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_Corridor_F3:4"
+      ]
+    },
+    {
+      "edge": [
+        687,
+        688
+      ],
+      "from": [
+        -12.1,
+        21.7636,
+        16.0
+      ],
+      "to": [
+        -12.1,
+        40.0,
+        16.0
+      ],
+      "distance": 18.2364,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_B_Ngang_F4_Rail_1",
+      "hit_position": [
+        -12.1,
+        38.0,
+        16.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_Corridor_F4:3"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_Corridor_F4:4"
+      ]
+    },
+    {
+      "edge": [
+        703,
+        704
+      ],
+      "from": [
+        -16.8182,
+        21.3882,
+        2.0
+      ],
+      "to": [
+        -15.0,
+        20.7636,
+        2.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_B_A",
+      "hit_position": [
+        -16.3382,
+        21.4136,
+        2.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        714,
+        715
+      ],
+      "from": [
+        -13.1818,
+        17.63,
+        4.0
+      ],
+      "to": [
+        -15.0,
+        18.2545,
+        4.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_F_A",
+      "hit_position": [
+        -13.5,
+        17.549,
+        4.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F0:21",
+        "Khoi_A_Day_Trai_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F1:0",
+        "Khoi_A_Day_Trai_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        725,
+        726
+      ],
+      "from": [
+        -16.8182,
+        21.3882,
+        6.0
+      ],
+      "to": [
+        -15.0,
+        20.7636,
+        6.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_B_A",
+      "hit_position": [
+        -16.3382,
+        21.4136,
+        6.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        736,
+        737
+      ],
+      "from": [
+        -13.1818,
+        17.63,
+        8.0
+      ],
+      "to": [
+        -15.0,
+        18.2545,
+        8.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_F_A",
+      "hit_position": [
+        -13.5,
+        17.549,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F1:21",
+        "Khoi_A_Day_Trai_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F2:0",
+        "Khoi_A_Day_Trai_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        747,
+        748
+      ],
+      "from": [
+        -16.8182,
+        21.3882,
+        10.0
+      ],
+      "to": [
+        -15.0,
+        20.7636,
+        10.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_B_A",
+      "hit_position": [
+        -16.3382,
+        21.4136,
+        10.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F2:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F2:11"
+      ]
+    },
+    {
+      "edge": [
+        751,
+        4408
+      ],
+      "from": [
+        -13.1818,
+        19.3864,
+        10.6
+      ],
+      "to": [
+        -15.0,
+        15.0,
+        10.0
+      ],
+      "distance": 4.7861,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_F_A",
+      "hit_position": [
+        -13.9204,
+        17.6045,
+        10.9563
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F2:14"
+      ],
+      "end_labels": [
+        "Bridge_A_L_Lib:0",
+        "Bridge_A_L_C:0",
+        "Bridge_A_L_Lib_P1"
+      ]
+    },
+    {
+      "edge": [
+        758,
+        759
+      ],
+      "from": [
+        -13.1818,
+        17.63,
+        12.0
+      ],
+      "to": [
+        -15.0,
+        18.2545,
+        12.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_F_A",
+      "hit_position": [
+        -13.5,
+        17.549,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F2:21",
+        "Khoi_A_Day_Trai_TopStep_F2"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F3:0",
+        "Khoi_A_Day_Trai_MainLanding_F3"
+      ]
+    },
+    {
+      "edge": [
+        769,
+        770
+      ],
+      "from": [
+        -16.8182,
+        21.3882,
+        14.0
+      ],
+      "to": [
+        -15.0,
+        20.7636,
+        14.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_B_A",
+      "hit_position": [
+        -16.3382,
+        21.4136,
+        14.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F3:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F3:11"
+      ]
+    },
+    {
+      "edge": [
+        780,
+        781
+      ],
+      "from": [
+        -13.1818,
+        17.63,
+        16.0
+      ],
+      "to": [
+        -15.0,
+        18.2545,
+        16.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_F_A",
+      "hit_position": [
+        -13.5,
+        17.549,
+        16.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F3:21",
+        "Khoi_A_Day_Trai_TopStep_F3"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F4:0",
+        "Khoi_A_Day_Trai_MainLanding_F4"
+      ]
+    },
+    {
+      "edge": [
+        791,
+        792
+      ],
+      "from": [
+        -16.8182,
+        21.3882,
+        18.0
+      ],
+      "to": [
+        -15.0,
+        20.7636,
+        18.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Trai_Stair_Wall_B_A",
+      "hit_position": [
+        -16.3382,
+        21.4136,
+        18.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Trai_StairRun_F4:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Trai_StairRun_F4:11"
+      ]
+    },
+    {
+      "edge": [
+        806,
+        807
+      ],
+      "from": [
+        12.1,
+        21.7636,
+        0.0
+      ],
+      "to": [
+        12.1,
+        40.0,
+        0.0
+      ],
+      "distance": 18.2364,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_B_Ngang_F0_Rail_2",
+      "hit_position": [
+        12.1,
+        38.0,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        809,
+        810
+      ],
+      "from": [
+        12.1,
+        -10.0,
+        4.0
+      ],
+      "to": [
+        12.1,
+        17.2545,
+        4.0
+      ],
+      "distance": 27.2545,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Bridge_A_R_Lib_SideL",
+      "hit_position": [
+        12.1,
+        7.5427,
+        5.1
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_Corridor_F1:0"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_Corridor_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        824,
+        825
+      ],
+      "from": [
+        12.1,
+        21.7636,
+        12.0
+      ],
+      "to": [
+        12.1,
+        40.0,
+        12.0
+      ],
+      "distance": 18.2364,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_B_Ngang_F3_Rail_2",
+      "hit_position": [
+        12.1,
+        38.0,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_Corridor_F3:3"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_Corridor_F3:4"
+      ]
+    },
+    {
+      "edge": [
+        830,
+        831
+      ],
+      "from": [
+        12.1,
+        21.7636,
+        16.0
+      ],
+      "to": [
+        12.1,
+        40.0,
+        16.0
+      ],
+      "distance": 18.2364,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_B_Ngang_F4_Rail_2",
+      "hit_position": [
+        12.1,
+        38.0,
+        16.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_Corridor_F4:3"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_Corridor_F4:4"
+      ]
+    },
+    {
+      "edge": [
+        846,
+        847
+      ],
+      "from": [
+        13.1818,
+        21.3882,
+        2.0
+      ],
+      "to": [
+        15.0,
+        20.7636,
+        2.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_B_B",
+      "hit_position": [
+        13.5,
+        21.4692,
+        2.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        857,
+        858
+      ],
+      "from": [
+        16.8182,
+        17.63,
+        4.0
+      ],
+      "to": [
+        15.0,
+        18.2545,
+        4.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_F_B",
+      "hit_position": [
+        16.3382,
+        17.6045,
+        4.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F0:21",
+        "Khoi_A_Day_Phai_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F1:0",
+        "Khoi_A_Day_Phai_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        868,
+        869
+      ],
+      "from": [
+        13.1818,
+        21.3882,
+        6.0
+      ],
+      "to": [
+        15.0,
+        20.7636,
+        6.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_B_B",
+      "hit_position": [
+        13.5,
+        21.4692,
+        6.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        879,
+        880
+      ],
+      "from": [
+        16.8182,
+        17.63,
+        8.0
+      ],
+      "to": [
+        15.0,
+        18.2545,
+        8.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_F_B",
+      "hit_position": [
+        16.3382,
+        17.6045,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F1:21",
+        "Khoi_A_Day_Phai_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F2:0",
+        "Khoi_A_Day_Phai_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        890,
+        891
+      ],
+      "from": [
+        13.1818,
+        21.3882,
+        10.0
+      ],
+      "to": [
+        15.0,
+        20.7636,
+        10.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_B_B",
+      "hit_position": [
+        13.5,
+        21.4692,
+        10.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F2:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F2:11"
+      ]
+    },
+    {
+      "edge": [
+        901,
+        902
+      ],
+      "from": [
+        16.8182,
+        17.63,
+        12.0
+      ],
+      "to": [
+        15.0,
+        18.2545,
+        12.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_F_B",
+      "hit_position": [
+        16.3382,
+        17.6045,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F2:21",
+        "Khoi_A_Day_Phai_TopStep_F2"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F3:0",
+        "Khoi_A_Day_Phai_MainLanding_F3"
+      ]
+    },
+    {
+      "edge": [
+        912,
+        913
+      ],
+      "from": [
+        13.1818,
+        21.3882,
+        14.0
+      ],
+      "to": [
+        15.0,
+        20.7636,
+        14.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_B_B",
+      "hit_position": [
+        13.5,
+        21.4692,
+        14.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F3:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F3:11"
+      ]
+    },
+    {
+      "edge": [
+        923,
+        924
+      ],
+      "from": [
+        16.8182,
+        17.63,
+        16.0
+      ],
+      "to": [
+        15.0,
+        18.2545,
+        16.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_F_B",
+      "hit_position": [
+        16.3382,
+        17.6045,
+        16.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F3:21",
+        "Khoi_A_Day_Phai_TopStep_F3"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F4:0",
+        "Khoi_A_Day_Phai_MainLanding_F4"
+      ]
+    },
+    {
+      "edge": [
+        934,
+        935
+      ],
+      "from": [
+        13.1818,
+        21.3882,
+        18.0
+      ],
+      "to": [
+        15.0,
+        20.7636,
+        18.0
+      ],
+      "distance": 1.9225,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_A_Day_Phai_Stair_Wall_B_B",
+      "hit_position": [
+        13.5,
+        21.4692,
+        18.6
+      ],
+      "start_labels": [
+        "Khoi_A_Day_Phai_StairRun_F4:10"
+      ],
+      "end_labels": [
+        "Khoi_A_Day_Phai_StairRun_F4:11"
+      ]
+    },
+    {
+      "edge": [
+        946,
+        947
+      ],
+      "from": [
+        -19.0,
+        39.1,
+        0.0
+      ],
+      "to": [
+        0.0,
+        39.1,
+        0.0
+      ],
+      "distance": 19.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_A_Day_Trai_F0_WallBack_2",
+      "hit_position": [
+        -18.8,
+        39.1,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_B_Ngang_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_B_Ngang_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        946,
+        4516
+      ],
+      "from": [
+        -19.0,
+        39.1,
+        0.0
+      ],
+      "to": [
+        -19.0,
+        15.0,
+        0.0
+      ],
+      "distance": 24.1,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_B_Ngang_F0_Rail_1",
+      "hit_position": [
+        -19.0,
+        38.2,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_B_Ngang_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "OutStair_AL_side:0",
+        "OutStair_AL_side_Bottom"
+      ]
+    },
+    {
+      "edge": [
+        949,
+        950
+      ],
+      "from": [
+        4.7,
+        39.1,
+        0.0
+      ],
+      "to": [
+        19.0,
+        39.1,
+        0.0
+      ],
+      "distance": 14.3,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_A_Day_Phai_F0_Rail_2",
+      "hit_position": [
+        11.0,
+        39.1,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_B_Ngang_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_B_Ngang_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        964,
+        965
+      ],
+      "from": [
+        -19.0,
+        39.1,
+        12.0
+      ],
+      "to": [
+        0.0,
+        39.1,
+        12.0
+      ],
+      "distance": 19.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_A_Day_Trai_F3_WallBack_2",
+      "hit_position": [
+        -18.8,
+        39.1,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_B_Ngang_Corridor_F3:0"
+      ],
+      "end_labels": [
+        "Khoi_B_Ngang_Corridor_F3:1"
+      ]
+    },
+    {
+      "edge": [
+        967,
+        968
+      ],
+      "from": [
+        4.7,
+        39.1,
+        12.0
+      ],
+      "to": [
+        19.0,
+        39.1,
+        12.0
+      ],
+      "distance": 14.3,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_A_Day_Phai_F3_Rail_2",
+      "hit_position": [
+        11.0,
+        39.1,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_B_Ngang_Corridor_F3:3"
+      ],
+      "end_labels": [
+        "Khoi_B_Ngang_Corridor_F3:4"
+      ]
+    },
+    {
+      "edge": [
+        970,
+        971
+      ],
+      "from": [
+        -19.0,
+        39.1,
+        16.0
+      ],
+      "to": [
+        0.0,
+        39.1,
+        16.0
+      ],
+      "distance": 19.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_A_Day_Trai_F4_WallBack_2",
+      "hit_position": [
+        -18.8,
+        39.1,
+        16.6
+      ],
+      "start_labels": [
+        "Khoi_B_Ngang_Corridor_F4:0"
+      ],
+      "end_labels": [
+        "Khoi_B_Ngang_Corridor_F4:1"
+      ]
+    },
+    {
+      "edge": [
+        973,
+        974
+      ],
+      "from": [
+        4.7,
+        39.1,
+        16.0
+      ],
+      "to": [
+        19.0,
+        39.1,
+        16.0
+      ],
+      "distance": 14.3,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_A_Day_Phai_F4_Rail_2",
+      "hit_position": [
+        11.0,
+        39.1,
+        16.6
+      ],
+      "start_labels": [
+        "Khoi_B_Ngang_Corridor_F4:3"
+      ],
+      "end_labels": [
+        "Khoi_B_Ngang_Corridor_F4:4"
+      ]
+    },
+    {
+      "edge": [
+        1084,
+        1085
+      ],
+      "from": [
+        -37.8,
+        10.0,
+        0.0
+      ],
+      "to": [
+        -37.8,
+        32.2,
+        0.0
+      ],
+      "distance": 22.2,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_F0_Part_0",
+      "hit_position": [
+        -37.8,
+        10.1,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        1087,
+        1088
+      ],
+      "from": [
+        -37.8,
+        36.6,
+        0.0
+      ],
+      "to": [
+        -37.8,
+        50.0,
+        0.0
+      ],
+      "distance": 13.4,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_F0_Part_7",
+      "hit_position": [
+        -37.8,
+        40.9,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        1090,
+        1091
+      ],
+      "from": [
+        -37.8,
+        10.0,
+        4.2
+      ],
+      "to": [
+        -37.8,
+        32.2,
+        4.2
+      ],
+      "distance": 22.2,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Bridge_C_D_SideL",
+      "hit_position": [
+        -37.8,
+        23.2152,
+        5.3
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F1:0"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        1096,
+        1097
+      ],
+      "from": [
+        -37.8,
+        10.0,
+        8.4
+      ],
+      "to": [
+        -37.8,
+        32.2,
+        8.4
+      ],
+      "distance": 22.2,
+      "ray_height": 1.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_J_C_SideR",
+      "hit_position": [
+        -37.8,
+        28.9828,
+        10.0
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F2:0"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F2:1"
+      ]
+    },
+    {
+      "edge": [
+        1102,
+        1103
+      ],
+      "from": [
+        -37.8,
+        10.0,
+        12.6
+      ],
+      "to": [
+        -37.8,
+        32.2,
+        12.6
+      ],
+      "distance": 22.2,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_F3_Part_0",
+      "hit_position": [
+        -37.8,
+        10.1,
+        13.2
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F3:0"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F3:1"
+      ]
+    },
+    {
+      "edge": [
+        1105,
+        1106
+      ],
+      "from": [
+        -37.8,
+        36.6,
+        12.6
+      ],
+      "to": [
+        -37.8,
+        50.0,
+        12.6
+      ],
+      "distance": 13.4,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_F3_Part_7",
+      "hit_position": [
+        -37.8,
+        40.9,
+        13.2
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F3:3"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_Corridor_F3:4"
+      ]
+    },
+    {
+      "edge": [
+        1115,
+        1116
+      ],
+      "from": [
+        -36.8182,
+        34.79,
+        0.84
+      ],
+      "to": [
+        -36.8182,
+        35.03,
+        1.05
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F0_MidLanding",
+      "hit_position": [
+        -36.8182,
+        34.85,
+        1.9925
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F0:4"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F0:5"
+      ]
+    },
+    {
+      "edge": [
+        1117,
+        1118
+      ],
+      "from": [
+        -36.8182,
+        35.27,
+        1.26
+      ],
+      "to": [
+        -36.8182,
+        35.51,
+        1.47
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F0_MidLanding",
+      "hit_position": [
+        -36.8182,
+        35.3043,
+        1.89
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F0:6"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F0:7"
+      ]
+    },
+    {
+      "edge": [
+        1118,
+        1119
+      ],
+      "from": [
+        -36.8182,
+        35.51,
+        1.47
+      ],
+      "to": [
+        -36.8182,
+        35.75,
+        1.68
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F0_MidLanding",
+      "hit_position": [
+        -36.8182,
+        35.5443,
+        2.1
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F0:7"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F0:8"
+      ]
+    },
+    {
+      "edge": [
+        1132,
+        1133
+      ],
+      "from": [
+        -33.1818,
+        32.57,
+        4.2
+      ],
+      "to": [
+        -35.0,
+        33.2,
+        4.2
+      ],
+      "distance": 1.9243,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -33.6739,
+        32.55,
+        4.8
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F0:21",
+        "Khoi_C_Phong_Hoc_Dien_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F1:0",
+        "Khoi_C_Phong_Hoc_Dien_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        1134,
+        4416
+      ],
+      "from": [
+        -36.8182,
+        34.07,
+        4.41
+      ],
+      "to": [
+        -35.0,
+        30.0,
+        5.0
+      ],
+      "distance": 4.4965,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -36.1392,
+        32.55,
+        5.2303
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F1:1"
+      ],
+      "end_labels": [
+        "Bridge_C_D:0",
+        "Bridge_C_D_P1"
+      ]
+    },
+    {
+      "edge": [
+        1154,
+        1155
+      ],
+      "from": [
+        -33.1818,
+        32.57,
+        8.4
+      ],
+      "to": [
+        -35.0,
+        33.2,
+        8.4
+      ],
+      "distance": 1.9243,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -33.6739,
+        32.55,
+        9.0
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F1:21",
+        "Khoi_C_Phong_Hoc_Dien_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:0",
+        "Khoi_C_Phong_Hoc_Dien_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        1160,
+        4415
+      ],
+      "from": [
+        -36.8182,
+        35.03,
+        9.45
+      ],
+      "to": [
+        -35.0,
+        30.0,
+        10.0
+      ],
+      "distance": 5.3767,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -35.9218,
+        32.55,
+        10.3212
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:5"
+      ],
+      "end_labels": [
+        "Bridge_A_L_C:2",
+        "Bridge_J_C:2",
+        "Bridge_A_L_C_P2"
+      ]
+    },
+    {
+      "edge": [
+        1170,
+        1171
+      ],
+      "from": [
+        -33.1818,
+        34.01,
+        11.34
+      ],
+      "to": [
+        -33.1818,
+        33.77,
+        11.55
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F3_MainLanding",
+      "hit_position": [
+        -33.1818,
+        33.95,
+        12.4925
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:15"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:16"
+      ]
+    },
+    {
+      "edge": [
+        1172,
+        1173
+      ],
+      "from": [
+        -33.1818,
+        33.53,
+        11.76
+      ],
+      "to": [
+        -33.1818,
+        33.29,
+        11.97
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F3_MainLanding",
+      "hit_position": [
+        -33.1818,
+        33.4957,
+        12.39
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:17"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:18"
+      ]
+    },
+    {
+      "edge": [
+        1173,
+        1174
+      ],
+      "from": [
+        -33.1818,
+        33.29,
+        11.97
+      ],
+      "to": [
+        -33.1818,
+        33.05,
+        12.18
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F3_MainLanding",
+      "hit_position": [
+        -33.1818,
+        33.2557,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:18"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:19"
+      ]
+    },
+    {
+      "edge": [
+        1176,
+        1177
+      ],
+      "from": [
+        -33.1818,
+        32.57,
+        12.6
+      ],
+      "to": [
+        -35.0,
+        33.2,
+        12.6
+      ],
+      "distance": 1.9243,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -33.6739,
+        32.55,
+        13.2
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F2:21",
+        "Khoi_C_Phong_Hoc_Dien_TopStep_F2"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F3:0",
+        "Khoi_C_Phong_Hoc_Dien_MainLanding_F3"
+      ]
+    },
+    {
+      "edge": [
+        1181,
+        1182
+      ],
+      "from": [
+        -36.8182,
+        34.79,
+        13.44
+      ],
+      "to": [
+        -36.8182,
+        35.03,
+        13.65
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F3_MidLanding",
+      "hit_position": [
+        -36.8182,
+        34.85,
+        14.5925
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F3:4"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F3:5"
+      ]
+    },
+    {
+      "edge": [
+        1183,
+        1184
+      ],
+      "from": [
+        -36.8182,
+        35.27,
+        13.86
+      ],
+      "to": [
+        -36.8182,
+        35.51,
+        14.07
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F3_MidLanding",
+      "hit_position": [
+        -36.8182,
+        35.3043,
+        14.49
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F3:6"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F3:7"
+      ]
+    },
+    {
+      "edge": [
+        1184,
+        1185
+      ],
+      "from": [
+        -36.8182,
+        35.51,
+        14.07
+      ],
+      "to": [
+        -36.8182,
+        35.75,
+        14.28
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_C_Phong_Hoc_Dien_Stair_F3_MidLanding",
+      "hit_position": [
+        -36.8182,
+        35.5443,
+        14.7
+      ],
+      "start_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F3:7"
+      ],
+      "end_labels": [
+        "Khoi_C_Phong_Hoc_Dien_StairRun_F3:8"
+      ]
+    },
+    {
+      "edge": [
+        1199,
+        1200
+      ],
+      "from": [
+        -50.8,
+        -10.0,
+        0.0
+      ],
+      "to": [
+        -50.8,
+        12.2,
+        0.0
+      ],
+      "distance": 22.2,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F0_Part_0",
+      "hit_position": [
+        -50.8,
+        -9.9,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        1202,
+        1203
+      ],
+      "from": [
+        -50.8,
+        16.6,
+        0.0
+      ],
+      "to": [
+        -50.8,
+        30.0,
+        0.0
+      ],
+      "distance": 13.4,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F0_Part_7",
+      "hit_position": [
+        -50.8,
+        20.9,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        1205,
+        1206
+      ],
+      "from": [
+        -50.8,
+        -10.0,
+        4.2
+      ],
+      "to": [
+        -50.8,
+        12.2,
+        4.2
+      ],
+      "distance": 22.2,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_E2_W_RailA",
+      "hit_position": [
+        -50.8,
+        -6.825,
+        4.8
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F1:0"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        1211,
+        1212
+      ],
+      "from": [
+        -50.8,
+        -10.0,
+        8.4
+      ],
+      "to": [
+        -50.8,
+        12.2,
+        8.4
+      ],
+      "distance": 22.2,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_F_B",
+      "hit_position": [
+        -50.8,
+        -2.25,
+        9.0
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F2:0"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F2:1"
+      ]
+    },
+    {
+      "edge": [
+        1217,
+        1218
+      ],
+      "from": [
+        -50.8,
+        -10.0,
+        12.6
+      ],
+      "to": [
+        -50.8,
+        12.2,
+        12.6
+      ],
+      "distance": 22.2,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F3_Part_0",
+      "hit_position": [
+        -50.8,
+        -9.9,
+        13.2
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F3:0"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F3:1"
+      ]
+    },
+    {
+      "edge": [
+        1220,
+        1221
+      ],
+      "from": [
+        -50.8,
+        16.6,
+        12.6
+      ],
+      "to": [
+        -50.8,
+        30.0,
+        12.6
+      ],
+      "distance": 13.4,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F3_Part_7",
+      "hit_position": [
+        -50.8,
+        20.9,
+        13.2
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F3:3"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_Corridor_F3:4"
+      ]
+    },
+    {
+      "edge": [
+        1230,
+        1231
+      ],
+      "from": [
+        -49.8182,
+        14.79,
+        0.84
+      ],
+      "to": [
+        -49.8182,
+        15.03,
+        1.05
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F0_MidLanding",
+      "hit_position": [
+        -49.8182,
+        14.85,
+        1.9925
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F0:4"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F0:5"
+      ]
+    },
+    {
+      "edge": [
+        1232,
+        1233
+      ],
+      "from": [
+        -49.8182,
+        15.27,
+        1.26
+      ],
+      "to": [
+        -49.8182,
+        15.51,
+        1.47
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F0_MidLanding",
+      "hit_position": [
+        -49.8182,
+        15.3043,
+        1.89
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F0:6"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F0:7"
+      ]
+    },
+    {
+      "edge": [
+        1233,
+        1234
+      ],
+      "from": [
+        -49.8182,
+        15.51,
+        1.47
+      ],
+      "to": [
+        -49.8182,
+        15.75,
+        1.68
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F0_MidLanding",
+      "hit_position": [
+        -49.8182,
+        15.5443,
+        2.1
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F0:7"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F0:8"
+      ]
+    },
+    {
+      "edge": [
+        1247,
+        1248
+      ],
+      "from": [
+        -46.1818,
+        12.57,
+        4.2
+      ],
+      "to": [
+        -48.0,
+        13.2,
+        4.2
+      ],
+      "distance": 1.9243,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -46.6739,
+        12.55,
+        4.8
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F0:21",
+        "Khoi_D_Phong_Hoc_Dien_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:0",
+        "Khoi_D_Phong_Hoc_Dien_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        1249,
+        4418
+      ],
+      "from": [
+        -49.8182,
+        14.07,
+        4.41
+      ],
+      "to": [
+        -48.0,
+        10.0,
+        5.0
+      ],
+      "distance": 4.4965,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -49.1392,
+        12.55,
+        5.2303
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:1"
+      ],
+      "end_labels": [
+        "Bridge_C_D:2",
+        "Bridge_D_E2:0",
+        "Bridge_C_D_P2"
+      ]
+    },
+    {
+      "edge": [
+        1259,
+        1260
+      ],
+      "from": [
+        -48.0,
+        15.6,
+        6.3
+      ],
+      "to": [
+        -46.1818,
+        14.73,
+        6.51
+      ],
+      "distance": 2.0265,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_C_D_PanelR",
+      "hit_position": [
+        -46.4062,
+        14.8374,
+        7.0841
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:11"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:12"
+      ]
+    },
+    {
+      "edge": [
+        1261,
+        1262
+      ],
+      "from": [
+        -46.1818,
+        14.49,
+        6.72
+      ],
+      "to": [
+        -46.1818,
+        14.25,
+        6.93
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_C_D_Roof",
+      "hit_position": [
+        -46.1818,
+        14.3986,
+        8.4
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:13"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:14"
+      ]
+    },
+    {
+      "edge": [
+        1262,
+        1263
+      ],
+      "from": [
+        -46.1818,
+        14.25,
+        6.93
+      ],
+      "to": [
+        -46.1818,
+        14.01,
+        7.14
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_C_D_Roof",
+      "hit_position": [
+        -46.1818,
+        14.17,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:14"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:15"
+      ]
+    },
+    {
+      "edge": [
+        1264,
+        1265
+      ],
+      "from": [
+        -46.1818,
+        13.77,
+        7.35
+      ],
+      "to": [
+        -46.1818,
+        13.53,
+        7.56
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Bridge_C_D_Roof",
+      "hit_position": [
+        -46.1818,
+        13.5986,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:16"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:17"
+      ]
+    },
+    {
+      "edge": [
+        1266,
+        1267
+      ],
+      "from": [
+        -46.1818,
+        13.29,
+        7.77
+      ],
+      "to": [
+        -46.1818,
+        13.05,
+        7.98
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_C_D_Roof",
+      "hit_position": [
+        -46.1818,
+        13.2557,
+        8.4
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:18"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:19"
+      ]
+    },
+    {
+      "edge": [
+        1269,
+        1270
+      ],
+      "from": [
+        -46.1818,
+        12.57,
+        8.4
+      ],
+      "to": [
+        -48.0,
+        13.2,
+        8.4
+      ],
+      "distance": 1.9243,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -46.6739,
+        12.55,
+        9.0
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F1:21",
+        "Khoi_D_Phong_Hoc_Dien_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F2:0",
+        "Khoi_D_Phong_Hoc_Dien_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        1285,
+        1286
+      ],
+      "from": [
+        -46.1818,
+        14.01,
+        11.34
+      ],
+      "to": [
+        -46.1818,
+        13.77,
+        11.55
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F3_MainLanding",
+      "hit_position": [
+        -46.1818,
+        13.95,
+        12.4925
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F2:15"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F2:16"
+      ]
+    },
+    {
+      "edge": [
+        1287,
+        1288
+      ],
+      "from": [
+        -46.1818,
+        13.53,
+        11.76
+      ],
+      "to": [
+        -46.1818,
+        13.29,
+        11.97
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F3_MainLanding",
+      "hit_position": [
+        -46.1818,
+        13.4957,
+        12.39
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F2:17"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F2:18"
+      ]
+    },
+    {
+      "edge": [
+        1288,
+        1289
+      ],
+      "from": [
+        -46.1818,
+        13.29,
+        11.97
+      ],
+      "to": [
+        -46.1818,
+        13.05,
+        12.18
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F3_MainLanding",
+      "hit_position": [
+        -46.1818,
+        13.2557,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F2:18"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F2:19"
+      ]
+    },
+    {
+      "edge": [
+        1291,
+        1292
+      ],
+      "from": [
+        -46.1818,
+        12.57,
+        12.6
+      ],
+      "to": [
+        -48.0,
+        13.2,
+        12.6
+      ],
+      "distance": 1.9243,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_Wall_F_B",
+      "hit_position": [
+        -46.6739,
+        12.55,
+        13.2
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F2:21",
+        "Khoi_D_Phong_Hoc_Dien_TopStep_F2"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F3:0",
+        "Khoi_D_Phong_Hoc_Dien_MainLanding_F3"
+      ]
+    },
+    {
+      "edge": [
+        1296,
+        1297
+      ],
+      "from": [
+        -49.8182,
+        14.79,
+        13.44
+      ],
+      "to": [
+        -49.8182,
+        15.03,
+        13.65
+      ],
+      "distance": 0.3189,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F3_MidLanding",
+      "hit_position": [
+        -49.8182,
+        14.85,
+        14.5925
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F3:4"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F3:5"
+      ]
+    },
+    {
+      "edge": [
+        1298,
+        1299
+      ],
+      "from": [
+        -49.8182,
+        15.27,
+        13.86
+      ],
+      "to": [
+        -49.8182,
+        15.51,
+        14.07
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F3_MidLanding",
+      "hit_position": [
+        -49.8182,
+        15.3043,
+        14.49
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F3:6"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F3:7"
+      ]
+    },
+    {
+      "edge": [
+        1299,
+        1300
+      ],
+      "from": [
+        -49.8182,
+        15.51,
+        14.07
+      ],
+      "to": [
+        -49.8182,
+        15.75,
+        14.28
+      ],
+      "distance": 0.3189,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_Stair_F3_MidLanding",
+      "hit_position": [
+        -49.8182,
+        15.5443,
+        14.7
+      ],
+      "start_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F3:7"
+      ],
+      "end_labels": [
+        "Khoi_D_Phong_Hoc_Dien_StairRun_F3:8"
+      ]
+    },
+    {
+      "edge": [
+        1314,
+        1315
+      ],
+      "from": [
+        -103.0,
+        -40.0,
+        0.0
+      ],
+      "to": [
+        -103.0,
+        -25.0,
+        0.0
+      ],
+      "distance": 15.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_0",
+      "hit_position": [
+        -103.0,
+        -39.9,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        1317,
+        1318
+      ],
+      "from": [
+        -103.0,
+        -21.3,
+        0.0
+      ],
+      "to": [
+        -103.0,
+        -10.0,
+        0.0
+      ],
+      "distance": 11.3,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_6",
+      "hit_position": [
+        -103.0,
+        -17.7,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        1332,
+        1333
+      ],
+      "from": [
+        -103.0,
+        -40.0,
+        12.0
+      ],
+      "to": [
+        -103.0,
+        -23.15,
+        12.0
+      ],
+      "distance": 16.85,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_L_Xuong_Sang_Tao_F3_Rail_1",
+      "hit_position": [
+        -103.0,
+        -36.0,
+        12.6
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_RoofLine_F3:0"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_RoofLine_F3:1"
+      ]
+    },
+    {
+      "edge": [
+        1335,
+        1336
+      ],
+      "from": [
+        -95.0,
+        -24.0,
+        0.0
+      ],
+      "to": [
+        -99.0909,
+        -23.165,
+        0.2
+      ],
+      "distance": 4.18,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_L_Xuong_Sang_Tao_Stair_Wall_L_B",
+      "hit_position": [
+        -98.49,
+        -23.2877,
+        0.7706
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:0",
+        "Khoi_E.0_Van_Phong_Co_Khi_MainLanding_F0"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        1336,
+        1337
+      ],
+      "from": [
+        -99.0909,
+        -23.165,
+        0.2
+      ],
+      "to": [
+        -99.0909,
+        -22.995,
+        0.4
+      ],
+      "distance": 0.2625,
+      "ray_height": 1.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_F0_MidLanding",
+      "hit_position": [
+        -99.0909,
+        -23.05,
+        1.9353
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:1"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:2"
+      ]
+    },
+    {
+      "edge": [
+        1338,
+        1339
+      ],
+      "from": [
+        -99.0909,
+        -22.825,
+        0.6
+      ],
+      "to": [
+        -99.0909,
+        -22.655,
+        0.8
+      ],
+      "distance": 0.2625,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_F0_MidLanding",
+      "hit_position": [
+        -99.0909,
+        -22.74,
+        1.8
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        1339,
+        1340
+      ],
+      "from": [
+        -99.0909,
+        -22.655,
+        0.8
+      ],
+      "to": [
+        -99.0909,
+        -22.485,
+        1.0
+      ],
+      "distance": 0.2625,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_F0_MidLanding",
+      "hit_position": [
+        -99.0909,
+        -22.57,
+        2.0
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:4"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:5"
+      ]
+    },
+    {
+      "edge": [
+        1345,
+        1346
+      ],
+      "from": [
+        -99.0909,
+        -21.635,
+        2.0
+      ],
+      "to": [
+        -95.0,
+        -22.3,
+        2.0
+      ],
+      "distance": 4.1446,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -98.9986,
+        -21.65,
+        2.6
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        1346,
+        1347
+      ],
+      "from": [
+        -95.0,
+        -22.3,
+        2.0
+      ],
+      "to": [
+        -90.9091,
+        -23.135,
+        2.2
+      ],
+      "distance": 4.18,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_L_Xuong_Sang_Tao_Stair_Wall_R_B",
+      "hit_position": [
+        -92.87,
+        -22.7348,
+        2.7041
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:11"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:12"
+      ]
+    },
+    {
+      "edge": [
+        1356,
+        1357
+      ],
+      "from": [
+        -90.9091,
+        -24.665,
+        4.0
+      ],
+      "to": [
+        -95.0,
+        -24.0,
+        4.0
+      ],
+      "distance": 4.1446,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -91.0014,
+        -24.65,
+        4.6
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F0:21",
+        "Khoi_E.0_Van_Phong_Co_Khi_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:0",
+        "Khoi_E.0_Van_Phong_Co_Khi_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        1357,
+        1358
+      ],
+      "from": [
+        -95.0,
+        -24.0,
+        4.0
+      ],
+      "to": [
+        -99.0909,
+        -23.165,
+        4.2
+      ],
+      "distance": 4.18,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_L_Xuong_Sang_Tao_Stair_Wall_L_B",
+      "hit_position": [
+        -98.49,
+        -23.2877,
+        4.7706
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:0",
+        "Khoi_E.0_Van_Phong_Co_Khi_MainLanding_F1"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        1367,
+        1368
+      ],
+      "from": [
+        -99.0909,
+        -21.635,
+        6.0
+      ],
+      "to": [
+        -95.0,
+        -22.3,
+        6.0
+      ],
+      "distance": 4.1446,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -98.9986,
+        -21.65,
+        6.6
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        1368,
+        1369
+      ],
+      "from": [
+        -95.0,
+        -22.3,
+        6.0
+      ],
+      "to": [
+        -90.9091,
+        -23.135,
+        6.2
+      ],
+      "distance": 4.18,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_L_Xuong_Sang_Tao_Stair_Wall_R_B",
+      "hit_position": [
+        -92.87,
+        -22.7348,
+        6.7041
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:11"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:12"
+      ]
+    },
+    {
+      "edge": [
+        1375,
+        4439
+      ],
+      "from": [
+        -90.9091,
+        -24.155,
+        7.4
+      ],
+      "to": [
+        -86.0,
+        -22.0,
+        8.0
+      ],
+      "distance": 5.3947,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_R",
+      "hit_position": [
+        -86.1,
+        -22.0439,
+        8.5878
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:18"
+      ],
+      "end_labels": [
+        "Bridge_L_E3:0",
+        "Bridge_L_E3_P1"
+      ]
+    },
+    {
+      "edge": [
+        1378,
+        1379
+      ],
+      "from": [
+        -90.9091,
+        -24.665,
+        8.0
+      ],
+      "to": [
+        -95.0,
+        -24.0,
+        8.0
+      ],
+      "distance": 4.1446,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -91.0014,
+        -24.65,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F1:21",
+        "Khoi_E.0_Van_Phong_Co_Khi_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F2:0",
+        "Khoi_E.0_Van_Phong_Co_Khi_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        1379,
+        1380
+      ],
+      "from": [
+        -95.0,
+        -24.0,
+        8.0
+      ],
+      "to": [
+        -99.0909,
+        -23.165,
+        8.2
+      ],
+      "distance": 4.18,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_L_Xuong_Sang_Tao_Stair_Wall_L_B",
+      "hit_position": [
+        -98.49,
+        -23.2877,
+        8.7706
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F2:0",
+        "Khoi_E.0_Van_Phong_Co_Khi_MainLanding_F2"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F2:1"
+      ]
+    },
+    {
+      "edge": [
+        1389,
+        1390
+      ],
+      "from": [
+        -99.0909,
+        -21.635,
+        10.0
+      ],
+      "to": [
+        -95.0,
+        -22.3,
+        10.0
+      ],
+      "distance": 4.1446,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -98.9986,
+        -21.65,
+        10.6
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F2:10"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F2:11"
+      ]
+    },
+    {
+      "edge": [
+        1390,
+        1391
+      ],
+      "from": [
+        -95.0,
+        -22.3,
+        10.0
+      ],
+      "to": [
+        -90.9091,
+        -23.135,
+        10.2
+      ],
+      "distance": 4.18,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_L_Xuong_Sang_Tao_Stair_Wall_R_B",
+      "hit_position": [
+        -92.87,
+        -22.7348,
+        10.7041
+      ],
+      "start_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F2:11"
+      ],
+      "end_labels": [
+        "Khoi_E.0_Van_Phong_Co_Khi_StairRun_F2:12"
+      ]
+    },
+    {
+      "edge": [
+        1485,
+        1486
+      ],
+      "from": [
+        -60.9,
+        -13.0,
+        0.0
+      ],
+      "to": [
+        -60.9,
+        -2.4,
+        0.0
+      ],
+      "distance": 10.6,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.2_Can_Tin_Sieu_Thi_F0_Part_0",
+      "hit_position": [
+        -60.9,
+        -12.9,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        1491,
+        1492
+      ],
+      "from": [
+        -60.9,
+        -13.0,
+        4.0
+      ],
+      "to": [
+        -60.9,
+        -2.4,
+        4.0
+      ],
+      "distance": 10.6,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_E2_E3_SideR",
+      "hit_position": [
+        -60.9,
+        -10.95,
+        4.6
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_Corridor_F1:0"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_Corridor_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        1516,
+        1517
+      ],
+      "from": [
+        -58.1818,
+        2.39,
+        2.0
+      ],
+      "to": [
+        -55.0,
+        1.8,
+        2.0
+      ],
+      "distance": 3.236,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_B_B",
+      "hit_position": [
+        -57.5181,
+        2.45,
+        2.6
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        1517,
+        1518
+      ],
+      "from": [
+        -55.0,
+        1.8,
+        2.0
+      ],
+      "to": [
+        -51.8182,
+        0.89,
+        2.2
+      ],
+      "distance": 3.3154,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F0_WallCorr_1",
+      "hit_position": [
+        -52.0,
+        0.942,
+        2.7886
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:11"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:12"
+      ]
+    },
+    {
+      "edge": [
+        1522,
+        1523
+      ],
+      "from": [
+        -51.8182,
+        -0.39,
+        3.0
+      ],
+      "to": [
+        -51.8182,
+        -0.71,
+        3.2
+      ],
+      "distance": 0.3774,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F0_WallCorr_1",
+      "hit_position": [
+        -51.8182,
+        -0.55,
+        4.2
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:16"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:17"
+      ]
+    },
+    {
+      "edge": [
+        1523,
+        1524
+      ],
+      "from": [
+        -51.8182,
+        -0.71,
+        3.2
+      ],
+      "to": [
+        -51.8182,
+        -1.03,
+        3.4
+      ],
+      "distance": 0.3774,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F0_Col_2",
+      "hit_position": [
+        -51.8182,
+        -0.8,
+        3.8563
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:17"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:18"
+      ]
+    },
+    {
+      "edge": [
+        1524,
+        1525
+      ],
+      "from": [
+        -51.8182,
+        -1.03,
+        3.4
+      ],
+      "to": [
+        -51.8182,
+        -1.35,
+        3.6
+      ],
+      "distance": 0.3774,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F0_Part_2",
+      "hit_position": [
+        -51.8182,
+        -1.1,
+        4.0438
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:18"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:19"
+      ]
+    },
+    {
+      "edge": [
+        1526,
+        1527
+      ],
+      "from": [
+        -51.8182,
+        -1.67,
+        3.8
+      ],
+      "to": [
+        -51.8182,
+        -1.99,
+        4.0
+      ],
+      "distance": 0.3774,
+      "ray_height": 1.6,
+      "side_offset": -0.18,
+      "blocker": "Bridge_D_E2_SideL",
+      "hit_position": [
+        -51.9982,
+        -1.7599,
+        5.4562
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:20"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:21",
+        "Khoi_E.2_Can_Tin_Sieu_Thi_TopStep_F0"
+      ]
+    },
+    {
+      "edge": [
+        1527,
+        1528
+      ],
+      "from": [
+        -51.8182,
+        -1.99,
+        4.0
+      ],
+      "to": [
+        -55.0,
+        -1.4,
+        4.0
+      ],
+      "distance": 3.236,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_F_B",
+      "hit_position": [
+        -52.4819,
+        -2.05,
+        4.6
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F0:21",
+        "Khoi_E.2_Can_Tin_Sieu_Thi_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F1:0",
+        "Khoi_E.2_Can_Tin_Sieu_Thi_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        1538,
+        1539
+      ],
+      "from": [
+        -58.1818,
+        2.39,
+        6.0
+      ],
+      "to": [
+        -55.0,
+        1.8,
+        6.0
+      ],
+      "distance": 3.236,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_B_B",
+      "hit_position": [
+        -57.5181,
+        2.45,
+        6.6
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        1539,
+        1540
+      ],
+      "from": [
+        -55.0,
+        1.8,
+        6.0
+      ],
+      "to": [
+        -51.8182,
+        0.89,
+        6.2
+      ],
+      "distance": 3.3154,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_D_E2_PanelR",
+      "hit_position": [
+        -53.466,
+        1.3613,
+        6.6964
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F1:11"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F1:12"
+      ]
+    },
+    {
+      "edge": [
+        1546,
+        1547
+      ],
+      "from": [
+        -51.8182,
+        -1.03,
+        7.4
+      ],
+      "to": [
+        -51.8182,
+        -1.35,
+        7.6
+      ],
+      "distance": 0.3774,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Bridge_D_E2_Roof",
+      "hit_position": [
+        -51.8182,
+        -1.19,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F1:18"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F1:19"
+      ]
+    },
+    {
+      "edge": [
+        1549,
+        1550
+      ],
+      "from": [
+        -51.8182,
+        -1.99,
+        8.0
+      ],
+      "to": [
+        -55.0,
+        -1.4,
+        8.0
+      ],
+      "distance": 3.236,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_F_B",
+      "hit_position": [
+        -52.4819,
+        -2.05,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F1:21",
+        "Khoi_E.2_Can_Tin_Sieu_Thi_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F2:0",
+        "Khoi_E.2_Can_Tin_Sieu_Thi_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        1560,
+        1561
+      ],
+      "from": [
+        -58.1818,
+        2.39,
+        10.0
+      ],
+      "to": [
+        -55.0,
+        1.8,
+        10.0
+      ],
+      "distance": 3.236,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.2_Can_Tin_Sieu_Thi_Stair_Wall_B_B",
+      "hit_position": [
+        -57.5181,
+        2.45,
+        10.6
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F2:10"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F2:11"
+      ]
+    },
+    {
+      "edge": [
+        1567,
+        1568
+      ],
+      "from": [
+        -51.8182,
+        -0.71,
+        11.2
+      ],
+      "to": [
+        -51.8182,
+        -1.03,
+        11.4
+      ],
+      "distance": 0.3774,
+      "ray_height": 1.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F3_Col_2",
+      "hit_position": [
+        -51.8182,
+        -0.8,
+        12.8563
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F2:17"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F2:18"
+      ]
+    },
+    {
+      "edge": [
+        1568,
+        1569
+      ],
+      "from": [
+        -51.8182,
+        -1.03,
+        11.4
+      ],
+      "to": [
+        -51.8182,
+        -1.35,
+        11.6
+      ],
+      "distance": 0.3774,
+      "ray_height": 1.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_D_Phong_Hoc_Dien_F3_Part_2",
+      "hit_position": [
+        -51.8182,
+        -1.1,
+        13.0438
+      ],
+      "start_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F2:18"
+      ],
+      "end_labels": [
+        "Khoi_E.2_Can_Tin_Sieu_Thi_StairRun_F2:19"
+      ]
+    },
+    {
+      "edge": [
+        1572,
+        1573
+      ],
+      "from": [
+        -78.6,
+        -36.0,
+        0.0
+      ],
+      "to": [
+        -78.6,
+        -21.4,
+        0.0
+      ],
+      "distance": 14.6,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.3_Xuong_Co_Khi_F0_Part_0",
+      "hit_position": [
+        -78.6,
+        -35.9,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        1584,
+        1585
+      ],
+      "from": [
+        -78.6,
+        -36.0,
+        8.0
+      ],
+      "to": [
+        -78.6,
+        -21.4,
+        8.0
+      ],
+      "distance": 14.6,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_L_E3_SideR",
+      "hit_position": [
+        -78.6,
+        -24.761,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_Corridor_F2:0"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_Corridor_F2:1"
+      ]
+    },
+    {
+      "edge": [
+        1603,
+        1604
+      ],
+      "from": [
+        -74.5455,
+        -14.71,
+        2.0
+      ],
+      "to": [
+        -70.0,
+        -15.2,
+        2.0
+      ],
+      "distance": 4.5718,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.3_Xuong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -74.3503,
+        -14.55,
+        2.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        1606,
+        1607
+      ],
+      "from": [
+        -65.4545,
+        -16.73,
+        2.4
+      ],
+      "to": [
+        -65.4545,
+        -17.25,
+        2.6
+      ],
+      "distance": 0.5571,
+      "ray_height": 1.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_E2_E3_SideR",
+      "hit_position": [
+        -65.4545,
+        -17.0227,
+        4.1126
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:13"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:14"
+      ]
+    },
+    {
+      "edge": [
+        1608,
+        1609
+      ],
+      "from": [
+        -65.4545,
+        -17.77,
+        2.8
+      ],
+      "to": [
+        -65.4545,
+        -18.29,
+        3.0
+      ],
+      "distance": 0.5571,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Bridge_E2_E3_Col_2",
+      "hit_position": [
+        -65.2745,
+        -18.0333,
+        3.5013
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:15"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:16"
+      ]
+    },
+    {
+      "edge": [
+        1609,
+        1610
+      ],
+      "from": [
+        -65.4545,
+        -18.29,
+        3.0
+      ],
+      "to": [
+        -65.4545,
+        -18.81,
+        3.2
+      ],
+      "distance": 0.5571,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Bridge_E2_E3_Col_2",
+      "hit_position": [
+        -65.2745,
+        -18.6333,
+        3.7321
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:16"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:17"
+      ]
+    },
+    {
+      "edge": [
+        1613,
+        1614
+      ],
+      "from": [
+        -65.4545,
+        -20.37,
+        3.8
+      ],
+      "to": [
+        -65.4545,
+        -20.89,
+        4.0
+      ],
+      "distance": 0.5571,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Bridge_E2_E3_SideL",
+      "hit_position": [
+        -65.2745,
+        -20.616,
+        4.4946
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:20"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:21",
+        "Khoi_E.3_Xuong_Co_Khi_TopStep_F0"
+      ]
+    },
+    {
+      "edge": [
+        1614,
+        1615
+      ],
+      "from": [
+        -65.4545,
+        -20.89,
+        4.0
+      ],
+      "to": [
+        -70.0,
+        -20.4,
+        4.0
+      ],
+      "distance": 4.5718,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_E2_E3_SideR",
+      "hit_position": [
+        -68.138,
+        -20.6007,
+        4.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F0:21",
+        "Khoi_E.3_Xuong_Co_Khi_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F1:0",
+        "Khoi_E.3_Xuong_Co_Khi_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        1625,
+        1626
+      ],
+      "from": [
+        -74.5455,
+        -14.71,
+        6.0
+      ],
+      "to": [
+        -70.0,
+        -15.2,
+        6.0
+      ],
+      "distance": 4.5718,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.3_Xuong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -74.3503,
+        -14.55,
+        6.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        1627,
+        1628
+      ],
+      "from": [
+        -65.4545,
+        -16.21,
+        6.2
+      ],
+      "to": [
+        -65.4545,
+        -16.73,
+        6.4
+      ],
+      "distance": 0.5571,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Bridge_E2_E3_Roof",
+      "hit_position": [
+        -65.4545,
+        -16.5227,
+        7.4203
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F1:12"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F1:13"
+      ]
+    },
+    {
+      "edge": [
+        1628,
+        1629
+      ],
+      "from": [
+        -65.4545,
+        -16.73,
+        6.4
+      ],
+      "to": [
+        -65.4545,
+        -17.25,
+        6.6
+      ],
+      "distance": 0.5571,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Bridge_E2_E3_Roof",
+      "hit_position": [
+        -65.4545,
+        -16.99,
+        7.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F1:13"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F1:14"
+      ]
+    },
+    {
+      "edge": [
+        1636,
+        1637
+      ],
+      "from": [
+        -65.4545,
+        -20.89,
+        8.0
+      ],
+      "to": [
+        -70.0,
+        -20.4,
+        8.0
+      ],
+      "distance": 4.5718,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.3_Xuong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -65.6497,
+        -21.05,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F1:21",
+        "Khoi_E.3_Xuong_Co_Khi_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F2:0",
+        "Khoi_E.3_Xuong_Co_Khi_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        1637,
+        4441
+      ],
+      "from": [
+        -70.0,
+        -20.4,
+        8.0
+      ],
+      "to": [
+        -70.0,
+        -25.0,
+        8.0
+      ],
+      "distance": 4.6,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.3_Xuong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -70.0,
+        -21.05,
+        8.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F2:0",
+        "Khoi_E.3_Xuong_Co_Khi_MainLanding_F2"
+      ],
+      "end_labels": [
+        "Bridge_L_E3:2",
+        "Bridge_L_E3_P2"
+      ]
+    },
+    {
+      "edge": [
+        1647,
+        1648
+      ],
+      "from": [
+        -74.5455,
+        -14.71,
+        10.0
+      ],
+      "to": [
+        -70.0,
+        -15.2,
+        10.0
+      ],
+      "distance": 4.5718,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_E.3_Xuong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -74.3503,
+        -14.55,
+        10.6
+      ],
+      "start_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F2:10"
+      ],
+      "end_labels": [
+        "Khoi_E.3_Xuong_Co_Khi_StairRun_F2:11"
+      ]
+    },
+    {
+      "edge": [
+        1743,
+        1744
+      ],
+      "from": [
+        45.0,
+        -40.8,
+        0.0
+      ],
+      "to": [
+        55.0,
+        -40.8,
+        0.0
+      ],
+      "distance": 10.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "San_Mai_Vom",
+      "hit_position": [
+        47.5,
+        -40.8,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_F.1_Phong_Hoc_Xuong_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_F.1_Phong_Hoc_Xuong_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        1749,
+        1750
+      ],
+      "from": [
+        45.0,
+        -40.8,
+        4.0
+      ],
+      "to": [
+        55.0,
+        -40.8,
+        4.0
+      ],
+      "distance": 10.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "San_Mai_Vom",
+      "hit_position": [
+        47.5,
+        -40.8,
+        4.6
+      ],
+      "start_labels": [
+        "Khoi_F.1_Phong_Hoc_Xuong_Corridor_F1:0"
+      ],
+      "end_labels": [
+        "Khoi_F.1_Phong_Hoc_Xuong_Corridor_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        1797,
+        4428
+      ],
+      "from": [
+        56.45,
+        -32.375,
+        5.4
+      ],
+      "to": [
+        55.0,
+        -35.0,
+        6.0
+      ],
+      "distance": 3.0583,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_F.1_Phong_Hoc_Xuong_Stair_Wall_L_B",
+      "hit_position": [
+        55.2056,
+        -35.0,
+        6.5801
+      ],
+      "start_labels": [
+        "Khoi_F.1_Phong_Hoc_Xuong_StairRun_F1:7"
+      ],
+      "end_labels": [
+        "Bridge_F1_G:0",
+        "Bridge_F1_G_P1"
+      ]
+    },
+    {
+      "edge": [
+        1835,
+        4427
+      ],
+      "from": [
+        56.45,
+        -37.375,
+        12.6
+      ],
+      "to": [
+        55.0,
+        -35.0,
+        12.0
+      ],
+      "distance": 2.8466,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_F.1_Phong_Hoc_Xuong_Stair_Wall_L_B",
+      "hit_position": [
+        55.35,
+        -35.5733,
+        12.7448
+      ],
+      "start_labels": [
+        "Khoi_F.1_Phong_Hoc_Xuong_StairRun_F3:3"
+      ],
+      "end_labels": [
+        "Bridge_A4_F1:2",
+        "Bridge_K_F1:2",
+        "Bridge_A4_F1_P2"
+      ]
+    },
+    {
+      "edge": [
+        1860,
+        1861
+      ],
+      "from": [
+        45.0,
+        -63.6,
+        4.0
+      ],
+      "to": [
+        58.2667,
+        -63.6,
+        4.0
+      ],
+      "distance": 13.2667,
+      "ray_height": 1.1,
+      "side_offset": 0.18,
+      "blocker": "OutStair_G_S28",
+      "hit_position": [
+        53.25,
+        -63.42,
+        5.1
+      ],
+      "start_labels": [
+        "Khoi_G_Trung_Tam_Viet_Duc_Corridor_F1:0"
+      ],
+      "end_labels": [
+        "Khoi_G_Trung_Tam_Viet_Duc_Corridor_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        2006,
+        2007
+      ],
+      "from": [
+        5.1621,
+        -3.475,
+        1.89
+      ],
+      "to": [
+        5.1621,
+        -1.825,
+        2.1
+      ],
+      "distance": 1.6633,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_A_R_Lib_Col_2",
+      "hit_position": [
+        5.1621,
+        -1.9667,
+        2.682
+      ],
+      "start_labels": [
+        "Khoi_Thu_Vien_StairRun_F0:9"
+      ],
+      "end_labels": [
+        "Khoi_Thu_Vien_StairRun_F0:10"
+      ]
+    },
+    {
+      "edge": [
+        2007,
+        2008
+      ],
+      "from": [
+        5.1621,
+        -1.825,
+        2.1
+      ],
+      "to": [
+        6.5333,
+        -1.75,
+        2.1
+      ],
+      "distance": 1.3732,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_A_R_Lib_Col_2",
+      "hit_position": [
+        5.3,
+        -1.8175,
+        2.7
+      ],
+      "start_labels": [
+        "Khoi_Thu_Vien_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_Thu_Vien_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        2026,
+        2027
+      ],
+      "from": [
+        5.1621,
+        -5.125,
+        5.88
+      ],
+      "to": [
+        5.1621,
+        -3.475,
+        6.09
+      ],
+      "distance": 1.6633,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_A_R_Lib_PanelL",
+      "hit_position": [
+        5.1621,
+        -3.9232,
+        6.633
+      ],
+      "start_labels": [
+        "Khoi_Thu_Vien_StairRun_F1:8"
+      ],
+      "end_labels": [
+        "Khoi_Thu_Vien_StairRun_F1:9"
+      ]
+    },
+    {
+      "edge": [
+        2027,
+        2028
+      ],
+      "from": [
+        5.1621,
+        -3.475,
+        6.09
+      ],
+      "to": [
+        5.1621,
+        -1.825,
+        6.3
+      ],
+      "distance": 1.6633,
+      "ray_height": 0.6,
+      "side_offset": -0.18,
+      "blocker": "Bridge_A_R_Lib_PanelL",
+      "hit_position": [
+        5.3421,
+        -3.4289,
+        6.6959
+      ],
+      "start_labels": [
+        "Khoi_Thu_Vien_StairRun_F1:9"
+      ],
+      "end_labels": [
+        "Khoi_Thu_Vien_StairRun_F1:10"
+      ]
+    },
+    {
+      "edge": [
+        2028,
+        2029
+      ],
+      "from": [
+        5.1621,
+        -1.825,
+        6.3
+      ],
+      "to": [
+        6.5333,
+        -1.75,
+        6.3
+      ],
+      "distance": 1.3732,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Bridge_A_R_Lib_PanelL",
+      "hit_position": [
+        6.3432,
+        -1.7604,
+        6.9
+      ],
+      "start_labels": [
+        "Khoi_Thu_Vien_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_Thu_Vien_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        2044,
+        4410
+      ],
+      "from": [
+        5.1621,
+        -10.075,
+        9.45
+      ],
+      "to": [
+        0.0,
+        -10.0,
+        10.0
+      ],
+      "distance": 5.1919,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_Thu_Vien_Stair_Wall_L_B",
+      "hit_position": [
+        3.6167,
+        -10.0525,
+        10.2147
+      ],
+      "start_labels": [
+        "Khoi_Thu_Vien_StairRun_F2:5"
+      ],
+      "end_labels": [
+        "Bridge_A_L_Lib:2",
+        "Bridge_A_L_Lib_P2"
+      ]
+    },
+    {
+      "edge": [
+        2115,
+        2116
+      ],
+      "from": [
+        -17.5,
+        -54.4,
+        9.0
+      ],
+      "to": [
+        3.46,
+        -54.4,
+        9.0
+      ],
+      "distance": 20.96,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "OutStair_A1_L_RailA",
+      "hit_position": [
+        -9.325,
+        -54.4,
+        10.1
+      ],
+      "start_labels": [
+        "Hoi_Truong_Lon_Corridor_F2:0"
+      ],
+      "end_labels": [
+        "Hoi_Truong_Lon_Corridor_F2:1"
+      ]
+    },
+    {
+      "edge": [
+        2118,
+        2119
+      ],
+      "from": [
+        10.38,
+        -54.4,
+        9.0
+      ],
+      "to": [
+        17.5,
+        -54.4,
+        9.0
+      ],
+      "distance": 7.12,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "OutStair_A1_R_RailA",
+      "hit_position": [
+        16.675,
+        -54.4,
+        10.1
+      ],
+      "start_labels": [
+        "Hoi_Truong_Lon_Corridor_F2:3"
+      ],
+      "end_labels": [
+        "Hoi_Truong_Lon_Corridor_F2:4"
+      ]
+    },
+    {
+      "edge": [
+        2271,
+        2272
+      ],
+      "from": [
+        59.4,
+        7.0,
+        0.0
+      ],
+      "to": [
+        59.4,
+        15.0,
+        0.0
+      ],
+      "distance": 8.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Xuong_Chung_Gam_F0_Part_0",
+      "hit_position": [
+        59.4,
+        7.1,
+        0.6
+      ],
+      "start_labels": [
+        "Xuong_Chung_Gam_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Xuong_Chung_Gam_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        3021,
+        3022
+      ],
+      "from": [
+        -85.1,
+        22.0,
+        5.0
+      ],
+      "to": [
+        -85.1,
+        41.4,
+        5.0
+      ],
+      "distance": 19.4,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_J_E_S3",
+      "hit_position": [
+        -85.1,
+        38.25,
+        5.6
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        3022,
+        3023
+      ],
+      "from": [
+        -85.1,
+        41.4,
+        5.0
+      ],
+      "to": [
+        -85.1,
+        43.8,
+        5.0
+      ],
+      "distance": 2.4,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_J_E_S3",
+      "hit_position": [
+        -85.1,
+        41.75,
+        5.6
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_Corridor_F0:1"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_Corridor_F0:2",
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairCorridor_F0"
+      ]
+    },
+    {
+      "edge": [
+        3078,
+        3079
+      ],
+      "from": [
+        -104.3636,
+        44.69,
+        6.26
+      ],
+      "to": [
+        -104.3636,
+        44.97,
+        6.47
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F0_MidLanding",
+      "hit_position": [
+        -104.3636,
+        44.73,
+        6.89
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F0:6"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F0:7"
+      ]
+    },
+    {
+      "edge": [
+        3079,
+        3080
+      ],
+      "from": [
+        -104.3636,
+        44.97,
+        6.47
+      ],
+      "to": [
+        -104.3636,
+        45.25,
+        6.68
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F0_MidLanding",
+      "hit_position": [
+        -104.3636,
+        45.01,
+        7.1
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F0:7"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F0:8"
+      ]
+    },
+    {
+      "edge": [
+        3082,
+        3083
+      ],
+      "from": [
+        -104.3636,
+        45.81,
+        7.1
+      ],
+      "to": [
+        -98.0,
+        45.2,
+        7.1
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      "hit_position": [
+        -102.8945,
+        45.85,
+        7.7
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        3093,
+        3094
+      ],
+      "from": [
+        -91.6364,
+        41.79,
+        9.2
+      ],
+      "to": [
+        -98.0,
+        42.4,
+        9.2
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "OutStair_J_E_S25",
+      "hit_position": [
+        -92.33,
+        41.6757,
+        9.8
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F0:21",
+        "Khoi_J_Ky_Tuc_Xa_Tay_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F1:0",
+        "Khoi_J_Ky_Tuc_Xa_Tay_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        3104,
+        3105
+      ],
+      "from": [
+        -104.3636,
+        45.81,
+        11.3
+      ],
+      "to": [
+        -98.0,
+        45.2,
+        11.3
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      "hit_position": [
+        -102.8945,
+        45.85,
+        11.9
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        3115,
+        3116
+      ],
+      "from": [
+        -91.6364,
+        41.79,
+        13.4
+      ],
+      "to": [
+        -98.0,
+        42.4,
+        13.4
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_F_A",
+      "hit_position": [
+        -93.1055,
+        41.75,
+        14.0
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F1:21",
+        "Khoi_J_Ky_Tuc_Xa_Tay_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F2:0",
+        "Khoi_J_Ky_Tuc_Xa_Tay_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        3126,
+        3127
+      ],
+      "from": [
+        -104.3636,
+        45.81,
+        15.5
+      ],
+      "to": [
+        -98.0,
+        45.2,
+        15.5
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      "hit_position": [
+        -102.8945,
+        45.85,
+        16.1
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F2:10"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F2:11"
+      ]
+    },
+    {
+      "edge": [
+        3133,
+        3134
+      ],
+      "from": [
+        -91.6364,
+        42.91,
+        16.76
+      ],
+      "to": [
+        -91.6364,
+        42.63,
+        16.97
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F3_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.87,
+        17.39
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F2:17"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F2:18"
+      ]
+    },
+    {
+      "edge": [
+        3134,
+        3135
+      ],
+      "from": [
+        -91.6364,
+        42.63,
+        16.97
+      ],
+      "to": [
+        -91.6364,
+        42.35,
+        17.18
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F3_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.59,
+        17.6
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F2:18"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F2:19"
+      ]
+    },
+    {
+      "edge": [
+        3137,
+        3138
+      ],
+      "from": [
+        -91.6364,
+        41.79,
+        17.6
+      ],
+      "to": [
+        -98.0,
+        42.4,
+        17.6
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_F_A",
+      "hit_position": [
+        -93.1055,
+        41.75,
+        18.2
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F2:21",
+        "Khoi_J_Ky_Tuc_Xa_Tay_TopStep_F2"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:0",
+        "Khoi_J_Ky_Tuc_Xa_Tay_MainLanding_F3"
+      ]
+    },
+    {
+      "edge": [
+        3144,
+        3145
+      ],
+      "from": [
+        -104.3636,
+        44.69,
+        18.86
+      ],
+      "to": [
+        -104.3636,
+        44.97,
+        19.07
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F3_MidLanding",
+      "hit_position": [
+        -104.3636,
+        44.73,
+        19.49
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:6"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:7"
+      ]
+    },
+    {
+      "edge": [
+        3145,
+        3146
+      ],
+      "from": [
+        -104.3636,
+        44.97,
+        19.07
+      ],
+      "to": [
+        -104.3636,
+        45.25,
+        19.28
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F3_MidLanding",
+      "hit_position": [
+        -104.3636,
+        45.01,
+        19.7
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:7"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:8"
+      ]
+    },
+    {
+      "edge": [
+        3148,
+        3149
+      ],
+      "from": [
+        -104.3636,
+        45.81,
+        19.7
+      ],
+      "to": [
+        -98.0,
+        45.2,
+        19.7
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      "hit_position": [
+        -102.8945,
+        45.85,
+        20.3
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:10"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:11"
+      ]
+    },
+    {
+      "edge": [
+        3155,
+        3156
+      ],
+      "from": [
+        -91.6364,
+        42.91,
+        20.96
+      ],
+      "to": [
+        -91.6364,
+        42.63,
+        21.17
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F4_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.87,
+        21.59
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:17"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:18"
+      ]
+    },
+    {
+      "edge": [
+        3156,
+        3157
+      ],
+      "from": [
+        -91.6364,
+        42.63,
+        21.17
+      ],
+      "to": [
+        -91.6364,
+        42.35,
+        21.38
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F4_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.59,
+        21.8
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:18"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:19"
+      ]
+    },
+    {
+      "edge": [
+        3159,
+        3160
+      ],
+      "from": [
+        -91.6364,
+        41.79,
+        21.8
+      ],
+      "to": [
+        -98.0,
+        42.4,
+        21.8
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_F_A",
+      "hit_position": [
+        -93.1055,
+        41.75,
+        22.4
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F3:21",
+        "Khoi_J_Ky_Tuc_Xa_Tay_TopStep_F3"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:0",
+        "Khoi_J_Ky_Tuc_Xa_Tay_MainLanding_F4"
+      ]
+    },
+    {
+      "edge": [
+        3166,
+        3167
+      ],
+      "from": [
+        -104.3636,
+        44.69,
+        23.06
+      ],
+      "to": [
+        -104.3636,
+        44.97,
+        23.27
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F4_MidLanding",
+      "hit_position": [
+        -104.3636,
+        44.73,
+        23.69
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:6"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:7"
+      ]
+    },
+    {
+      "edge": [
+        3167,
+        3168
+      ],
+      "from": [
+        -104.3636,
+        44.97,
+        23.27
+      ],
+      "to": [
+        -104.3636,
+        45.25,
+        23.48
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F4_MidLanding",
+      "hit_position": [
+        -104.3636,
+        45.01,
+        23.9
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:7"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:8"
+      ]
+    },
+    {
+      "edge": [
+        3170,
+        3171
+      ],
+      "from": [
+        -104.3636,
+        45.81,
+        23.9
+      ],
+      "to": [
+        -98.0,
+        45.2,
+        23.9
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      "hit_position": [
+        -102.8945,
+        45.85,
+        24.5
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:10"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:11"
+      ]
+    },
+    {
+      "edge": [
+        3177,
+        3178
+      ],
+      "from": [
+        -91.6364,
+        42.91,
+        25.16
+      ],
+      "to": [
+        -91.6364,
+        42.63,
+        25.37
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F5_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.87,
+        25.79
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:17"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:18"
+      ]
+    },
+    {
+      "edge": [
+        3178,
+        3179
+      ],
+      "from": [
+        -91.6364,
+        42.63,
+        25.37
+      ],
+      "to": [
+        -91.6364,
+        42.35,
+        25.58
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F5_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.59,
+        26.0
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:18"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:19"
+      ]
+    },
+    {
+      "edge": [
+        3181,
+        3182
+      ],
+      "from": [
+        -91.6364,
+        41.79,
+        26.0
+      ],
+      "to": [
+        -98.0,
+        42.4,
+        26.0
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_F_A",
+      "hit_position": [
+        -93.1055,
+        41.75,
+        26.6
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F4:21",
+        "Khoi_J_Ky_Tuc_Xa_Tay_TopStep_F4"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:0",
+        "Khoi_J_Ky_Tuc_Xa_Tay_MainLanding_F5"
+      ]
+    },
+    {
+      "edge": [
+        3188,
+        3189
+      ],
+      "from": [
+        -104.3636,
+        44.69,
+        27.26
+      ],
+      "to": [
+        -104.3636,
+        44.97,
+        27.47
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F5_MidLanding",
+      "hit_position": [
+        -104.3636,
+        44.73,
+        27.89
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:6"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:7"
+      ]
+    },
+    {
+      "edge": [
+        3189,
+        3190
+      ],
+      "from": [
+        -104.3636,
+        44.97,
+        27.47
+      ],
+      "to": [
+        -104.3636,
+        45.25,
+        27.68
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F5_MidLanding",
+      "hit_position": [
+        -104.3636,
+        45.01,
+        28.1
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:7"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:8"
+      ]
+    },
+    {
+      "edge": [
+        3192,
+        3193
+      ],
+      "from": [
+        -104.3636,
+        45.81,
+        28.1
+      ],
+      "to": [
+        -98.0,
+        45.2,
+        28.1
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      "hit_position": [
+        -102.8945,
+        45.85,
+        28.7
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:10"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:11"
+      ]
+    },
+    {
+      "edge": [
+        3199,
+        3200
+      ],
+      "from": [
+        -91.6364,
+        42.91,
+        29.36
+      ],
+      "to": [
+        -91.6364,
+        42.63,
+        29.57
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F6_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.87,
+        29.99
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:17"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:18"
+      ]
+    },
+    {
+      "edge": [
+        3200,
+        3201
+      ],
+      "from": [
+        -91.6364,
+        42.63,
+        29.57
+      ],
+      "to": [
+        -91.6364,
+        42.35,
+        29.78
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F6_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.59,
+        30.2
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:18"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:19"
+      ]
+    },
+    {
+      "edge": [
+        3203,
+        3204
+      ],
+      "from": [
+        -91.6364,
+        41.79,
+        30.2
+      ],
+      "to": [
+        -98.0,
+        42.4,
+        30.2
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_F_A",
+      "hit_position": [
+        -93.1055,
+        41.75,
+        30.8
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F5:21",
+        "Khoi_J_Ky_Tuc_Xa_Tay_TopStep_F5"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:0",
+        "Khoi_J_Ky_Tuc_Xa_Tay_MainLanding_F6"
+      ]
+    },
+    {
+      "edge": [
+        3210,
+        3211
+      ],
+      "from": [
+        -104.3636,
+        44.69,
+        31.46
+      ],
+      "to": [
+        -104.3636,
+        44.97,
+        31.67
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F6_MidLanding",
+      "hit_position": [
+        -104.3636,
+        44.73,
+        32.09
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:6"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:7"
+      ]
+    },
+    {
+      "edge": [
+        3211,
+        3212
+      ],
+      "from": [
+        -104.3636,
+        44.97,
+        31.67
+      ],
+      "to": [
+        -104.3636,
+        45.25,
+        31.88
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F6_MidLanding",
+      "hit_position": [
+        -104.3636,
+        45.01,
+        32.3
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:7"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:8"
+      ]
+    },
+    {
+      "edge": [
+        3214,
+        3215
+      ],
+      "from": [
+        -104.3636,
+        45.81,
+        32.3
+      ],
+      "to": [
+        -98.0,
+        45.2,
+        32.3
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      "hit_position": [
+        -102.8945,
+        45.85,
+        32.9
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:10"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:11"
+      ]
+    },
+    {
+      "edge": [
+        3221,
+        3222
+      ],
+      "from": [
+        -91.6364,
+        42.91,
+        33.56
+      ],
+      "to": [
+        -91.6364,
+        42.63,
+        33.77
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F7_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.87,
+        34.19
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:17"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:18"
+      ]
+    },
+    {
+      "edge": [
+        3222,
+        3223
+      ],
+      "from": [
+        -91.6364,
+        42.63,
+        33.77
+      ],
+      "to": [
+        -91.6364,
+        42.35,
+        33.98
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F7_MainLanding",
+      "hit_position": [
+        -91.6364,
+        42.59,
+        34.4
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:18"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:19"
+      ]
+    },
+    {
+      "edge": [
+        3225,
+        3226
+      ],
+      "from": [
+        -91.6364,
+        41.79,
+        34.4
+      ],
+      "to": [
+        -98.0,
+        42.4,
+        34.4
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_F_A",
+      "hit_position": [
+        -93.1055,
+        41.75,
+        35.0
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F6:21",
+        "Khoi_J_Ky_Tuc_Xa_Tay_TopStep_F6"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F7:0",
+        "Khoi_J_Ky_Tuc_Xa_Tay_MainLanding_F7"
+      ]
+    },
+    {
+      "edge": [
+        3232,
+        3233
+      ],
+      "from": [
+        -104.3636,
+        44.69,
+        35.66
+      ],
+      "to": [
+        -104.3636,
+        44.97,
+        35.87
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F7_MidLanding",
+      "hit_position": [
+        -104.3636,
+        44.73,
+        36.29
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F7:6"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F7:7"
+      ]
+    },
+    {
+      "edge": [
+        3233,
+        3234
+      ],
+      "from": [
+        -104.3636,
+        44.97,
+        35.87
+      ],
+      "to": [
+        -104.3636,
+        45.25,
+        36.08
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_F7_MidLanding",
+      "hit_position": [
+        -104.3636,
+        45.01,
+        36.5
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F7:7"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F7:8"
+      ]
+    },
+    {
+      "edge": [
+        3236,
+        3237
+      ],
+      "from": [
+        -104.3636,
+        45.81,
+        36.5
+      ],
+      "to": [
+        -98.0,
+        45.2,
+        36.5
+      ],
+      "distance": 6.3928,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_J_Ky_Tuc_Xa_Tay_Stair_Wall_B_A",
+      "hit_position": [
+        -102.8945,
+        45.85,
+        37.1
+      ],
+      "start_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F7:10"
+      ],
+      "end_labels": [
+        "Khoi_J_Ky_Tuc_Xa_Tay_StairRun_F7:11"
+      ]
+    },
+    {
+      "edge": [
+        3248,
+        3249
+      ],
+      "from": [
+        83.1,
+        -54.0,
+        0.0
+      ],
+      "to": [
+        83.1,
+        -36.0,
+        0.0
+      ],
+      "distance": 18.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F0_Part_0",
+      "hit_position": [
+        83.1,
+        -53.9,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        3251,
+        3252
+      ],
+      "from": [
+        83.1,
+        -31.55,
+        0.0
+      ],
+      "to": [
+        83.1,
+        -18.0,
+        0.0
+      ],
+      "distance": 13.55,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F0_Part_6",
+      "hit_position": [
+        83.1,
+        -27.2,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        3266,
+        3267
+      ],
+      "from": [
+        83.1,
+        -54.0,
+        13.2
+      ],
+      "to": [
+        83.1,
+        -36.0,
+        13.2
+      ],
+      "distance": 18.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F3_Part_0",
+      "hit_position": [
+        83.1,
+        -53.9,
+        13.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F3:0"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F3:1"
+      ]
+    },
+    {
+      "edge": [
+        3269,
+        3270
+      ],
+      "from": [
+        83.1,
+        -31.55,
+        13.2
+      ],
+      "to": [
+        83.1,
+        -18.0,
+        13.2
+      ],
+      "distance": 13.55,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F3_Part_6",
+      "hit_position": [
+        83.1,
+        -27.2,
+        13.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F3:3"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F3:4"
+      ]
+    },
+    {
+      "edge": [
+        3272,
+        3273
+      ],
+      "from": [
+        83.1,
+        -54.0,
+        17.6
+      ],
+      "to": [
+        83.1,
+        -36.0,
+        17.6
+      ],
+      "distance": 18.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F4_Part_0",
+      "hit_position": [
+        83.1,
+        -53.9,
+        18.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F4:0"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F4:1"
+      ]
+    },
+    {
+      "edge": [
+        3275,
+        3276
+      ],
+      "from": [
+        83.1,
+        -31.55,
+        17.6
+      ],
+      "to": [
+        83.1,
+        -18.0,
+        17.6
+      ],
+      "distance": 13.55,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F4_Part_6",
+      "hit_position": [
+        83.1,
+        -27.2,
+        18.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F4:3"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F4:4"
+      ]
+    },
+    {
+      "edge": [
+        3278,
+        3279
+      ],
+      "from": [
+        83.1,
+        -54.0,
+        22.0
+      ],
+      "to": [
+        83.1,
+        -36.0,
+        22.0
+      ],
+      "distance": 18.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F5_Part_0",
+      "hit_position": [
+        83.1,
+        -53.9,
+        22.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F5:0"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F5:1"
+      ]
+    },
+    {
+      "edge": [
+        3281,
+        3282
+      ],
+      "from": [
+        83.1,
+        -31.55,
+        22.0
+      ],
+      "to": [
+        83.1,
+        -18.0,
+        22.0
+      ],
+      "distance": 13.55,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F5_Part_6",
+      "hit_position": [
+        83.1,
+        -27.2,
+        22.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F5:3"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F5:4"
+      ]
+    },
+    {
+      "edge": [
+        3284,
+        3285
+      ],
+      "from": [
+        83.1,
+        -54.0,
+        26.4
+      ],
+      "to": [
+        83.1,
+        -36.0,
+        26.4
+      ],
+      "distance": 18.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F6_Part_0",
+      "hit_position": [
+        83.1,
+        -53.9,
+        27.0
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F6:0"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F6:1"
+      ]
+    },
+    {
+      "edge": [
+        3287,
+        3288
+      ],
+      "from": [
+        83.1,
+        -31.55,
+        26.4
+      ],
+      "to": [
+        83.1,
+        -18.0,
+        26.4
+      ],
+      "distance": 13.55,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F6_Part_6",
+      "hit_position": [
+        83.1,
+        -27.2,
+        27.0
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F6:3"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F6:4"
+      ]
+    },
+    {
+      "edge": [
+        3290,
+        3291
+      ],
+      "from": [
+        83.1,
+        -54.0,
+        30.8
+      ],
+      "to": [
+        83.1,
+        -36.0,
+        30.8
+      ],
+      "distance": 18.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F7_Part_0",
+      "hit_position": [
+        83.1,
+        -53.9,
+        31.4
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F7:0"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F7:1"
+      ]
+    },
+    {
+      "edge": [
+        3293,
+        3294
+      ],
+      "from": [
+        83.1,
+        -31.55,
+        30.8
+      ],
+      "to": [
+        83.1,
+        -18.0,
+        30.8
+      ],
+      "distance": 13.55,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F7_Part_6",
+      "hit_position": [
+        83.1,
+        -27.2,
+        31.4
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F7:3"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F7:4"
+      ]
+    },
+    {
+      "edge": [
+        3296,
+        3297
+      ],
+      "from": [
+        83.1,
+        -54.0,
+        35.2
+      ],
+      "to": [
+        83.1,
+        -36.0,
+        35.2
+      ],
+      "distance": 18.0,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F8_Part_0",
+      "hit_position": [
+        83.1,
+        -53.9,
+        35.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F8:0"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F8:1"
+      ]
+    },
+    {
+      "edge": [
+        3299,
+        3300
+      ],
+      "from": [
+        83.1,
+        -31.55,
+        35.2
+      ],
+      "to": [
+        83.1,
+        -18.0,
+        35.2
+      ],
+      "distance": 13.55,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_F8_Part_6",
+      "hit_position": [
+        83.1,
+        -27.2,
+        35.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F8:3"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_Corridor_F8:4"
+      ]
+    },
+    {
+      "edge": [
+        3309,
+        3310
+      ],
+      "from": [
+        90.1818,
+        -33.3925,
+        0.88
+      ],
+      "to": [
+        90.1818,
+        -33.1475,
+        1.1
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F0_MidLanding",
+      "hit_position": [
+        90.1818,
+        -33.3,
+        2.0631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:4"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:5"
+      ]
+    },
+    {
+      "edge": [
+        3311,
+        3312
+      ],
+      "from": [
+        90.1818,
+        -32.9025,
+        1.32
+      ],
+      "to": [
+        90.1818,
+        -32.6575,
+        1.54
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F0_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.8357,
+        1.98
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:6"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:7"
+      ]
+    },
+    {
+      "edge": [
+        3312,
+        3313
+      ],
+      "from": [
+        90.1818,
+        -32.6575,
+        1.54
+      ],
+      "to": [
+        90.1818,
+        -32.4125,
+        1.76
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F0_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.5907,
+        2.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:7"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:8"
+      ]
+    },
+    {
+      "edge": [
+        3315,
+        3316
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        2.2
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        2.2
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      "hit_position": [
+        91.9014,
+        -31.9,
+        2.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        3326,
+        3327
+      ],
+      "from": [
+        103.8182,
+        -35.6275,
+        4.4
+      ],
+      "to": [
+        97.0,
+        -35.0,
+        4.4
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B",
+      "hit_position": [
+        102.0986,
+        -35.65,
+        5.0
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F0:21",
+        "Khoi_K_Phong_Thi_Nghiem_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F1:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        3337,
+        3338
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        6.6
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        6.6
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_K_N_RailA",
+      "hit_position": [
+        94.175,
+        -32.29,
+        7.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        3338,
+        3339
+      ],
+      "from": [
+        97.0,
+        -32.55,
+        6.6
+      ],
+      "to": [
+        103.8182,
+        -33.4225,
+        6.82
+      ],
+      "distance": 6.8773,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_K_N_RailB",
+      "hit_position": [
+        97.675,
+        -32.6364,
+        7.2218
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F1:11"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F1:12"
+      ]
+    },
+    {
+      "edge": [
+        3348,
+        3349
+      ],
+      "from": [
+        103.8182,
+        -35.6275,
+        8.8
+      ],
+      "to": [
+        97.0,
+        -35.0,
+        8.8
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_K_N_S52",
+      "hit_position": [
+        97.75,
+        -35.069,
+        9.4
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F1:21",
+        "Khoi_K_Phong_Thi_Nghiem_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        3349,
+        3350
+      ],
+      "from": [
+        97.0,
+        -35.0,
+        8.8
+      ],
+      "to": [
+        90.1818,
+        -34.1275,
+        9.02
+      ],
+      "distance": 6.8773,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_K_N_S52",
+      "hit_position": [
+        95.7868,
+        -34.8448,
+        9.4391
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F2"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:1"
+      ]
+    },
+    {
+      "edge": [
+        3359,
+        3360
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        11.0
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        11.0
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      "hit_position": [
+        91.9014,
+        -31.9,
+        11.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:11"
+      ]
+    },
+    {
+      "edge": [
+        3364,
+        3365
+      ],
+      "from": [
+        103.8182,
+        -34.1575,
+        11.88
+      ],
+      "to": [
+        103.8182,
+        -34.4025,
+        12.1
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F3_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.25,
+        13.0631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:15"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:16"
+      ]
+    },
+    {
+      "edge": [
+        3366,
+        3367
+      ],
+      "from": [
+        103.8182,
+        -34.6475,
+        12.32
+      ],
+      "to": [
+        103.8182,
+        -34.8925,
+        12.54
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F3_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.7143,
+        12.98
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:17"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:18"
+      ]
+    },
+    {
+      "edge": [
+        3367,
+        3368
+      ],
+      "from": [
+        103.8182,
+        -34.8925,
+        12.54
+      ],
+      "to": [
+        103.8182,
+        -35.1375,
+        12.76
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F3_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.9593,
+        13.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:18"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:19"
+      ]
+    },
+    {
+      "edge": [
+        3370,
+        3371
+      ],
+      "from": [
+        103.8182,
+        -35.6275,
+        13.2
+      ],
+      "to": [
+        97.0,
+        -35.0,
+        13.2
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B",
+      "hit_position": [
+        102.0986,
+        -35.65,
+        13.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F2:21",
+        "Khoi_K_Phong_Thi_Nghiem_TopStep_F2"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F3"
+      ]
+    },
+    {
+      "edge": [
+        3375,
+        3376
+      ],
+      "from": [
+        90.1818,
+        -33.3925,
+        14.08
+      ],
+      "to": [
+        90.1818,
+        -33.1475,
+        14.3
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F3_MidLanding",
+      "hit_position": [
+        90.1818,
+        -33.3,
+        15.2631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:4"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:5"
+      ]
+    },
+    {
+      "edge": [
+        3377,
+        3378
+      ],
+      "from": [
+        90.1818,
+        -32.9025,
+        14.52
+      ],
+      "to": [
+        90.1818,
+        -32.6575,
+        14.74
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F3_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.8357,
+        15.18
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:6"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:7"
+      ]
+    },
+    {
+      "edge": [
+        3378,
+        3379
+      ],
+      "from": [
+        90.1818,
+        -32.6575,
+        14.74
+      ],
+      "to": [
+        90.1818,
+        -32.4125,
+        14.96
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F3_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.5907,
+        15.4
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:7"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:8"
+      ]
+    },
+    {
+      "edge": [
+        3381,
+        3382
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        15.4
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        15.4
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      "hit_position": [
+        91.9014,
+        -31.9,
+        16.0
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:11"
+      ]
+    },
+    {
+      "edge": [
+        3386,
+        3387
+      ],
+      "from": [
+        103.8182,
+        -34.1575,
+        16.28
+      ],
+      "to": [
+        103.8182,
+        -34.4025,
+        16.5
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F4_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.25,
+        17.4631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:15"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:16"
+      ]
+    },
+    {
+      "edge": [
+        3388,
+        3389
+      ],
+      "from": [
+        103.8182,
+        -34.6475,
+        16.72
+      ],
+      "to": [
+        103.8182,
+        -34.8925,
+        16.94
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F4_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.7143,
+        17.38
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:17"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:18"
+      ]
+    },
+    {
+      "edge": [
+        3389,
+        3390
+      ],
+      "from": [
+        103.8182,
+        -34.8925,
+        16.94
+      ],
+      "to": [
+        103.8182,
+        -35.1375,
+        17.16
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F4_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.9593,
+        17.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:18"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:19"
+      ]
+    },
+    {
+      "edge": [
+        3392,
+        3393
+      ],
+      "from": [
+        103.8182,
+        -35.6275,
+        17.6
+      ],
+      "to": [
+        97.0,
+        -35.0,
+        17.6
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B",
+      "hit_position": [
+        102.0986,
+        -35.65,
+        18.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F3:21",
+        "Khoi_K_Phong_Thi_Nghiem_TopStep_F3"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F4"
+      ]
+    },
+    {
+      "edge": [
+        3397,
+        3398
+      ],
+      "from": [
+        90.1818,
+        -33.3925,
+        18.48
+      ],
+      "to": [
+        90.1818,
+        -33.1475,
+        18.7
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F4_MidLanding",
+      "hit_position": [
+        90.1818,
+        -33.3,
+        19.6631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:4"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:5"
+      ]
+    },
+    {
+      "edge": [
+        3399,
+        3400
+      ],
+      "from": [
+        90.1818,
+        -32.9025,
+        18.92
+      ],
+      "to": [
+        90.1818,
+        -32.6575,
+        19.14
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F4_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.8357,
+        19.58
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:6"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:7"
+      ]
+    },
+    {
+      "edge": [
+        3400,
+        3401
+      ],
+      "from": [
+        90.1818,
+        -32.6575,
+        19.14
+      ],
+      "to": [
+        90.1818,
+        -32.4125,
+        19.36
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F4_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.5907,
+        19.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:7"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:8"
+      ]
+    },
+    {
+      "edge": [
+        3403,
+        3404
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        19.8
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        19.8
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      "hit_position": [
+        91.9014,
+        -31.9,
+        20.4
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:11"
+      ]
+    },
+    {
+      "edge": [
+        3408,
+        3409
+      ],
+      "from": [
+        103.8182,
+        -34.1575,
+        20.68
+      ],
+      "to": [
+        103.8182,
+        -34.4025,
+        20.9
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F5_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.25,
+        21.8631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:15"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:16"
+      ]
+    },
+    {
+      "edge": [
+        3410,
+        3411
+      ],
+      "from": [
+        103.8182,
+        -34.6475,
+        21.12
+      ],
+      "to": [
+        103.8182,
+        -34.8925,
+        21.34
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F5_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.7143,
+        21.78
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:17"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:18"
+      ]
+    },
+    {
+      "edge": [
+        3411,
+        3412
+      ],
+      "from": [
+        103.8182,
+        -34.8925,
+        21.34
+      ],
+      "to": [
+        103.8182,
+        -35.1375,
+        21.56
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F5_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.9593,
+        22.0
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:18"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:19"
+      ]
+    },
+    {
+      "edge": [
+        3414,
+        3415
+      ],
+      "from": [
+        103.8182,
+        -35.6275,
+        22.0
+      ],
+      "to": [
+        97.0,
+        -35.0,
+        22.0
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B",
+      "hit_position": [
+        102.0986,
+        -35.65,
+        22.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F4:21",
+        "Khoi_K_Phong_Thi_Nghiem_TopStep_F4"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F5"
+      ]
+    },
+    {
+      "edge": [
+        3419,
+        3420
+      ],
+      "from": [
+        90.1818,
+        -33.3925,
+        22.88
+      ],
+      "to": [
+        90.1818,
+        -33.1475,
+        23.1
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F5_MidLanding",
+      "hit_position": [
+        90.1818,
+        -33.3,
+        24.0631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:4"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:5"
+      ]
+    },
+    {
+      "edge": [
+        3421,
+        3422
+      ],
+      "from": [
+        90.1818,
+        -32.9025,
+        23.32
+      ],
+      "to": [
+        90.1818,
+        -32.6575,
+        23.54
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F5_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.8357,
+        23.98
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:6"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:7"
+      ]
+    },
+    {
+      "edge": [
+        3422,
+        3423
+      ],
+      "from": [
+        90.1818,
+        -32.6575,
+        23.54
+      ],
+      "to": [
+        90.1818,
+        -32.4125,
+        23.76
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F5_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.5907,
+        24.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:7"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:8"
+      ]
+    },
+    {
+      "edge": [
+        3425,
+        3426
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        24.2
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        24.2
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      "hit_position": [
+        91.9014,
+        -31.9,
+        24.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:11"
+      ]
+    },
+    {
+      "edge": [
+        3430,
+        3431
+      ],
+      "from": [
+        103.8182,
+        -34.1575,
+        25.08
+      ],
+      "to": [
+        103.8182,
+        -34.4025,
+        25.3
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F6_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.25,
+        26.2631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:15"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:16"
+      ]
+    },
+    {
+      "edge": [
+        3432,
+        3433
+      ],
+      "from": [
+        103.8182,
+        -34.6475,
+        25.52
+      ],
+      "to": [
+        103.8182,
+        -34.8925,
+        25.74
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F6_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.7143,
+        26.18
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:17"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:18"
+      ]
+    },
+    {
+      "edge": [
+        3433,
+        3434
+      ],
+      "from": [
+        103.8182,
+        -34.8925,
+        25.74
+      ],
+      "to": [
+        103.8182,
+        -35.1375,
+        25.96
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F6_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.9593,
+        26.4
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:18"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:19"
+      ]
+    },
+    {
+      "edge": [
+        3436,
+        3437
+      ],
+      "from": [
+        103.8182,
+        -35.6275,
+        26.4
+      ],
+      "to": [
+        97.0,
+        -35.0,
+        26.4
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B",
+      "hit_position": [
+        102.0986,
+        -35.65,
+        27.0
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F5:21",
+        "Khoi_K_Phong_Thi_Nghiem_TopStep_F5"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F6"
+      ]
+    },
+    {
+      "edge": [
+        3441,
+        3442
+      ],
+      "from": [
+        90.1818,
+        -33.3925,
+        27.28
+      ],
+      "to": [
+        90.1818,
+        -33.1475,
+        27.5
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F6_MidLanding",
+      "hit_position": [
+        90.1818,
+        -33.3,
+        28.4631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:4"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:5"
+      ]
+    },
+    {
+      "edge": [
+        3443,
+        3444
+      ],
+      "from": [
+        90.1818,
+        -32.9025,
+        27.72
+      ],
+      "to": [
+        90.1818,
+        -32.6575,
+        27.94
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F6_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.8357,
+        28.38
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:6"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:7"
+      ]
+    },
+    {
+      "edge": [
+        3444,
+        3445
+      ],
+      "from": [
+        90.1818,
+        -32.6575,
+        27.94
+      ],
+      "to": [
+        90.1818,
+        -32.4125,
+        28.16
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F6_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.5907,
+        28.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:7"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:8"
+      ]
+    },
+    {
+      "edge": [
+        3447,
+        3448
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        28.6
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        28.6
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      "hit_position": [
+        91.9014,
+        -31.9,
+        29.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:11"
+      ]
+    },
+    {
+      "edge": [
+        3452,
+        3453
+      ],
+      "from": [
+        103.8182,
+        -34.1575,
+        29.48
+      ],
+      "to": [
+        103.8182,
+        -34.4025,
+        29.7
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F7_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.25,
+        30.6631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:15"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:16"
+      ]
+    },
+    {
+      "edge": [
+        3454,
+        3455
+      ],
+      "from": [
+        103.8182,
+        -34.6475,
+        29.92
+      ],
+      "to": [
+        103.8182,
+        -34.8925,
+        30.14
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F7_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.7143,
+        30.58
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:17"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:18"
+      ]
+    },
+    {
+      "edge": [
+        3455,
+        3456
+      ],
+      "from": [
+        103.8182,
+        -34.8925,
+        30.14
+      ],
+      "to": [
+        103.8182,
+        -35.1375,
+        30.36
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F7_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.9593,
+        30.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:18"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:19"
+      ]
+    },
+    {
+      "edge": [
+        3458,
+        3459
+      ],
+      "from": [
+        103.8182,
+        -35.6275,
+        30.8
+      ],
+      "to": [
+        97.0,
+        -35.0,
+        30.8
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B",
+      "hit_position": [
+        102.0986,
+        -35.65,
+        31.4
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F6:21",
+        "Khoi_K_Phong_Thi_Nghiem_TopStep_F6"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F7"
+      ]
+    },
+    {
+      "edge": [
+        3463,
+        3464
+      ],
+      "from": [
+        90.1818,
+        -33.3925,
+        31.68
+      ],
+      "to": [
+        90.1818,
+        -33.1475,
+        31.9
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F7_MidLanding",
+      "hit_position": [
+        90.1818,
+        -33.3,
+        32.8631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:4"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:5"
+      ]
+    },
+    {
+      "edge": [
+        3465,
+        3466
+      ],
+      "from": [
+        90.1818,
+        -32.9025,
+        32.12
+      ],
+      "to": [
+        90.1818,
+        -32.6575,
+        32.34
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F7_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.8357,
+        32.78
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:6"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:7"
+      ]
+    },
+    {
+      "edge": [
+        3466,
+        3467
+      ],
+      "from": [
+        90.1818,
+        -32.6575,
+        32.34
+      ],
+      "to": [
+        90.1818,
+        -32.4125,
+        32.56
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F7_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.5907,
+        33.0
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:7"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:8"
+      ]
+    },
+    {
+      "edge": [
+        3469,
+        3470
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        33.0
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        33.0
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      "hit_position": [
+        91.9014,
+        -31.9,
+        33.6
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:11"
+      ]
+    },
+    {
+      "edge": [
+        3474,
+        3475
+      ],
+      "from": [
+        103.8182,
+        -34.1575,
+        33.88
+      ],
+      "to": [
+        103.8182,
+        -34.4025,
+        34.1
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F8_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.25,
+        35.0631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:15"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:16"
+      ]
+    },
+    {
+      "edge": [
+        3476,
+        3477
+      ],
+      "from": [
+        103.8182,
+        -34.6475,
+        34.32
+      ],
+      "to": [
+        103.8182,
+        -34.8925,
+        34.54
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F8_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.7143,
+        34.98
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:17"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:18"
+      ]
+    },
+    {
+      "edge": [
+        3477,
+        3478
+      ],
+      "from": [
+        103.8182,
+        -34.8925,
+        34.54
+      ],
+      "to": [
+        103.8182,
+        -35.1375,
+        34.76
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F8_MainLanding",
+      "hit_position": [
+        103.8182,
+        -34.9593,
+        35.2
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:18"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:19"
+      ]
+    },
+    {
+      "edge": [
+        3480,
+        3481
+      ],
+      "from": [
+        103.8182,
+        -35.6275,
+        35.2
+      ],
+      "to": [
+        97.0,
+        -35.0,
+        35.2
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_F_B",
+      "hit_position": [
+        102.0986,
+        -35.65,
+        35.8
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F7:21",
+        "Khoi_K_Phong_Thi_Nghiem_TopStep_F7"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:0",
+        "Khoi_K_Phong_Thi_Nghiem_MainLanding_F8"
+      ]
+    },
+    {
+      "edge": [
+        3485,
+        3486
+      ],
+      "from": [
+        90.1818,
+        -33.3925,
+        36.08
+      ],
+      "to": [
+        90.1818,
+        -33.1475,
+        36.3
+      ],
+      "distance": 0.3293,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F8_MidLanding",
+      "hit_position": [
+        90.1818,
+        -33.3,
+        37.2631
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:4"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:5"
+      ]
+    },
+    {
+      "edge": [
+        3487,
+        3488
+      ],
+      "from": [
+        90.1818,
+        -32.9025,
+        36.52
+      ],
+      "to": [
+        90.1818,
+        -32.6575,
+        36.74
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F8_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.8357,
+        37.18
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:6"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:7"
+      ]
+    },
+    {
+      "edge": [
+        3488,
+        3489
+      ],
+      "from": [
+        90.1818,
+        -32.6575,
+        36.74
+      ],
+      "to": [
+        90.1818,
+        -32.4125,
+        36.96
+      ],
+      "distance": 0.3293,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_F8_MidLanding",
+      "hit_position": [
+        90.1818,
+        -32.5907,
+        37.4
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:7"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:8"
+      ]
+    },
+    {
+      "edge": [
+        3491,
+        3492
+      ],
+      "from": [
+        90.1818,
+        -31.9225,
+        37.4
+      ],
+      "to": [
+        97.0,
+        -32.55,
+        37.4
+      ],
+      "distance": 6.847,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_K_Phong_Thi_Nghiem_Stair_Wall_B_B",
+      "hit_position": [
+        91.9014,
+        -31.9,
+        38.0
+      ],
+      "start_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:10"
+      ],
+      "end_labels": [
+        "Khoi_K_Phong_Thi_Nghiem_StairRun_F8:11"
+      ]
+    },
+    {
+      "edge": [
+        3503,
+        3504
+      ],
+      "from": [
+        -118.0,
+        -34.6,
+        0.0
+      ],
+      "to": [
+        -98.84,
+        -34.6,
+        0.0
+      ],
+      "distance": 19.16,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Rail_1",
+      "hit_position": [
+        -104.0,
+        -34.6,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        3506,
+        3507
+      ],
+      "from": [
+        -92.52,
+        -34.6,
+        0.0
+      ],
+      "to": [
+        -86.0,
+        -34.6,
+        0.0
+      ],
+      "distance": 6.52,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_WallBack_1",
+      "hit_position": [
+        -86.2,
+        -34.6,
+        0.6
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        3530,
+        3531
+      ],
+      "from": [
+        -97.0027,
+        -33.175,
+        0.21
+      ],
+      "to": [
+        -97.0027,
+        -30.525,
+        0.42
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_2",
+      "hit_position": [
+        -97.0027,
+        -32.5,
+        0.8635
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:1"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:2"
+      ]
+    },
+    {
+      "edge": [
+        3531,
+        3532
+      ],
+      "from": [
+        -97.0027,
+        -30.525,
+        0.42
+      ],
+      "to": [
+        -97.0027,
+        -27.875,
+        0.63
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_3",
+      "hit_position": [
+        -97.0027,
+        -28.8,
+        1.1567
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:2"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:3"
+      ]
+    },
+    {
+      "edge": [
+        3533,
+        3534
+      ],
+      "from": [
+        -97.0027,
+        -25.225,
+        0.84
+      ],
+      "to": [
+        -97.0027,
+        -22.575,
+        1.05
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -97.0027,
+        -24.85,
+        1.4697
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:4"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:5"
+      ]
+    },
+    {
+      "edge": [
+        3534,
+        3535
+      ],
+      "from": [
+        -97.0027,
+        -22.575,
+        1.05
+      ],
+      "to": [
+        -97.0027,
+        -19.925,
+        1.26
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -97.0027,
+        -21.65,
+        1.7233
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:5"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:6"
+      ]
+    },
+    {
+      "edge": [
+        3535,
+        3536
+      ],
+      "from": [
+        -97.0027,
+        -19.925,
+        1.26
+      ],
+      "to": [
+        -97.0027,
+        -17.275,
+        1.47
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_6",
+      "hit_position": [
+        -97.0027,
+        -17.7,
+        2.0363
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:6"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:7"
+      ]
+    },
+    {
+      "edge": [
+        3537,
+        3538
+      ],
+      "from": [
+        -97.0027,
+        -14.625,
+        1.68
+      ],
+      "to": [
+        -97.0027,
+        -11.975,
+        1.89
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_7",
+      "hit_position": [
+        -97.0027,
+        -14.0,
+        2.3295
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:8"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:9"
+      ]
+    },
+    {
+      "edge": [
+        3538,
+        3539
+      ],
+      "from": [
+        -97.0027,
+        -11.975,
+        1.89
+      ],
+      "to": [
+        -97.0027,
+        -9.325,
+        2.1
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_8",
+      "hit_position": [
+        -97.0027,
+        -10.3,
+        2.6227
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:9"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:10"
+      ]
+    },
+    {
+      "edge": [
+        3540,
+        3541
+      ],
+      "from": [
+        -95.68,
+        -8.75,
+        2.1
+      ],
+      "to": [
+        -94.3573,
+        -10.825,
+        2.31
+      ],
+      "distance": 2.4697,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_8",
+      "hit_position": [
+        -94.8195,
+        -10.1,
+        2.8366
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:11"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:12"
+      ]
+    },
+    {
+      "edge": [
+        3542,
+        3543
+      ],
+      "from": [
+        -94.3573,
+        -13.475,
+        2.52
+      ],
+      "to": [
+        -94.3573,
+        -16.125,
+        2.73
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_7",
+      "hit_position": [
+        -94.3573,
+        -13.8,
+        3.1458
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:13"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:14"
+      ]
+    },
+    {
+      "edge": [
+        3543,
+        3544
+      ],
+      "from": [
+        -94.3573,
+        -16.125,
+        2.73
+      ],
+      "to": [
+        -94.3573,
+        -18.775,
+        2.94
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_F0_Part_6",
+      "hit_position": [
+        -94.3573,
+        -17.5,
+        3.439
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:14"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:15"
+      ]
+    },
+    {
+      "edge": [
+        3544,
+        3545
+      ],
+      "from": [
+        -94.3573,
+        -18.775,
+        2.94
+      ],
+      "to": [
+        -94.3573,
+        -21.425,
+        3.15
+      ],
+      "distance": 2.6583,
+      "ray_height": 1.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_L_E_S25",
+      "hit_position": [
+        -94.3573,
+        -18.8438,
+        4.5455
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:15"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:16"
+      ]
+    },
+    {
+      "edge": [
+        3545,
+        3546
+      ],
+      "from": [
+        -94.3573,
+        -21.425,
+        3.15
+      ],
+      "to": [
+        -94.3573,
+        -24.075,
+        3.36
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -94.3573,
+        -21.65,
+        3.7678
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:16"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:17"
+      ]
+    },
+    {
+      "edge": [
+        3546,
+        3547
+      ],
+      "from": [
+        -94.3573,
+        -24.075,
+        3.36
+      ],
+      "to": [
+        -94.3573,
+        -26.725,
+        3.57
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -94.3573,
+        -24.65,
+        4.0056
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:17"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F0:18"
+      ]
+    },
+    {
+      "edge": [
+        3554,
+        3555
+      ],
+      "from": [
+        -97.0027,
+        -25.225,
+        5.04
+      ],
+      "to": [
+        -97.0027,
+        -22.575,
+        5.25
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -97.0027,
+        -24.85,
+        5.6697
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:4"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:5"
+      ]
+    },
+    {
+      "edge": [
+        3555,
+        3556
+      ],
+      "from": [
+        -97.0027,
+        -22.575,
+        5.25
+      ],
+      "to": [
+        -97.0027,
+        -19.925,
+        5.46
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -97.0027,
+        -21.65,
+        5.9233
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:5"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:6"
+      ]
+    },
+    {
+      "edge": [
+        3556,
+        3557
+      ],
+      "from": [
+        -97.0027,
+        -19.925,
+        5.46
+      ],
+      "to": [
+        -97.0027,
+        -17.275,
+        5.67
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_L_E_S33",
+      "hit_position": [
+        -97.0027,
+        -18.3878,
+        6.1818
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:6"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:7"
+      ]
+    },
+    {
+      "edge": [
+        3566,
+        3567
+      ],
+      "from": [
+        -94.3573,
+        -21.425,
+        7.35
+      ],
+      "to": [
+        -94.3573,
+        -24.075,
+        7.56
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -94.3573,
+        -21.65,
+        7.9678
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:16"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:17"
+      ]
+    },
+    {
+      "edge": [
+        3567,
+        3568
+      ],
+      "from": [
+        -94.3573,
+        -24.075,
+        7.56
+      ],
+      "to": [
+        -94.3573,
+        -26.725,
+        7.77
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -94.3573,
+        -24.65,
+        8.2056
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:17"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F1:18"
+      ]
+    },
+    {
+      "edge": [
+        3575,
+        3576
+      ],
+      "from": [
+        -97.0027,
+        -25.225,
+        9.24
+      ],
+      "to": [
+        -97.0027,
+        -22.575,
+        9.45
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_F_B",
+      "hit_position": [
+        -97.0027,
+        -24.85,
+        9.8697
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F2:4"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F2:5"
+      ]
+    },
+    {
+      "edge": [
+        3576,
+        3577
+      ],
+      "from": [
+        -97.0027,
+        -22.575,
+        9.45
+      ],
+      "to": [
+        -97.0027,
+        -19.925,
+        9.66
+      ],
+      "distance": 2.6583,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_E.0_Van_Phong_Co_Khi_Stair_Wall_B_B",
+      "hit_position": [
+        -97.0027,
+        -21.65,
+        10.1233
+      ],
+      "start_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F2:5"
+      ],
+      "end_labels": [
+        "Khoi_L_Xuong_Sang_Tao_StairRun_F2:6"
+      ]
+    },
+    {
+      "edge": [
+        3614,
+        3615
+      ],
+      "from": [
+        119.1,
+        -48.0,
+        5.0
+      ],
+      "to": [
+        119.1,
+        -29.7429,
+        5.0
+      ],
+      "distance": 18.2571,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_F0_Part_0",
+      "hit_position": [
+        119.1,
+        -47.9,
+        5.6
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F0:0"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F0:1"
+      ]
+    },
+    {
+      "edge": [
+        3616,
+        3617
+      ],
+      "from": [
+        119.1,
+        -27.4857,
+        5.0
+      ],
+      "to": [
+        119.1,
+        -25.2286,
+        5.0
+      ],
+      "distance": 2.2571,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_M_W_S3",
+      "hit_position": [
+        119.1,
+        -26.25,
+        5.6
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F0:2",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairCorridor_F0"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F0:3"
+      ]
+    },
+    {
+      "edge": [
+        3616,
+        3619
+      ],
+      "from": [
+        119.1,
+        -27.4857,
+        5.0
+      ],
+      "to": [
+        118.75,
+        -27.4857,
+        5.0
+      ],
+      "distance": 0.35,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_M_W_S3",
+      "hit_position": [
+        118.9739,
+        -27.4857,
+        5.6
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F0:2",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairCorridor_F0"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairLanding_F0"
+      ]
+    },
+    {
+      "edge": [
+        3617,
+        3618
+      ],
+      "from": [
+        119.1,
+        -25.2286,
+        5.0
+      ],
+      "to": [
+        119.1,
+        -16.0,
+        5.0
+      ],
+      "distance": 9.2286,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_F0_Part_6",
+      "hit_position": [
+        119.1,
+        -20.8143,
+        5.6
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F0:3"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F0:4"
+      ]
+    },
+    {
+      "edge": [
+        3621,
+        3622
+      ],
+      "from": [
+        119.1,
+        -29.7429,
+        9.2
+      ],
+      "to": [
+        119.1,
+        -27.4857,
+        9.2
+      ],
+      "distance": 2.2572,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_M_W_RailA",
+      "hit_position": [
+        119.1,
+        -29.675,
+        9.8
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F1:1"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F1:2",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairCorridor_F1"
+      ]
+    },
+    {
+      "edge": [
+        3632,
+        3633
+      ],
+      "from": [
+        119.1,
+        -48.0,
+        17.6
+      ],
+      "to": [
+        119.1,
+        -29.7429,
+        17.6
+      ],
+      "distance": 18.2571,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_F3_Part_0",
+      "hit_position": [
+        119.1,
+        -47.9,
+        18.2
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F3:0"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F3:1"
+      ]
+    },
+    {
+      "edge": [
+        3635,
+        3636
+      ],
+      "from": [
+        119.1,
+        -25.2286,
+        17.6
+      ],
+      "to": [
+        119.1,
+        -16.0,
+        17.6
+      ],
+      "distance": 9.2286,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_F3_Part_6",
+      "hit_position": [
+        119.1,
+        -20.8143,
+        18.2
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F3:3"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F3:4"
+      ]
+    },
+    {
+      "edge": [
+        3638,
+        3639
+      ],
+      "from": [
+        119.1,
+        -48.0,
+        21.8
+      ],
+      "to": [
+        119.1,
+        -29.7429,
+        21.8
+      ],
+      "distance": 18.2571,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_F4_Part_0",
+      "hit_position": [
+        119.1,
+        -47.9,
+        22.4
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F4:0"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F4:1"
+      ]
+    },
+    {
+      "edge": [
+        3641,
+        3642
+      ],
+      "from": [
+        119.1,
+        -25.2286,
+        21.8
+      ],
+      "to": [
+        119.1,
+        -16.0,
+        21.8
+      ],
+      "distance": 9.2286,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_F4_Part_6",
+      "hit_position": [
+        119.1,
+        -20.8143,
+        22.4
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F4:3"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F4:4"
+      ]
+    },
+    {
+      "edge": [
+        3644,
+        3645
+      ],
+      "from": [
+        119.1,
+        -48.0,
+        26.0
+      ],
+      "to": [
+        119.1,
+        -29.7429,
+        26.0
+      ],
+      "distance": 18.2571,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_F5_Part_0",
+      "hit_position": [
+        119.1,
+        -47.9,
+        26.6
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F5:0"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F5:1"
+      ]
+    },
+    {
+      "edge": [
+        3647,
+        3648
+      ],
+      "from": [
+        119.1,
+        -25.2286,
+        26.0
+      ],
+      "to": [
+        119.1,
+        -16.0,
+        26.0
+      ],
+      "distance": 9.2286,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_F5_Part_6",
+      "hit_position": [
+        119.1,
+        -20.8143,
+        26.6
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F5:3"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_Corridor_F5:4"
+      ]
+    },
+    {
+      "edge": [
+        3657,
+        3658
+      ],
+      "from": [
+        126.1818,
+        -27.1129,
+        5.84
+      ],
+      "to": [
+        126.1818,
+        -26.8614,
+        6.05
+      ],
+      "distance": 0.3276,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_F0_MidLanding",
+      "hit_position": [
+        126.1818,
+        -26.9786,
+        7.0522
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:4"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:5"
+      ]
+    },
+    {
+      "edge": [
+        3659,
+        3660
+      ],
+      "from": [
+        126.1818,
+        -26.61,
+        6.26
+      ],
+      "to": [
+        126.1818,
+        -26.3586,
+        6.47
+      ],
+      "distance": 0.3276,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_F0_MidLanding",
+      "hit_position": [
+        126.1818,
+        -26.5741,
+        6.89
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:6"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:7"
+      ]
+    },
+    {
+      "edge": [
+        3660,
+        3661
+      ],
+      "from": [
+        126.1818,
+        -26.3586,
+        6.47
+      ],
+      "to": [
+        126.1818,
+        -26.1071,
+        6.68
+      ],
+      "distance": 0.3276,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_F0_MidLanding",
+      "hit_position": [
+        126.1818,
+        -26.3227,
+        7.1
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:7"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:8"
+      ]
+    },
+    {
+      "edge": [
+        3663,
+        3664
+      ],
+      "from": [
+        126.1818,
+        -25.6043,
+        7.1
+      ],
+      "to": [
+        133.0,
+        -26.2286,
+        7.1
+      ],
+      "distance": 6.8467,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_Wall_B_B",
+      "hit_position": [
+        127.8749,
+        -25.5786,
+        7.7
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:10"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:11"
+      ]
+    },
+    {
+      "edge": [
+        3674,
+        3675
+      ],
+      "from": [
+        139.8182,
+        -29.3671,
+        9.2
+      ],
+      "to": [
+        133.0,
+        -28.7429,
+        9.2
+      ],
+      "distance": 6.8467,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_Wall_F_B",
+      "hit_position": [
+        138.1252,
+        -29.3929,
+        9.8
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F0:21",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_TopStep_F0"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F1:0",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_MainLanding_F1"
+      ]
+    },
+    {
+      "edge": [
+        3675,
+        3676
+      ],
+      "from": [
+        133.0,
+        -28.7429,
+        9.2
+      ],
+      "to": [
+        126.1818,
+        -27.8671,
+        9.41
+      ],
+      "distance": 6.8774,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "OutStair_M_W_S27",
+      "hit_position": [
+        127.1233,
+        -27.988,
+        9.981
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F1:0",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_MainLanding_F1"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F1:1"
+      ]
+    },
+    {
+      "edge": [
+        3685,
+        3686
+      ],
+      "from": [
+        126.1818,
+        -25.6043,
+        11.3
+      ],
+      "to": [
+        133.0,
+        -26.2286,
+        11.3
+      ],
+      "distance": 6.8467,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_Wall_B_B",
+      "hit_position": [
+        127.8749,
+        -25.5786,
+        11.9
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F1:10"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F1:11"
+      ]
+    },
+    {
+      "edge": [
+        3696,
+        3697
+      ],
+      "from": [
+        139.8182,
+        -29.3671,
+        13.4
+      ],
+      "to": [
+        133.0,
+        -28.7429,
+        13.4
+      ],
+      "distance": 6.8467,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_Wall_F_B",
+      "hit_position": [
+        138.1252,
+        -29.3929,
+        14.0
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F1:21",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_TopStep_F1"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:0",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_MainLanding_F2"
+      ]
+    },
+    {
+      "edge": [
+        3707,
+        3708
+      ],
+      "from": [
+        126.1818,
+        -25.6043,
+        15.5
+      ],
+      "to": [
+        133.0,
+        -26.2286,
+        15.5
+      ],
+      "distance": 6.8467,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_Wall_B_B",
+      "hit_position": [
+        127.8749,
+        -25.5786,
+        16.1
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:10"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:11"
+      ]
+    },
+    {
+      "edge": [
+        3712,
+        3713
+      ],
+      "from": [
+        139.8182,
+        -27.8586,
+        16.34
+      ],
+      "to": [
+        139.8182,
+        -28.11,
+        16.55
+      ],
+      "distance": 0.3276,
+      "ray_height": 1.1,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_F3_MainLanding",
+      "hit_position": [
+        139.8182,
+        -27.9929,
+        17.5521
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:15"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:16"
+      ]
+    },
+    {
+      "edge": [
+        3714,
+        3715
+      ],
+      "from": [
+        139.8182,
+        -28.3614,
+        16.76
+      ],
+      "to": [
+        139.8182,
+        -28.6129,
+        16.97
+      ],
+      "distance": 0.3276,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_F3_MainLanding",
+      "hit_position": [
+        139.8182,
+        -28.3973,
+        17.39
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:17"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:18"
+      ]
+    },
+    {
+      "edge": [
+        3715,
+        3716
+      ],
+      "from": [
+        139.8182,
+        -28.6129,
+        16.97
+      ],
+      "to": [
+        139.8182,
+        -28.8643,
+        17.18
+      ],
+      "distance": 0.3276,
+      "ray_height": 0.6,
+      "side_offset": 0.0,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_F3_MainLanding",
+      "hit_position": [
+        139.8182,
+        -28.6488,
+        17.6
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:18"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:19"
+      ]
+    },
+    {
+      "edge": [
+        3718,
+        3719
+      ],
+      "from": [
+        139.8182,
+        -29.3671,
+        17.6
+      ],
+      "to": [
+        133.0,
+        -28.7429,
+        17.6
+      ],
+      "distance": 6.8467,
+      "ray_height": 0.6,
+      "side_offset": 0.18,
+      "blocker": "Khoi_M_Hanh_Chinh_Mo_Rong_Stair_Wall_F_B",
+      "hit_position": [
+        138.1252,
+        -29.3929,
+        18.2
+      ],
+      "start_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F2:21",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_TopStep_F2"
+      ],
+      "end_labels": [
+        "Khoi_M_Hanh_Chinh_Mo_Rong_StairRun_F3:0",
+        "Khoi_M_Hanh_Chinh_Mo_Rong_MainLanding_F3"
+      ]
+    }
+  ]
+}

@@ -1,7 +1,30 @@
+# Node.js dependencies
 node_modules/
+
+# Generated panorama/build assets
 panorama_build/
 downloaded_images/
+
+# Hardware export directories (typos included)
 HARDWARE PLAYFORM/
 HARDWAREPALYFORM/
 HARDWARE PLATFORM/
+
+# Python cache
 __pycache__/
+*.py[cod]
+*.pyo
+*~
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Godot generated build / cache
+godot_project/.godot/
+godot_project/.import/
+godot_project/.mono/
+godot_project/bin/
+godot_project/Campus Runner.exe
