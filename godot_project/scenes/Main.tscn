@@ -47,7 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2.2, 102)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 0.6, 87.8)
 
 [node name="BotGoal" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.591927, 17.74987, 87.83035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 172.41666, 17.749863, -16.788326)
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 96)

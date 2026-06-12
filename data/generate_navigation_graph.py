@@ -28,6 +28,12 @@ GROUND_Z = 0.0
 GROUND_PATH_SEGMENT_MAX = 3.0
 GROUND_LINK_RADIUS = 6.5
 GROUND_LINKS_PER_NODE = 4
+FLAT_GROUND_STITCH_Z_TOLERANCE = 0.25
+BUILDING_ACCESS_MAX_PLANAR = 24.0
+BUILDING_ACCESS_GROUND_Z_TOLERANCE = 1.0
+BUILDING_ACCESS_ELEVATED_Z_TOLERANCE = 3.0
+GROUND_JUNCTION_RADIUS = 1.1
+GROUND_JUNCTION_Z_TOLERANCE = 0.2
 
 
 def get_block_profile(prefix):
@@ -622,6 +628,15 @@ def segment_intersects_rect(p1, p2, rect):
     return False
 
 
+def segment_blocked_by_obstacles(p1, p2, obstacles, ignore_endpoint_rects=False):
+    for rect in obstacles:
+        if ignore_endpoint_rects and (point_in_rect(p1, rect) or point_in_rect(p2, rect)):
+            continue
+        if segment_intersects_rect(p1, p2, rect):
+            return True
+    return False
+
+
 def connect_access_points(graph, block_bounds):
     elevated_points = []
     ground_points = []
@@ -686,12 +701,7 @@ def connect_access_points(graph, block_bounds):
             other = graph.nodes[other_id]
             p1 = (node["x"], node["y"])
             p2 = (other["x"], other["y"])
-            blocked = False
-            for rect in obstacles:
-                if segment_intersects_rect(p1, p2, rect):
-                    blocked = True
-                    break
-            if blocked:
+            if segment_blocked_by_obstacles(p1, p2, obstacles, ignore_endpoint_rects=True):
                 continue
             graph.add_edge(node_id, other_id, "ground_access")
             added += 1
@@ -766,6 +776,180 @@ def connect_ground_path_network(graph, block_bounds):
                 continue
             graph.add_edge(node_id, other_id, "ground_path_link")
             added += 1
+
+
+def connect_ground_path_junctions(graph, block_bounds):
+    obstacles = build_obstacle_rects(block_bounds)
+    ground_node_ids = [
+        node["id"]
+        for node in graph.nodes
+        if "ground_path" in node["kinds"]
+    ]
+    added = 0
+
+    for i, node_id in enumerate(ground_node_ids):
+        node = graph.nodes[node_id]
+        p1 = (node["x"], node["y"])
+        for other_id in ground_node_ids[i + 1 :]:
+            if other_id in graph.adjacency[node_id]:
+                continue
+            other = graph.nodes[other_id]
+            if abs(other["z"] - node["z"]) > GROUND_JUNCTION_Z_TOLERANCE:
+                continue
+
+            planar_dist = math.dist((node["x"], node["y"]), (other["x"], other["y"]))
+            if planar_dist <= 0.05 or planar_dist > GROUND_JUNCTION_RADIUS:
+                continue
+
+            p2 = (other["x"], other["y"])
+            if segment_blocked_by_obstacles(p1, p2, obstacles, ignore_endpoint_rects=True):
+                continue
+
+            graph.add_edge(node_id, other_id, "ground_junction")
+            added += 1
+
+    return added
+
+
+def compute_flat_ground_components(graph):
+    ground_node_ids = [
+        node["id"]
+        for node in graph.nodes
+        if "ground_path" in node["kinds"] and abs(node["z"] - GROUND_Z) <= FLAT_GROUND_STITCH_Z_TOLERANCE
+    ]
+    ground_set = set(ground_node_ids)
+    seen = set()
+    components = []
+
+    for node_id in ground_node_ids:
+        if node_id in seen:
+            continue
+        stack = [node_id]
+        seen.add(node_id)
+        comp = []
+        while stack:
+            current = stack.pop()
+            comp.append(current)
+            for neighbor_id in graph.adjacency[current]:
+                if neighbor_id in ground_set and neighbor_id not in seen:
+                    seen.add(neighbor_id)
+                    stack.append(neighbor_id)
+        components.append(comp)
+
+    return components
+
+
+def stitch_flat_ground_components(graph):
+    total_added = 0
+
+    while True:
+        components = sorted(compute_flat_ground_components(graph), key=len, reverse=True)
+        if len(components) <= 1:
+            break
+
+        best_pair = None
+        best_planar = None
+        for i in range(len(components)):
+            for j in range(i + 1, len(components)):
+                for a_id in components[i]:
+                    node_a = graph.nodes[a_id]
+                    for b_id in components[j]:
+                        node_b = graph.nodes[b_id]
+                        if abs(node_a["z"] - node_b["z"]) > FLAT_GROUND_STITCH_Z_TOLERANCE:
+                            continue
+                        planar = math.dist((node_a["x"], node_a["y"]), (node_b["x"], node_b["y"]))
+                        if best_planar is None or planar < best_planar:
+                            best_planar = planar
+                            best_pair = (a_id, b_id)
+
+        if best_pair is None:
+            break
+
+        graph.add_edge(best_pair[0], best_pair[1], "ground_flat_stitch")
+        total_added += 1
+        print(f"[flat] stitched {best_pair[0]} <-> {best_pair[1]} planar={best_planar:.2f}")
+
+    return total_added
+
+
+def is_building_access_anchor(node):
+    anchor_kinds = {
+        "ground_access",
+        "access",
+        "ground_path",
+        "outdoor_stair",
+        "entry_stair",
+        "skybridge",
+        "corridor",
+        "stair_access",
+        "stair_landing",
+        "stair_step",
+    }
+    return any(kind in anchor_kinds for kind in node["kinds"])
+
+
+def building_access_z_tolerance(node_a, node_b):
+    if "ground_path" in node_a["kinds"] or "ground_path" in node_b["kinds"]:
+        return BUILDING_ACCESS_GROUND_Z_TOLERANCE
+    return BUILDING_ACCESS_ELEVATED_Z_TOLERANCE
+
+
+def stitch_building_access_components(graph, block_bounds):
+    obstacles = build_obstacle_rects(block_bounds)
+    total_added = 0
+
+    while True:
+        components = sorted(compute_connected_components(graph), key=len, reverse=True)
+        if len(components) <= 1:
+            break
+
+        main_component = set(components[0])
+        main_anchor_ids = [node_id for node_id in main_component if is_building_access_anchor(graph.nodes[node_id])]
+        if not main_anchor_ids:
+            break
+
+        best_pair = None
+        best_dist = None
+        for comp in components[1:]:
+            comp_anchor_ids = [node_id for node_id in comp if is_building_access_anchor(graph.nodes[node_id])]
+            if not comp_anchor_ids:
+                continue
+
+            for a_id in comp_anchor_ids:
+                node_a = graph.nodes[a_id]
+                p1 = (node_a["x"], node_a["y"])
+                for b_id in main_anchor_ids:
+                    node_b = graph.nodes[b_id]
+                    z_diff = abs(node_a["z"] - node_b["z"])
+                    if z_diff > building_access_z_tolerance(node_a, node_b):
+                        continue
+
+                    planar_dist = math.dist((node_a["x"], node_a["y"]), (node_b["x"], node_b["y"]))
+                    if planar_dist <= 0.05 or planar_dist > BUILDING_ACCESS_MAX_PLANAR:
+                        continue
+
+                    p2 = (node_b["x"], node_b["y"])
+                    if segment_blocked_by_obstacles(p1, p2, obstacles, ignore_endpoint_rects=True):
+                        continue
+
+                    dist = math.dist(
+                        (node_a["x"], node_a["y"], node_a["z"]),
+                        (node_b["x"], node_b["y"], node_b["z"]),
+                    )
+                    if best_dist is None or dist < best_dist:
+                        best_dist = dist
+                        best_pair = (a_id, b_id, planar_dist)
+
+        if best_pair is None:
+            break
+
+        graph.add_edge(best_pair[0], best_pair[1], "building_access_stitch")
+        total_added += 1
+        print(
+            f"[access] stitched {best_pair[0]} <-> {best_pair[1]} planar={best_pair[2]:.2f}"
+        )
+
+    return total_added
 
 
 def is_connector_kind(node):
@@ -969,8 +1153,11 @@ def main():
         add_a1_front_stair_graph(graph, name, cx, cy, n_steps, step_w, step_d, step_h)
 
     add_ground_paths(graph)
+    ground_junction_edges = connect_ground_path_junctions(graph, block_bounds)
     connect_ground_path_network(graph, block_bounds)
+    flat_stitched_edges = stitch_flat_ground_components(graph)
     connect_access_points(graph, block_bounds)
+    building_access_stitched_edges = stitch_building_access_components(graph, block_bounds)
     before_components = len(compute_connected_components(graph))
     stitched_edges = stitch_graph_components(graph, block_bounds)
     after_components = len(compute_connected_components(graph))
@@ -979,6 +1166,9 @@ def main():
     bpy.ops.wm.save_as_mainfile(filepath=BLEND_PATH)
 
     print(f"[OK] nodes={len(graph.nodes)} edges={len(graph.edges)}")
+    print(f"[OK] ground_junction_edges={ground_junction_edges}")
+    print(f"[OK] flat_ground_stitched_edges={flat_stitched_edges}")
+    print(f"[OK] building_access_stitched_edges={building_access_stitched_edges}")
     print(f"[OK] stitched_edges={stitched_edges} components {before_components} -> {after_components}")
     print(f"[OK] wrote {JSON_PATH}")
     print(f"[OK] wrote {TXT_PATH}")

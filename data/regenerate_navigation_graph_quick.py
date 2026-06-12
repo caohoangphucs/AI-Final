@@ -1,8 +1,9 @@
 """
-Regenerate navigation graph JSON/TXT quickly without exporting visual overlay assets.
+Regenerate navigation graph JSON/TXT from Untitled_arch.blend,
+skipping the expensive global component stitch pass.
 
 Run:
-  blender --background data/Untitled_arch.blend --python data/regenerate_navigation_graph_fast.py
+  blender --background data/Untitled_arch.blend --python data/regenerate_navigation_graph_quick.py
 """
 
 from pathlib import Path
@@ -51,16 +52,14 @@ def main():
     flat_stitched_edges = g.stitch_flat_ground_components(graph)
     g.connect_access_points(graph, block_bounds)
     building_access_stitched_edges = g.stitch_building_access_components(graph, block_bounds)
-    before_components = len(g.compute_connected_components(graph))
-    stitched_edges = g.stitch_graph_components(graph, block_bounds)
-    after_components = len(g.compute_connected_components(graph))
+    components = len(g.compute_connected_components(graph))
     g.export_graph_text(graph)
 
-    print(f"[OK] fast nodes={len(graph.nodes)} edges={len(graph.edges)}")
+    print(f"[OK] quick nodes={len(graph.nodes)} edges={len(graph.edges)}")
     print(f"[OK] ground_junction_edges={ground_junction_edges}")
     print(f"[OK] flat_ground_stitched_edges={flat_stitched_edges}")
     print(f"[OK] building_access_stitched_edges={building_access_stitched_edges}")
-    print(f"[OK] stitched_edges={stitched_edges} components {before_components} -> {after_components}")
+    print(f"[OK] components={components}")
     print(f"[OK] wrote {g.JSON_PATH}")
     print(f"[OK] wrote {g.TXT_PATH}")
 

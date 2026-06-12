@@ -2,9 +2,9 @@ extends CharacterBody3D
 
 const BOT_SPEED := 4.5
 const WAYPOINT_REACHED_DIST := 0.22
-const MARKER_HEIGHT := 0.28
-const MARKER_SCALE := Vector3(0.4, 0.4, 0.4)
-const PATH_MARKER_SCALE := Vector3(0.52, 0.52, 0.52)
+const MARKER_HEIGHT := 0.4
+const MARKER_SCALE := Vector3(0.5, 0.5, 0.5)
+const PATH_MARKER_SCALE := Vector3(0.62, 0.62, 0.62)
 const MIN_SEARCH_STEPS_PER_TICK := 1
 const MAX_SEARCH_STEPS_PER_TICK := 64
 const USE_REMOTE_SOLVER := true
@@ -15,6 +15,9 @@ enum SearchAlgorithm {
 	ASTAR,
 	BFS,
 	DFS,
+	UCS,
+	GREEDY,
+	IDDFS,
 }
 
 @export var start_marker_path: NodePath
@@ -22,8 +25,9 @@ enum SearchAlgorithm {
 @export_range(1, 64, 1) var search_steps_per_tick := 2
 @export_range(0.01, 1.0, 0.01) var search_tick_delay := 0.08
 @export_range(1, 64, 1) var visual_update_interval := 1
-@export_enum("A*", "BFS", "DFS") var search_algorithm: int = SearchAlgorithm.ASTAR
+@export_enum("A*", "BFS", "DFS", "UCS", "Greedy", "IDDFS") var search_algorithm: int = SearchAlgorithm.ASTAR
 @export var remote_solver_url := "http://127.0.0.1:8000/solve-path"
+@export var remote_benchmark_url := "http://127.0.0.1:8000/benchmark-path"
 @export_range(1.0, 60.0, 0.5) var remote_solver_timeout_sec := 10.0
 
 @onready var debug_root: Node3D = $Debug
@@ -58,7 +62,7 @@ var _current_waypoint_idx := 0
 var _visual_tick := 0
 var _last_reported_waypoint := -1
 var _search_tick_timer := 0.0
-var _all_nodes_highlighted := false
+var _all_nodes_highlighted := true
 var _debug_canvas: CanvasLayer
 var _debug_label: Label
 var _debug_overlay_visible := true
@@ -69,6 +73,9 @@ var _path_total_cost := 0.0
 var _using_remote_path := false
 var _remote_request_in_flight := false
 var _http_request: HTTPRequest
+var _benchmark_request_in_flight := false
+var _benchmark_http_request: HTTPRequest
+var _benchmark_summary_text := ""
 
 
 func _ready() -> void:
@@ -80,7 +87,7 @@ func _ready() -> void:
 	_setup_http_request()
 	_snap_to_start()
 	_begin_search()
-	print("PathBot: 1=A*, 2=BFS, 3=DFS, F3=toggle debug info, H=highlight all nodes")
+	print("PathBot: 1=A*, 2=BFS, 3=DFS, 4=UCS, 5=Greedy, 6=IDDFS, P=benchmark all, F3=toggle debug info, H=highlight all nodes")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -101,6 +108,14 @@ func _unhandled_input(event: InputEvent) -> void:
 				_set_search_algorithm(SearchAlgorithm.BFS)
 			KEY_3:
 				_set_search_algorithm(SearchAlgorithm.DFS)
+			KEY_4:
+				_set_search_algorithm(SearchAlgorithm.UCS)
+			KEY_5:
+				_set_search_algorithm(SearchAlgorithm.GREEDY)
+			KEY_6:
+				_set_search_algorithm(SearchAlgorithm.IDDFS)
+			KEY_P:
+				_run_remote_benchmark()
 			KEY_7:
 				_adjust_search_speed(-1)
 			KEY_8:
@@ -128,9 +143,9 @@ func _setup_debug_meshes() -> void:
 	frontier_markers.multimesh = _create_multimesh(cube, node_capacity)
 	closed_markers.multimesh = _create_multimesh(cube, node_capacity)
 	path_markers.multimesh = _create_multimesh(cube, node_capacity)
-	_all_nodes_dim_material = _make_unshaded_material(Color(0.85, 0.9, 1.0, 0.12), true)
-	_all_nodes_highlight_material = _make_unshaded_material(Color(1.0, 1.0, 0.35, 0.92), true)
-	all_nodes_markers.material_override = _all_nodes_dim_material
+	_all_nodes_dim_material = _make_unshaded_material(Color(0.7, 0.9, 1.0, 0.45), true)
+	_all_nodes_highlight_material = _make_unshaded_material(Color(1.0, 0.98, 0.2, 1.0), true)
+	all_nodes_markers.material_override = _all_nodes_highlight_material if _all_nodes_highlighted else _all_nodes_dim_material
 	frontier_markers.material_override = _make_unshaded_material(Color(1.0, 0.58, 0.15, 1.0))
 	closed_markers.material_override = _make_unshaded_material(Color(1.0, 0.2, 0.2, 1.0))
 	path_markers.material_override = _make_unshaded_material(Color(0.15, 0.85, 1.0, 1.0))
@@ -147,7 +162,7 @@ func _setup_debug_overlay() -> void:
 	_debug_label.position = Vector2(max(get_viewport().get_visible_rect().size.x - 536.0, 16.0), 16.0)
 	_debug_label.size = Vector2(520.0, 260.0)
 	_debug_label.autowrap_mode = TextServer.AUTOWRAP_OFF
-	_debug_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_debug_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	_debug_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_debug_label.add_theme_font_size_override("font_size", 15)
 	_debug_label.add_theme_color_override("font_color", Color(0.95, 0.98, 1.0, 1.0))
@@ -171,6 +186,11 @@ func _setup_http_request() -> void:
 	_http_request.timeout = remote_solver_timeout_sec
 	add_child(_http_request)
 	_http_request.request_completed.connect(_on_remote_request_completed)
+
+	_benchmark_http_request = HTTPRequest.new()
+	_benchmark_http_request.timeout = remote_solver_timeout_sec
+	add_child(_benchmark_http_request)
+	_benchmark_http_request.request_completed.connect(_on_benchmark_request_completed)
 
 
 func _create_multimesh(mesh: Mesh, capacity: int) -> MultiMesh:
@@ -266,9 +286,11 @@ func _reset_search_state() -> void:
 
 func _start_local_search() -> void:
 	_using_remote_path = false
+	if search_algorithm == SearchAlgorithm.IDDFS:
+		print("PathBot: local fallback for IDDFS uses DFS; full IDDFS runs on Python service")
 
 	_g_score[_search_start_id] = 0.0
-	_f_score[_search_start_id] = _heuristic(_search_start_id, _search_goal_id)
+	_f_score[_search_start_id] = _frontier_priority(_search_start_id, 0.0)
 	_push_frontier(_search_start_id)
 	print("PathBot: searching from node %d to node %d with %s" % [_search_start_id, _search_goal_id, _get_algorithm_name()])
 	_refresh_debug_visuals()
@@ -300,6 +322,37 @@ func _start_remote_search_request() -> bool:
 	return true
 
 
+func _run_remote_benchmark() -> void:
+	if not USE_REMOTE_SOLVER:
+		print("PathBot: benchmark requires remote solver")
+		return
+	if _benchmark_http_request == null or _remote_request_in_flight or _benchmark_request_in_flight:
+		print("PathBot: benchmark request is busy")
+		return
+	if _search_start_id == -1 or _search_goal_id == -1:
+		print("PathBot: benchmark unavailable until start/goal are resolved")
+		return
+
+	var payload := JSON.stringify({
+		"start_id": _search_start_id,
+		"goal_id": _search_goal_id,
+	})
+	var err := _benchmark_http_request.request(
+		remote_benchmark_url,
+		["Content-Type: application/json"],
+		HTTPClient.METHOD_POST,
+		payload,
+	)
+	if err != OK:
+		print("PathBot: benchmark request error %d" % err)
+		return
+
+	_benchmark_request_in_flight = true
+	_benchmark_summary_text = "Benchmark: running all algorithms..."
+	print("PathBot: benchmarking all algorithms from node %d to node %d" % [_search_start_id, _search_goal_id])
+	_update_debug_overlay()
+
+
 func _on_remote_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if not _remote_request_in_flight:
 		return
@@ -320,6 +373,28 @@ func _on_remote_request_completed(result: int, response_code: int, _headers: Pac
 		return
 
 	_apply_remote_solution(parsed)
+
+
+func _on_benchmark_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	_benchmark_request_in_flight = false
+
+	if result != HTTPRequest.RESULT_SUCCESS or response_code < 200 or response_code >= 300:
+		_benchmark_summary_text = "Benchmark: request failed (result=%d, status=%d)" % [result, response_code]
+		print("PathBot: benchmark failed (result=%d, status=%d)" % [result, response_code])
+		_update_debug_overlay()
+		return
+
+	var body_text := body.get_string_from_utf8()
+	var parsed: Variant = JSON.parse_string(body_text)
+	if typeof(parsed) != TYPE_DICTIONARY:
+		_benchmark_summary_text = "Benchmark: invalid JSON response"
+		print("PathBot: benchmark returned invalid JSON")
+		_update_debug_overlay()
+		return
+
+	_benchmark_summary_text = _format_benchmark_summary(parsed)
+	print("PathBot: benchmark complete")
+	_update_debug_overlay()
 
 
 func _apply_remote_solution(payload: Dictionary) -> void:
@@ -393,15 +468,15 @@ func _step_search() -> void:
 				continue
 
 			match search_algorithm:
-				SearchAlgorithm.ASTAR:
+				SearchAlgorithm.ASTAR, SearchAlgorithm.UCS, SearchAlgorithm.GREEDY:
 					var tentative_g: float = float(_g_score.get(current_id, INF)) + _distance_between(current_id, neighbor_id)
 					if tentative_g < float(_g_score.get(neighbor_id, INF)):
 						_came_from[neighbor_id] = current_id
 						_g_score[neighbor_id] = tentative_g
-						_f_score[neighbor_id] = tentative_g + _heuristic(neighbor_id, _search_goal_id)
+						_f_score[neighbor_id] = _frontier_priority(neighbor_id, tentative_g)
 						if not _frontier_membership.has(neighbor_id):
 							_push_frontier(neighbor_id)
-				SearchAlgorithm.BFS, SearchAlgorithm.DFS:
+				SearchAlgorithm.BFS, SearchAlgorithm.DFS, SearchAlgorithm.IDDFS:
 					if _frontier_membership.has(neighbor_id) or neighbor_id == _search_start_id or _came_from.has(neighbor_id):
 						continue
 					_came_from[neighbor_id] = current_id
@@ -425,7 +500,7 @@ func _pop_frontier_node() -> int:
 
 	var picked_id := -1
 	match search_algorithm:
-		SearchAlgorithm.ASTAR:
+		SearchAlgorithm.ASTAR, SearchAlgorithm.UCS, SearchAlgorithm.GREEDY:
 			var best_idx := -1
 			var best_score := INF
 			for i in range(_search_frontier.size()):
@@ -439,7 +514,7 @@ func _pop_frontier_node() -> int:
 				_search_frontier.remove_at(best_idx)
 		SearchAlgorithm.BFS:
 			picked_id = int(_search_frontier.pop_front())
-		SearchAlgorithm.DFS:
+		SearchAlgorithm.DFS, SearchAlgorithm.IDDFS:
 			picked_id = int(_search_frontier.pop_back())
 
 	_frontier_membership.erase(picked_id)
@@ -522,6 +597,16 @@ func _heuristic(a: int, b: int) -> float:
 	return from_pos.distance_to(to_pos) * EDGE_LENGTH_WEIGHT
 
 
+func _frontier_priority(node_id: int, g_cost: float) -> float:
+	match search_algorithm:
+		SearchAlgorithm.UCS:
+			return g_cost
+		SearchAlgorithm.GREEDY:
+			return _heuristic(node_id, _search_goal_id)
+		_:
+			return g_cost + _heuristic(node_id, _search_goal_id)
+
+
 func _distance_between(a: int, b: int) -> float:
 	var from_pos: Vector3 = _graph_positions[a]
 	var to_pos: Vector3 = _graph_positions[b]
@@ -545,7 +630,7 @@ func _refresh_all_nodes_visual() -> void:
 	for node_id_variant in _graph_positions.keys():
 		all_ids.append(int(node_id_variant))
 	all_ids.sort()
-	_apply_marker_instances(all_nodes_markers.multimesh, all_ids, Vector3(0.16, 0.16, 0.16))
+	_apply_marker_instances(all_nodes_markers.multimesh, all_ids, Vector3(0.24, 0.24, 0.24))
 
 
 func _refresh_frontier_markers() -> void:
@@ -631,6 +716,12 @@ func _get_algorithm_name() -> String:
 			return "BFS"
 		SearchAlgorithm.DFS:
 			return "DFS"
+		SearchAlgorithm.UCS:
+			return "UCS"
+		SearchAlgorithm.GREEDY:
+			return "Greedy"
+		SearchAlgorithm.IDDFS:
+			return "IDDFS"
 	return "Unknown"
 
 
@@ -642,6 +733,12 @@ func _get_algorithm_slug() -> String:
 			return "bfs"
 		SearchAlgorithm.DFS:
 			return "dfs"
+		SearchAlgorithm.UCS:
+			return "ucs"
+		SearchAlgorithm.GREEDY:
+			return "greedy"
+		SearchAlgorithm.IDDFS:
+			return "iddfs"
 	return "astar"
 
 
@@ -663,7 +760,7 @@ func _update_debug_overlay() -> void:
 	var current_waypoint_display := 0
 	if not _path_points.is_empty():
 		current_waypoint_display = min(_current_waypoint_idx + 1, _path_points.size())
-	_debug_label.text = "\n".join([
+	var lines := [
 		"PathBot Debug",
 		"Algorithm: %s" % _get_algorithm_name(),
 		"Backend: %s" % ("Remote Python API" if _using_remote_path or _remote_request_in_flight else "Local GDScript"),
@@ -678,8 +775,61 @@ func _update_debug_overlay() -> void:
 		"Path nodes: %d" % _path_node_ids.size(),
 		"Path cost: %.2f" % _path_total_cost,
 		"Waypoint: %d / %d" % [current_waypoint_display, _path_points.size()],
-		"Hotkeys: 1=A*  2=BFS  3=DFS  7/8=speed  F3=overlay  H=highlight",
-	])
+		"Hotkeys: 1=A*  2=BFS  3=DFS  4=UCS  5=Greedy  6=IDDFS",
+		"         P=benchmark all  7/8=speed  F3=overlay  H=highlight",
+	]
+	if _benchmark_summary_text != "":
+		lines.append("")
+		lines.append(_benchmark_summary_text)
+	_debug_label.text = "\n".join(lines)
+
+
+func _format_benchmark_summary(payload: Dictionary) -> String:
+	var header := "Benchmark Summary"
+	var meta := "Graph: %d nodes, %d directed edges | Start->Goal: %d -> %d" % [
+		int(payload.get("graph_node_count", 0)),
+		int(payload.get("graph_edge_count", 0)),
+		int(payload.get("start_id", -1)),
+		int(payload.get("goal_id", -1)),
+	]
+	var lines := [
+		header,
+		meta,
+		"Algo     Found  Time(ms)  PathNodes  Cost     VisitedN  VisitedE  Discovered",
+	]
+	for row_variant in payload.get("rows", []):
+		var row: Dictionary = row_variant
+		var algo := _pad_right(str(row.get("algorithm", "")), 8)
+		var found := _pad_right("yes" if bool(row.get("found", false)) else "no", 6)
+		var elapsed := _pad_left("%.2f" % float(row.get("elapsed_ms", 0.0)), 8)
+		var path_nodes := _pad_left(str(int(row.get("path_nodes", 0))), 10)
+		var cost := _pad_left("%.2f" % float(row.get("path_cost", 0.0)), 8)
+		var visited_vertices := _pad_left(str(int(row.get("visited_vertices", 0))), 9)
+		var visited_edges := _pad_left(str(int(row.get("visited_edges", 0))), 9)
+		var discovered := _pad_left(str(int(row.get("discovered_vertices", 0))), 11)
+		lines.append("%s %s %s %s %s %s %s %s" % [
+			algo,
+			found,
+			elapsed,
+			path_nodes,
+			cost,
+			visited_vertices,
+			visited_edges,
+			discovered,
+		])
+	return "\n".join(lines)
+
+
+func _pad_right(value: String, width: int) -> String:
+	if value.length() >= width:
+		return value.substr(0, width)
+	return value + " ".repeat(width - value.length())
+
+
+func _pad_left(value: String, width: int) -> String:
+	if value.length() >= width:
+		return value.substr(0, width)
+	return " ".repeat(width - value.length()) + value
 
 
 func _adjust_search_speed(delta_steps: int) -> void:

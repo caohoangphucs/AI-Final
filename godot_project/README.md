@@ -27,6 +27,10 @@ cd /home/phuchoangsrc/AI/final/godot_project
 - `1`: đổi PathBot sang `A*`
 - `2`: đổi PathBot sang `BFS`
 - `3`: đổi PathBot sang `DFS`
+- `4`: đổi PathBot sang `UCS`
+- `5`: đổi PathBot sang `Greedy`
+- `6`: đổi PathBot sang `IDDFS`
+- `P`: chạy benchmark toàn bộ thuật toán và hiện bảng so sánh
 - `7`: giảm tốc độ duyệt của PathBot
 - `8`: tăng tốc độ duyệt của PathBot
 - `F3`: bật/tắt overlay debug của PathBot
