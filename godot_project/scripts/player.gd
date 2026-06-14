@@ -17,8 +17,8 @@ var _fly_mode := true
 
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	print("Player: fly mode ON | F toggle fly | X toggle campus model")
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	print("Player: fly mode ON | F toggle fly | X toggle campus model | click game view to capture mouse")
 
 
 func _unhandled_input(event: InputEvent) -> void:

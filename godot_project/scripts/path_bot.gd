@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+signal comparison_ready(rows: Array)
+signal search_result_ready(result: Dictionary)
+
 const BOT_SPEED := 4.5
 const WAYPOINT_REACHED_DIST := 0.22
 const MARKER_HEIGHT := 0.4
@@ -7,9 +10,20 @@ const MARKER_SCALE := Vector3(0.5, 0.5, 0.5)
 const PATH_MARKER_SCALE := Vector3(0.62, 0.62, 0.62)
 const MIN_SEARCH_STEPS_PER_TICK := 1
 const MAX_SEARCH_STEPS_PER_TICK := 64
-const USE_REMOTE_SOLVER := true
+const FRONTIER_QUEUE_COMPACT_INTERVAL := 256
+const DEBUG_OVERLAY_REFRESH_SEC := 0.12
+const MAX_FRONTIER_MARKERS_DRAW := 1200
+const MAX_CLOSED_MARKERS_DRAW := 1800
+const MAX_SEARCH_LINE_SEGMENTS_DRAW := 900
+const SINGLE_RUN_TICKS_PER_SEC := 30.0
+const SINGLE_RUN_TICK_DELAY := 1.0 / SINGLE_RUN_TICKS_PER_SEC
+const RUN_ALL_TICKS_PER_SEC := 40.0
+const RUN_ALL_TICK_DELAY := 1.0 / RUN_ALL_TICKS_PER_SEC
+const RUN_ALL_STEPS_PER_TICK := MAX_SEARCH_STEPS_PER_TICK
+const RUN_ALL_VISUAL_UPDATE_INTERVAL := 32
 const EDGE_LENGTH_WEIGHT := 1.0
 const ASCENT_COST_WEIGHT := 4.0
+const ALL_ALGORITHMS_ID := -1
 
 enum SearchAlgorithm {
 	ASTAR,
@@ -20,15 +34,20 @@ enum SearchAlgorithm {
 	IDDFS,
 }
 
+const ALGORITHM_SEQUENCE := [
+	SearchAlgorithm.ASTAR,
+	SearchAlgorithm.BFS,
+	SearchAlgorithm.DFS,
+	SearchAlgorithm.UCS,
+	SearchAlgorithm.GREEDY,
+]
+
 @export var start_marker_path: NodePath
 @export var goal_marker_path: NodePath
-@export_range(1, 64, 1) var search_steps_per_tick := 2
-@export_range(0.01, 1.0, 0.01) var search_tick_delay := 0.08
-@export_range(1, 64, 1) var visual_update_interval := 1
+@export_range(1, 64, 1) var search_steps_per_tick := 30
+@export_range(0.01, 1.0, 0.01) var search_tick_delay := SINGLE_RUN_TICK_DELAY
+@export_range(1, 64, 1) var visual_update_interval := 10
 @export_enum("A*", "BFS", "DFS", "UCS", "Greedy", "IDDFS") var search_algorithm: int = SearchAlgorithm.ASTAR
-@export var remote_solver_url := "http://127.0.0.1:8000/solve-path"
-@export var remote_benchmark_url := "http://127.0.0.1:8000/benchmark-path"
-@export_range(1.0, 60.0, 0.5) var remote_solver_timeout_sec := 10.0
 
 @onready var debug_root: Node3D = $Debug
 @onready var all_nodes_markers: MultiMeshInstance3D = $Debug/AllNodesMarkers
@@ -38,12 +57,15 @@ enum SearchAlgorithm {
 @onready var search_lines: MeshInstance3D = $Debug/SearchLines
 @onready var path_lines: MeshInstance3D = $Debug/PathLines
 @onready var traveled_lines: MeshInstance3D = $Debug/TraveledLines
+@onready var body_mesh: MeshInstance3D = $BodyMesh
 
 var _all_nodes_dim_material: StandardMaterial3D
 var _all_nodes_highlight_material: StandardMaterial3D
+var _body_material: StandardMaterial3D
 var _graph_positions: Dictionary = {}
 var _graph_neighbors: Dictionary = {}
 var _search_frontier: Array[int] = []
+var _priority_frontier_heap: Array = []
 var _frontier_membership: Dictionary = {}
 var _search_closed_order: Array[int] = []
 var _closed_membership: Dictionary = {}
@@ -62,32 +84,50 @@ var _current_waypoint_idx := 0
 var _visual_tick := 0
 var _last_reported_waypoint := -1
 var _search_tick_timer := 0.0
+var _frontier_queue_head := 0
+var _debug_overlay_refresh_accum := 0.0
 var _all_nodes_highlighted := true
 var _debug_canvas: CanvasLayer
+var _debug_panel: PanelContainer
 var _debug_label: Label
 var _debug_overlay_visible := true
+var _debug_overlay_dirty := true
 var _visited_vertex_count := 0
 var _visited_edge_count := 0
 var _discovered_vertex_count := 0
 var _path_total_cost := 0.0
-var _using_remote_path := false
-var _remote_request_in_flight := false
-var _http_request: HTTPRequest
-var _benchmark_request_in_flight := false
-var _benchmark_http_request: HTTPRequest
-var _benchmark_summary_text := ""
+var _awaiting_algorithm_selection := true
+var _run_all_mode := false
+var _run_all_queue: Array[int] = []
+var _comparison_rows: Array[Dictionary] = []
+var _current_search_started_usec := 0
+var _skip_path_follow := false
+var _default_search_tick_delay := 0.0
+var _default_search_steps_per_tick := 0
+var _default_visual_update_interval := 0
+var _start_highlight: MeshInstance3D
+var _goal_highlight: MeshInstance3D
 
 
 func _ready() -> void:
 	debug_root.top_level = true
 	debug_root.global_transform = Transform3D.IDENTITY
+	_default_search_tick_delay = search_tick_delay
+	_default_search_steps_per_tick = search_steps_per_tick
+	_default_visual_update_interval = visual_update_interval
 	_load_navigation_graph()
 	_setup_debug_meshes()
 	_setup_debug_overlay()
-	_setup_http_request()
 	_snap_to_start()
-	_begin_search()
-	print("PathBot: 1=A*, 2=BFS, 3=DFS, 4=UCS, 5=Greedy, 6=IDDFS, P=benchmark all, F3=toggle debug info, H=highlight all nodes")
+	_init_goal_marker()
+	_update_highlight_positions()
+	print("PathBot: chọn một thuật toán từ bảng hoặc nhấn 1-6, F3 để bật/tắt debug, H để tô sáng node")
+
+
+func _init_goal_marker() -> void:
+	var goal_marker := get_node_or_null(goal_marker_path) as Marker3D
+	if goal_marker:
+		_search_goal_id = _snap_marker_to_nearest_node(goal_marker, "goal")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -114,8 +154,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_set_search_algorithm(SearchAlgorithm.GREEDY)
 			KEY_6:
 				_set_search_algorithm(SearchAlgorithm.IDDFS)
-			KEY_P:
-				_run_remote_benchmark()
+			KEY_0:
+				start_search_with_all()
 			KEY_7:
 				_adjust_search_speed(-1)
 			KEY_8:
@@ -123,16 +163,19 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not _search_finished and not _using_remote_path:
+	if _awaiting_algorithm_selection:
+		_refresh_debug_overlay_if_needed(delta)
+		return
+	if not _search_finished:
 		_search_tick_timer += delta
 		if _search_tick_timer >= search_tick_delay:
 			_search_tick_timer = 0.0
 			_step_search()
-	elif _path_found:
+	elif _path_found and not _skip_path_follow:
 		_follow_path(delta)
 	else:
 		velocity = Vector3.ZERO
-	_update_debug_overlay()
+	_refresh_debug_overlay_if_needed(delta)
 
 
 func _setup_debug_meshes() -> void:
@@ -145,10 +188,29 @@ func _setup_debug_meshes() -> void:
 	path_markers.multimesh = _create_multimesh(cube, node_capacity)
 	_all_nodes_dim_material = _make_unshaded_material(Color(0.7, 0.9, 1.0, 0.45), true)
 	_all_nodes_highlight_material = _make_unshaded_material(Color(1.0, 0.98, 0.2, 1.0), true)
+	_body_material = _make_unshaded_material(_get_algorithm_color(search_algorithm))
+	body_mesh.material_override = _body_material
 	all_nodes_markers.material_override = _all_nodes_highlight_material if _all_nodes_highlighted else _all_nodes_dim_material
-	frontier_markers.material_override = _make_unshaded_material(Color(1.0, 0.58, 0.15, 1.0))
-	closed_markers.material_override = _make_unshaded_material(Color(1.0, 0.2, 0.2, 1.0))
-	path_markers.material_override = _make_unshaded_material(Color(0.15, 0.85, 1.0, 1.0))
+	
+	_start_highlight = MeshInstance3D.new()
+	var start_mesh := CylinderMesh.new()
+	start_mesh.top_radius = 0.6
+	start_mesh.bottom_radius = 0.6
+	start_mesh.height = 2.0
+	_start_highlight.mesh = start_mesh
+	_start_highlight.material_override = _make_unshaded_material(Color(0.2, 1.0, 0.2, 0.6), true)
+	debug_root.add_child(_start_highlight)
+	
+	_goal_highlight = MeshInstance3D.new()
+	var goal_mesh := CylinderMesh.new()
+	goal_mesh.top_radius = 0.6
+	goal_mesh.bottom_radius = 0.6
+	goal_mesh.height = 2.0
+	_goal_highlight.mesh = goal_mesh
+	_goal_highlight.material_override = _make_unshaded_material(Color(1.0, 0.2, 0.2, 0.6), true)
+	debug_root.add_child(_goal_highlight)
+	
+	_apply_algorithm_visual_theme(search_algorithm)
 	_refresh_all_nodes_visual()
 
 
@@ -158,39 +220,53 @@ func _setup_debug_overlay() -> void:
 	_debug_canvas.visible = _debug_overlay_visible
 	add_child(_debug_canvas)
 
+	_debug_panel = PanelContainer.new()
+	var panel_style := StyleBoxFlat.new()
+	panel_style.bg_color = Color(0.04, 0.07, 0.11, 0.88)
+	panel_style.border_width_left = 2
+	panel_style.border_width_top = 2
+	panel_style.border_width_right = 2
+	panel_style.border_width_bottom = 2
+	panel_style.border_color = Color(0.42, 0.68, 0.98, 0.95)
+	panel_style.corner_radius_top_left = 16
+	panel_style.corner_radius_top_right = 16
+	panel_style.corner_radius_bottom_right = 16
+	panel_style.corner_radius_bottom_left = 16
+	_debug_panel.add_theme_stylebox_override("panel", panel_style)
+	_debug_panel.custom_minimum_size = Vector2(760.0, 118.0)
+	_debug_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_debug_canvas.add_child(_debug_panel)
+
+	var debug_margin := MarginContainer.new()
+	debug_margin.add_theme_constant_override("margin_left", 18)
+	debug_margin.add_theme_constant_override("margin_top", 12)
+	debug_margin.add_theme_constant_override("margin_right", 18)
+	debug_margin.add_theme_constant_override("margin_bottom", 12)
+	debug_margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_debug_panel.add_child(debug_margin)
+
 	_debug_label = Label.new()
-	_debug_label.position = Vector2(max(get_viewport().get_visible_rect().size.x - 536.0, 16.0), 16.0)
-	_debug_label.size = Vector2(520.0, 260.0)
+	_debug_label.size = Vector2(724.0, 94.0)
 	_debug_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	_debug_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	_debug_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
-	_debug_label.add_theme_font_size_override("font_size", 15)
+	_debug_label.add_theme_font_size_override("font_size", 14)
 	_debug_label.add_theme_color_override("font_color", Color(0.95, 0.98, 1.0, 1.0))
-	_debug_label.add_theme_color_override("font_shadow_color", Color(0.02, 0.03, 0.05, 0.95))
-	_debug_label.add_theme_constant_override("shadow_offset_x", 1)
-	_debug_label.add_theme_constant_override("shadow_offset_y", 1)
-	_debug_canvas.add_child(_debug_label)
+	_debug_label.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.92))
+	_debug_label.add_theme_constant_override("shadow_offset_x", 2)
+	_debug_label.add_theme_constant_override("shadow_offset_y", 2)
+	_debug_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	debug_margin.add_child(_debug_label)
 	get_viewport().size_changed.connect(_update_debug_overlay_layout)
 	_update_debug_overlay_layout()
 
 
 func _update_debug_overlay_layout() -> void:
-	if _debug_label == null:
+	if _debug_panel == null:
 		return
-	var viewport_width: float = get_viewport().get_visible_rect().size.x
-	_debug_label.position = Vector2(maxf(viewport_width - _debug_label.size.x - 16.0, 16.0), 16.0)
-
-
-func _setup_http_request() -> void:
-	_http_request = HTTPRequest.new()
-	_http_request.timeout = remote_solver_timeout_sec
-	add_child(_http_request)
-	_http_request.request_completed.connect(_on_remote_request_completed)
-
-	_benchmark_http_request = HTTPRequest.new()
-	_benchmark_http_request.timeout = remote_solver_timeout_sec
-	add_child(_benchmark_http_request)
-	_benchmark_http_request.request_completed.connect(_on_benchmark_request_completed)
+	var viewport_size := get_viewport().get_visible_rect().size
+	var panel_size := _debug_panel.custom_minimum_size
+	_debug_panel.position = Vector2(16.0, 16.0)
 
 
 func _create_multimesh(mesh: Mesh, capacity: int) -> MultiMesh:
@@ -227,9 +303,9 @@ func _load_navigation_graph() -> void:
 func _snap_to_start() -> void:
 	var start_marker := get_node_or_null(start_marker_path) as Marker3D
 	if start_marker:
-		var start_id := _snap_marker_to_nearest_node(start_marker, "start")
-		if start_id != -1:
-			global_position = _graph_positions[start_id]
+		_search_start_id = _snap_marker_to_nearest_node(start_marker, "start")
+		if _search_start_id != -1:
+			global_position = _graph_positions[_search_start_id]
 		else:
 			global_position = start_marker.global_position
 		_travel_points = [global_position + Vector3(0.0, 0.1, 0.0)]
@@ -250,14 +326,45 @@ func _begin_search() -> void:
 		push_error("Could not resolve start/goal nodes")
 		return
 
+	_awaiting_algorithm_selection = false
+	_update_highlight_positions()
 	_reset_search_state()
-	if USE_REMOTE_SOLVER and _start_remote_search_request():
-		return
+	_apply_algorithm_visual_theme(search_algorithm)
 	_start_local_search()
+
+
+func _update_highlight_positions() -> void:
+	if _start_highlight != null and _search_start_id != -1:
+		_start_highlight.global_position = _graph_positions[_search_start_id] + Vector3(0.0, 1.0, 0.0)
+	if _goal_highlight != null and _search_goal_id != -1:
+		_goal_highlight.global_position = _graph_positions[_search_goal_id] + Vector3(0.0, 1.0, 0.0)
+
+
+func set_custom_start(pos: Vector3) -> void:
+	var start_marker := get_node_or_null(start_marker_path) as Marker3D
+	if start_marker:
+		start_marker.global_position = pos
+		var id := _snap_marker_to_nearest_node(start_marker, "start")
+		if _start_highlight != null and id != -1:
+			_start_highlight.global_position = _graph_positions[id] + Vector3(0.0, 1.0, 0.0)
+	if not _awaiting_algorithm_selection:
+		_begin_search()
+
+
+func set_custom_goal(pos: Vector3) -> void:
+	var goal_marker := get_node_or_null(goal_marker_path) as Marker3D
+	if goal_marker:
+		goal_marker.global_position = pos
+		var id := _snap_marker_to_nearest_node(goal_marker, "goal")
+		if _goal_highlight != null and id != -1:
+			_goal_highlight.global_position = _graph_positions[id] + Vector3(0.0, 1.0, 0.0)
+	if not _awaiting_algorithm_selection:
+		_begin_search()
 
 
 func _reset_search_state() -> void:
 	_search_frontier.clear()
+	_priority_frontier_heap.clear()
 	_frontier_membership.clear()
 	_search_closed_order.clear()
 	_closed_membership.clear()
@@ -274,154 +381,28 @@ func _reset_search_state() -> void:
 	_path_found = false
 	_visual_tick = 0
 	_search_tick_timer = 0.0
+	_frontier_queue_head = 0
+	_debug_overlay_refresh_accum = 0.0
+	_debug_overlay_dirty = true
 	_visited_vertex_count = 0
 	_visited_edge_count = 0
 	_discovered_vertex_count = 0
-	_using_remote_path = false
-	_remote_request_in_flight = false
 	velocity = Vector3.ZERO
 	global_position = _graph_positions[_search_start_id]
 	_travel_points = [global_position + Vector3(0.0, 0.1, 0.0)]
+	_current_search_started_usec = Time.get_ticks_usec()
 
 
 func _start_local_search() -> void:
-	_using_remote_path = false
 	if search_algorithm == SearchAlgorithm.IDDFS:
-		print("PathBot: local fallback for IDDFS uses DFS; full IDDFS runs on Python service")
+		print("PathBot: searching from node %d to node %d with %s" % [_search_start_id, _search_goal_id, _get_algorithm_name()])
+		_run_iddfs_search()
+		return
 
 	_g_score[_search_start_id] = 0.0
 	_f_score[_search_start_id] = _frontier_priority(_search_start_id, 0.0)
 	_push_frontier(_search_start_id)
 	print("PathBot: searching from node %d to node %d with %s" % [_search_start_id, _search_goal_id, _get_algorithm_name()])
-	_refresh_debug_visuals()
-
-
-func _start_remote_search_request() -> bool:
-	if _http_request == null:
-		return false
-
-	var payload := JSON.stringify({
-		"start_id": _search_start_id,
-		"goal_id": _search_goal_id,
-		"algorithm": _get_algorithm_slug(),
-	})
-	var err := _http_request.request(
-		remote_solver_url,
-		["Content-Type: application/json"],
-		HTTPClient.METHOD_POST,
-		payload,
-	)
-	if err != OK:
-		print("PathBot: remote solver unavailable (request error %d), falling back to local search" % err)
-		return false
-
-	_using_remote_path = true
-	_remote_request_in_flight = true
-	print("PathBot: requesting remote %s path from node %d to node %d" % [_get_algorithm_name(), _search_start_id, _search_goal_id])
-	_refresh_debug_visuals()
-	return true
-
-
-func _run_remote_benchmark() -> void:
-	if not USE_REMOTE_SOLVER:
-		print("PathBot: benchmark requires remote solver")
-		return
-	if _benchmark_http_request == null or _remote_request_in_flight or _benchmark_request_in_flight:
-		print("PathBot: benchmark request is busy")
-		return
-	if _search_start_id == -1 or _search_goal_id == -1:
-		print("PathBot: benchmark unavailable until start/goal are resolved")
-		return
-
-	var payload := JSON.stringify({
-		"start_id": _search_start_id,
-		"goal_id": _search_goal_id,
-	})
-	var err := _benchmark_http_request.request(
-		remote_benchmark_url,
-		["Content-Type: application/json"],
-		HTTPClient.METHOD_POST,
-		payload,
-	)
-	if err != OK:
-		print("PathBot: benchmark request error %d" % err)
-		return
-
-	_benchmark_request_in_flight = true
-	_benchmark_summary_text = "Benchmark: running all algorithms..."
-	print("PathBot: benchmarking all algorithms from node %d to node %d" % [_search_start_id, _search_goal_id])
-	_update_debug_overlay()
-
-
-func _on_remote_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	if not _remote_request_in_flight:
-		return
-	_remote_request_in_flight = false
-
-	if result != HTTPRequest.RESULT_SUCCESS or response_code < 200 or response_code >= 300:
-		print("PathBot: remote solver failed (result=%d, status=%d), falling back to local search" % [result, response_code])
-		_reset_search_state()
-		_start_local_search()
-		return
-
-	var body_text := body.get_string_from_utf8()
-	var parsed: Variant = JSON.parse_string(body_text)
-	if typeof(parsed) != TYPE_DICTIONARY:
-		print("PathBot: remote solver returned invalid JSON, falling back to local search")
-		_reset_search_state()
-		_start_local_search()
-		return
-
-	_apply_remote_solution(parsed)
-
-
-func _on_benchmark_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	_benchmark_request_in_flight = false
-
-	if result != HTTPRequest.RESULT_SUCCESS or response_code < 200 or response_code >= 300:
-		_benchmark_summary_text = "Benchmark: request failed (result=%d, status=%d)" % [result, response_code]
-		print("PathBot: benchmark failed (result=%d, status=%d)" % [result, response_code])
-		_update_debug_overlay()
-		return
-
-	var body_text := body.get_string_from_utf8()
-	var parsed: Variant = JSON.parse_string(body_text)
-	if typeof(parsed) != TYPE_DICTIONARY:
-		_benchmark_summary_text = "Benchmark: invalid JSON response"
-		print("PathBot: benchmark returned invalid JSON")
-		_update_debug_overlay()
-		return
-
-	_benchmark_summary_text = _format_benchmark_summary(parsed)
-	print("PathBot: benchmark complete")
-	_update_debug_overlay()
-
-
-func _apply_remote_solution(payload: Dictionary) -> void:
-	_using_remote_path = true
-	_search_started = true
-	_search_finished = true
-	_path_found = bool(payload.get("found", false))
-	_visited_vertex_count = int(payload.get("visited_vertices", 0))
-	_visited_edge_count = int(payload.get("visited_edges", 0))
-	_discovered_vertex_count = int(payload.get("discovered_vertices", 0))
-	_path_total_cost = float(payload.get("path_cost", 0.0))
-	_path_node_ids.clear()
-	_path_points.clear()
-	_current_waypoint_idx = 0
-	_last_reported_waypoint = -1
-
-	for node_id_variant in payload.get("path_node_ids", []):
-		_path_node_ids.append(int(node_id_variant))
-
-	if _path_found:
-		for node_id in _path_node_ids:
-			var p: Vector3 = _graph_positions.get(node_id, Vector3.ZERO)
-			_path_points.append(Vector3(p.x, p.y + 0.1, p.z))
-		print("PathBot: remote %s path found with %d nodes, cost %.2f" % [_get_algorithm_name(), _path_node_ids.size(), _path_total_cost])
-	else:
-		print("PathBot: remote solver returned no path")
-
 	_refresh_debug_visuals()
 
 
@@ -436,14 +417,15 @@ func _snap_marker_to_nearest_node(marker: Marker3D, label: String) -> int:
 
 
 func _step_search() -> void:
-	if not _search_started:
+	if not _search_started or search_algorithm == SearchAlgorithm.IDDFS:
 		return
 	for _i in range(search_steps_per_tick):
-		if _search_frontier.is_empty():
+		if _frontier_membership.is_empty():
 			_search_finished = true
 			_path_found = false
 			print("PathBot: no path found")
 			_refresh_debug_visuals()
+			_on_search_complete()
 			return
 
 		var current_id := _pop_frontier_node()
@@ -452,6 +434,7 @@ func _step_search() -> void:
 			_path_found = false
 			print("PathBot: search aborted")
 			_refresh_debug_visuals()
+			_on_search_complete()
 			return
 
 		_closed_membership[current_id] = true
@@ -474,8 +457,7 @@ func _step_search() -> void:
 						_came_from[neighbor_id] = current_id
 						_g_score[neighbor_id] = tentative_g
 						_f_score[neighbor_id] = _frontier_priority(neighbor_id, tentative_g)
-						if not _frontier_membership.has(neighbor_id):
-							_push_frontier(neighbor_id)
+						_push_frontier(neighbor_id)
 				SearchAlgorithm.BFS, SearchAlgorithm.DFS, SearchAlgorithm.IDDFS:
 					if _frontier_membership.has(neighbor_id) or neighbor_id == _search_start_id or _came_from.has(neighbor_id):
 						continue
@@ -488,36 +470,168 @@ func _step_search() -> void:
 			_refresh_debug_visuals()
 
 
+func _run_iddfs_search() -> void:
+	var max_depth := _graph_positions.size()
+	var found := false
+	_search_closed_order.clear()
+	_closed_membership.clear()
+	_frontier_membership.clear()
+	_search_frontier.clear()
+	_came_from.clear()
+	_g_score.clear()
+
+	var ops := 0
+	for depth_limit in range(max_depth + 1):
+		var iteration_closed: Array[int] = []
+		var iteration_parents: Dictionary = {}
+		var depth_seen: Dictionary = {_search_start_id: 0}
+		var path_membership: Dictionary = {_search_start_id: true}
+		var stack: Array[Dictionary] = [{
+			"id": _search_start_id,
+			"depth": 0,
+			"next_index": 0,
+			"entered": false,
+		}]
+		_discovered_vertex_count += 1
+
+		while not stack.is_empty():
+			if not _search_started or _awaiting_algorithm_selection:
+				return
+				
+			ops += 1
+			if ops >= search_steps_per_tick:
+				ops = 0
+				if search_tick_delay > 0:
+					await get_tree().create_timer(search_tick_delay).timeout
+				else:
+					await get_tree().process_frame
+
+			_visual_tick += 1
+			if _visual_tick % visual_update_interval == 0:
+				_refresh_debug_visuals()
+
+			var frame: Dictionary = stack[stack.size() - 1]
+			var current_id: int = int(frame["id"])
+			var current_depth: int = int(frame["depth"])
+			var entered: bool = bool(frame["entered"])
+
+			if not entered:
+				frame["entered"] = true
+				stack[stack.size() - 1] = frame
+				_visited_vertex_count += 1
+				iteration_closed.append(current_id)
+				if current_id == _search_goal_id:
+					_came_from = iteration_parents.duplicate()
+					_search_closed_order = iteration_closed.duplicate()
+					for visited_id in _search_closed_order:
+						_closed_membership[int(visited_id)] = true
+					found = true
+					break
+			if current_depth >= depth_limit:
+				path_membership.erase(current_id)
+				stack.pop_back()
+				continue
+
+			var neighbors: Array = _graph_neighbors.get(current_id, [])
+			var next_index: int = int(frame["next_index"])
+			if next_index >= neighbors.size():
+				path_membership.erase(current_id)
+				stack.pop_back()
+				continue
+
+			var neighbor_id := int(neighbors[next_index])
+			frame["next_index"] = next_index + 1
+			stack[stack.size() - 1] = frame
+			_visited_edge_count += 1
+
+			if path_membership.has(neighbor_id):
+				continue
+
+			var neighbor_depth := current_depth + 1
+			if neighbor_depth > depth_limit:
+				continue
+
+			var known_depth: int = int(depth_seen.get(neighbor_id, max_depth + 1))
+			if neighbor_depth >= known_depth:
+				continue
+
+			depth_seen[neighbor_id] = neighbor_depth
+			iteration_parents[neighbor_id] = current_id
+			path_membership[neighbor_id] = true
+			_discovered_vertex_count += 1
+			stack.append({
+				"id": neighbor_id,
+				"depth": neighbor_depth,
+				"next_index": 0,
+				"entered": false,
+			})
+
+		if found:
+			break
+
+		_search_closed_order = iteration_closed.duplicate()
+		_closed_membership.clear()
+		for visited_id in _search_closed_order:
+			_closed_membership[int(visited_id)] = true
+		_refresh_debug_visuals()
+
+	if found:
+		_finalize_path()
+		return
+
+	_search_finished = true
+	_path_found = false
+	print("PathBot: no path found")
+	_refresh_debug_visuals()
+	_on_search_complete()
+
+
 func _push_frontier(node_id: int) -> void:
-	_search_frontier.append(node_id)
+	var is_new := not _frontier_membership.has(node_id)
 	_frontier_membership[node_id] = true
-	_discovered_vertex_count += 1
+	if _uses_priority_frontier():
+		_heap_push(float(_f_score.get(node_id, INF)), node_id)
+	else:
+		_search_frontier.append(node_id)
+	if is_new:
+		_discovered_vertex_count += 1
 
 
 func _pop_frontier_node() -> int:
-	if _search_frontier.is_empty():
+	if _frontier_membership.is_empty():
 		return -1
 
 	var picked_id := -1
 	match search_algorithm:
 		SearchAlgorithm.ASTAR, SearchAlgorithm.UCS, SearchAlgorithm.GREEDY:
-			var best_idx := -1
-			var best_score := INF
-			for i in range(_search_frontier.size()):
-				var node_id := int(_search_frontier[i])
-				var score := float(_f_score.get(node_id, INF))
-				if score < best_score:
-					best_score = score
-					best_idx = i
-			if best_idx != -1:
-				picked_id = int(_search_frontier[best_idx])
-				_search_frontier.remove_at(best_idx)
+			while not _priority_frontier_heap.is_empty():
+				var entry: Array = _heap_pop()
+				var candidate_id := int(entry[1])
+				if not _frontier_membership.has(candidate_id):
+					continue
+				picked_id = candidate_id
+				break
 		SearchAlgorithm.BFS:
-			picked_id = int(_search_frontier.pop_front())
+			while _frontier_queue_head < _search_frontier.size():
+				var candidate_id := int(_search_frontier[_frontier_queue_head])
+				_frontier_queue_head += 1
+				if not _frontier_membership.has(candidate_id):
+					continue
+				picked_id = candidate_id
+				break
+			if _frontier_queue_head >= FRONTIER_QUEUE_COMPACT_INTERVAL and _frontier_queue_head * 2 >= _search_frontier.size():
+				_search_frontier = _search_frontier.slice(_frontier_queue_head)
+				_frontier_queue_head = 0
 		SearchAlgorithm.DFS, SearchAlgorithm.IDDFS:
-			picked_id = int(_search_frontier.pop_back())
+			while not _search_frontier.is_empty():
+				var candidate_id := int(_search_frontier.pop_back())
+				if not _frontier_membership.has(candidate_id):
+					continue
+				picked_id = candidate_id
+				break
 
-	_frontier_membership.erase(picked_id)
+	if picked_id != -1:
+		_frontier_membership.erase(picked_id)
 	return picked_id
 
 
@@ -536,6 +650,8 @@ func _finalize_path() -> void:
 	_last_reported_waypoint = -1
 	print("PathBot: %s path found with %d nodes, cost %.2f" % [_get_algorithm_name(), _path_node_ids.size(), _path_total_cost])
 	_refresh_debug_visuals()
+	_emit_single_search_result()
+	_on_search_complete()
 
 
 func _reconstruct_path(goal_id: int) -> Array[int]:
@@ -622,7 +738,7 @@ func _refresh_debug_visuals() -> void:
 	_refresh_path_visuals()
 	_refresh_search_lines()
 	_refresh_traveled_visual()
-	_update_debug_overlay()
+	_request_debug_overlay_refresh()
 
 
 func _refresh_all_nodes_visual() -> void:
@@ -634,13 +750,12 @@ func _refresh_all_nodes_visual() -> void:
 
 
 func _refresh_frontier_markers() -> void:
-	var ids: Array = _search_frontier.duplicate()
-	ids.sort()
+	var ids: Array = _sample_node_ids(_frontier_node_ids(), MAX_FRONTIER_MARKERS_DRAW)
 	_apply_marker_instances(frontier_markers.multimesh, ids, MARKER_SCALE)
 
 
 func _refresh_closed_markers() -> void:
-	_apply_marker_instances(closed_markers.multimesh, _search_closed_order, MARKER_SCALE)
+	_apply_marker_instances(closed_markers.multimesh, _sample_node_ids(_search_closed_order, MAX_CLOSED_MARKERS_DRAW), MARKER_SCALE)
 
 
 func _refresh_path_visuals() -> void:
@@ -654,7 +769,8 @@ func _refresh_traveled_visual() -> void:
 
 func _refresh_search_lines() -> void:
 	var points: Array[Vector3] = []
-	for node_id in _search_frontier:
+	var frontier_ids: Array = _sample_node_ids(_frontier_node_ids(), MAX_SEARCH_LINE_SEGMENTS_DRAW)
+	for node_id in frontier_ids:
 		if not _came_from.has(node_id):
 			continue
 		var from_id := int(_came_from[node_id])
@@ -700,12 +816,187 @@ func _make_unshaded_material(color: Color, transparent := false) -> StandardMate
 	return material
 
 
-func _set_search_algorithm(next_algorithm: int) -> void:
-	if search_algorithm == next_algorithm:
+func _uses_priority_frontier() -> bool:
+	return search_algorithm == SearchAlgorithm.ASTAR or search_algorithm == SearchAlgorithm.UCS or search_algorithm == SearchAlgorithm.GREEDY
+
+
+func _heap_push(priority: float, node_id: int) -> void:
+	_priority_frontier_heap.append([priority, node_id])
+	var idx := _priority_frontier_heap.size() - 1
+	while idx > 0:
+		var parent := (idx - 1) / 2
+		parent = int(parent)
+		if float(_priority_frontier_heap[parent][0]) <= float(_priority_frontier_heap[idx][0]):
+			break
+		var temp = _priority_frontier_heap[parent]
+		_priority_frontier_heap[parent] = _priority_frontier_heap[idx]
+		_priority_frontier_heap[idx] = temp
+		idx = parent
+
+
+func _heap_pop() -> Array:
+	var top: Array = _priority_frontier_heap[0]
+	var last: Array = _priority_frontier_heap.pop_back()
+	if not _priority_frontier_heap.is_empty():
+		_priority_frontier_heap[0] = last
+		var idx := 0
+		while true:
+			var left := idx * 2 + 1
+			var right := left + 1
+			var smallest := idx
+			if left < _priority_frontier_heap.size() and float(_priority_frontier_heap[left][0]) < float(_priority_frontier_heap[smallest][0]):
+				smallest = left
+			if right < _priority_frontier_heap.size() and float(_priority_frontier_heap[right][0]) < float(_priority_frontier_heap[smallest][0]):
+				smallest = right
+			if smallest == idx:
+				break
+			var temp = _priority_frontier_heap[idx]
+			_priority_frontier_heap[idx] = _priority_frontier_heap[smallest]
+			_priority_frontier_heap[smallest] = temp
+			idx = smallest
+	return top
+
+
+func _frontier_node_ids() -> Array:
+	var ids: Array = []
+	for node_id_variant in _frontier_membership.keys():
+		ids.append(int(node_id_variant))
+	return ids
+
+
+func _sample_node_ids(node_ids: Array, max_count: int) -> Array:
+	if node_ids.size() <= max_count:
+		return node_ids
+	var sampled: Array = []
+	var step := float(node_ids.size()) / float(max_count)
+	var cursor := 0.0
+	while sampled.size() < max_count:
+		var idx := mini(int(cursor), node_ids.size() - 1)
+		sampled.append(node_ids[idx])
+		cursor += step
+	return sampled
+
+
+func _request_debug_overlay_refresh() -> void:
+	_debug_overlay_dirty = true
+
+
+func _refresh_debug_overlay_if_needed(delta: float, force := false) -> void:
+	if _debug_label == null or not _debug_overlay_visible:
 		return
+	_debug_overlay_refresh_accum += delta
+	if force or _debug_overlay_dirty or _debug_overlay_refresh_accum >= DEBUG_OVERLAY_REFRESH_SEC:
+		_debug_overlay_refresh_accum = 0.0
+		_update_debug_overlay()
+		_debug_overlay_dirty = false
+
+
+func _set_search_algorithm(next_algorithm: int) -> void:
+	if search_algorithm == next_algorithm and not _awaiting_algorithm_selection:
+		return
+	_run_all_mode = false
+	_run_all_queue.clear()
+	_comparison_rows.clear()
+	_skip_path_follow = false
+	search_tick_delay = SINGLE_RUN_TICK_DELAY
+	search_steps_per_tick = _default_search_steps_per_tick
+	visual_update_interval = _default_visual_update_interval
 	search_algorithm = next_algorithm
 	print("PathBot: switched algorithm to %s" % _get_algorithm_name())
 	_begin_search()
+
+
+func start_search_with_algorithm(next_algorithm: int) -> void:
+	_set_search_algorithm(next_algorithm)
+
+
+func return_to_menu_state() -> void:
+	_run_all_mode = false
+	_run_all_queue.clear()
+	_comparison_rows.clear()
+	_skip_path_follow = false
+	_search_started = false
+	_search_finished = true
+	_path_found = false
+	_awaiting_algorithm_selection = true
+	_search_tick_timer = 0.0
+	_frontier_queue_head = 0
+	velocity = Vector3.ZERO
+	search_tick_delay = _default_search_tick_delay
+	search_steps_per_tick = _default_search_steps_per_tick
+	visual_update_interval = _default_visual_update_interval
+	_search_frontier.clear()
+	_priority_frontier_heap.clear()
+	_frontier_membership.clear()
+	_search_closed_order.clear()
+	_closed_membership.clear()
+	_came_from.clear()
+	_g_score.clear()
+	_f_score.clear()
+	_path_node_ids.clear()
+	_path_points.clear()
+	_request_debug_overlay_refresh()
+	_refresh_debug_visuals()
+
+
+func start_search_with_all() -> void:
+	_run_all_mode = true
+	_skip_path_follow = true
+	_comparison_rows.clear()
+	search_tick_delay = RUN_ALL_TICK_DELAY
+	search_steps_per_tick = RUN_ALL_STEPS_PER_TICK
+	visual_update_interval = RUN_ALL_VISUAL_UPDATE_INTERVAL
+	_run_all_queue.clear()
+	for algorithm_id in ALGORITHM_SEQUENCE:
+		_run_all_queue.append(int(algorithm_id))
+	_start_next_algorithm_in_queue()
+
+
+func get_algorithm_menu_rows() -> Array[Dictionary]:
+	return [
+		{
+			"id": ALL_ALGORITHMS_ID,
+			"name": "Tất cả",
+			"shortcut": "0",
+			"description": "Chạy A*, BFS, DFS, UCS, Greedy và hiện bảng so sánh. IDDFS chạy riêng để tránh khóa game.",
+		},
+		{
+			"id": SearchAlgorithm.ASTAR,
+			"name": "A*",
+			"shortcut": "1",
+			"description": "Cân bằng giữa chi phí đã đi và ước lượng đến đích.",
+		},
+		{
+			"id": SearchAlgorithm.BFS,
+			"name": "BFS",
+			"shortcut": "2",
+			"description": "Duyệt theo từng lớp, hợp với đường đi ít cung.",
+		},
+		{
+			"id": SearchAlgorithm.DFS,
+			"name": "DFS",
+			"shortcut": "3",
+			"description": "Đi sâu theo nhánh, dễ quan sát cách mở rộng trạng thái.",
+		},
+		{
+			"id": SearchAlgorithm.UCS,
+			"name": "UCS",
+			"shortcut": "4",
+			"description": "Luôn mở rộng nút có chi phí tích lũy nhỏ nhất.",
+		},
+		{
+			"id": SearchAlgorithm.GREEDY,
+			"name": "Greedy",
+			"shortcut": "5",
+			"description": "Chọn nút có heuristic tốt nhất, nhanh nhưng dễ lệch hướng.",
+		},
+		{
+			"id": SearchAlgorithm.IDDFS,
+			"name": "IDDFS",
+			"shortcut": "6",
+			"description": "Lặp lại DFS với giới hạn độ sâu tăng dần.",
+		},
+	]
 
 
 func _get_algorithm_name() -> String:
@@ -725,28 +1016,98 @@ func _get_algorithm_name() -> String:
 	return "Unknown"
 
 
-func _get_algorithm_slug() -> String:
-	match search_algorithm:
+func _get_algorithm_color(algorithm_id: int) -> Color:
+	match algorithm_id:
 		SearchAlgorithm.ASTAR:
-			return "astar"
+			return Color(0.1, 0.72, 1.0, 1.0)
 		SearchAlgorithm.BFS:
-			return "bfs"
+			return Color(0.16, 0.82, 0.38, 1.0)
 		SearchAlgorithm.DFS:
-			return "dfs"
+			return Color(0.95, 0.52, 0.16, 1.0)
 		SearchAlgorithm.UCS:
-			return "ucs"
+			return Color(0.92, 0.24, 0.36, 1.0)
 		SearchAlgorithm.GREEDY:
-			return "greedy"
+			return Color(0.58, 0.34, 0.98, 1.0)
 		SearchAlgorithm.IDDFS:
-			return "iddfs"
-	return "astar"
+			return Color(0.96, 0.77, 0.12, 1.0)
+	return Color(0.15, 0.85, 1.0, 1.0)
+
+
+func _apply_algorithm_visual_theme(algorithm_id: int) -> void:
+	var accent := _get_algorithm_color(algorithm_id)
+	var frontier_color := accent.lightened(0.12)
+	var closed_color := accent.darkened(0.24)
+	var traveled_color := accent.lerp(Color(1.0, 1.0, 1.0, 1.0), 0.2)
+	if _body_material != null:
+		_body_material.albedo_color = accent
+	body_mesh.material_override = _body_material
+	frontier_markers.material_override = _make_unshaded_material(frontier_color)
+	closed_markers.material_override = _make_unshaded_material(closed_color)
+	path_markers.material_override = _make_unshaded_material(accent)
+	path_lines.mesh = _build_line_mesh(_path_points, accent)
+	search_lines.mesh = _build_line_mesh([], frontier_color)
+	traveled_lines.mesh = _build_line_mesh(_travel_points, traveled_color)
+
+
+func _start_next_algorithm_in_queue() -> void:
+	if _run_all_queue.is_empty():
+		_run_all_mode = false
+		search_tick_delay = _default_search_tick_delay
+		search_steps_per_tick = _default_search_steps_per_tick
+		visual_update_interval = _default_visual_update_interval
+		comparison_ready.emit(_comparison_rows.duplicate(true))
+		return
+	search_algorithm = int(_run_all_queue.pop_front())
+	print("PathBot: chạy thuật toán %s trong chế độ so sánh" % _get_algorithm_name())
+	_begin_search()
+
+
+func _on_search_complete() -> void:
+	if not _run_all_mode:
+		return
+	var elapsed_ms := maxf(0.0, float(Time.get_ticks_usec() - _current_search_started_usec) / 1000.0)
+	_comparison_rows.append({
+		"algorithm_id": search_algorithm,
+		"algorithm": _get_algorithm_name(),
+		"color": _get_algorithm_color(search_algorithm),
+		"found": _path_found,
+		"elapsed_ms": elapsed_ms,
+		"path_nodes": _path_node_ids.size(),
+		"path_cost": _path_total_cost,
+		"visited_vertices": _visited_vertex_count,
+		"visited_edges": _visited_edge_count,
+		"discovered_vertices": _discovered_vertex_count,
+	})
+	call_deferred("_start_next_algorithm_in_queue")
+
+
+func _emit_single_search_result() -> void:
+	if _run_all_mode or not _path_found:
+		return
+	var elapsed_ms := maxf(0.0, float(Time.get_ticks_usec() - _current_search_started_usec) / 1000.0)
+	search_result_ready.emit({
+		"algorithm_id": search_algorithm,
+		"algorithm": _get_algorithm_name(),
+		"color": _get_algorithm_color(search_algorithm),
+		"found": _path_found,
+		"elapsed_ms": elapsed_ms,
+		"path_nodes": _path_node_ids.size(),
+		"path_cost": _path_total_cost,
+		"visited_vertices": _visited_vertex_count,
+		"visited_edges": _visited_edge_count,
+		"discovered_vertices": _discovered_vertex_count,
+		"start_id": _search_start_id,
+		"goal_id": _search_goal_id,
+	})
 
 
 func _get_search_status() -> String:
+	if _awaiting_algorithm_selection:
+		return "waiting selection"
 	if not _search_started:
 		return "idle"
-	if _remote_request_in_flight:
-		return "waiting remote"
+	if _run_all_mode:
+		return "running all"
 	if _path_found and _search_finished:
 		return "path found"
 	if _search_finished:
@@ -763,73 +1124,23 @@ func _update_debug_overlay() -> void:
 	var lines := [
 		"PathBot Debug",
 		"Algorithm: %s" % _get_algorithm_name(),
-		"Backend: %s" % ("Remote Python API" if _using_remote_path or _remote_request_in_flight else "Local GDScript"),
+		"Backend: Local GDScript",
 		"Status: %s" % _get_search_status(),
 		"Start -> Goal: %d -> %d" % [_search_start_id, _search_goal_id],
 		"Visited vertices: %d" % _visited_vertex_count,
 		"Visited edges: %d" % _visited_edge_count,
 		"Discovered vertices: %d" % _discovered_vertex_count,
-		"Search speed: %d steps/tick" % search_steps_per_tick,
-		"Frontier size: %d" % _search_frontier.size(),
+		"Tick rate: %.1f ticks/s" % (1.0 / search_tick_delay if search_tick_delay > 0.0 else 0.0),
+		"Work rate: %d steps/tick" % search_steps_per_tick,
+		"Frontier size: %d" % _frontier_membership.size(),
 		"Closed size: %d" % _search_closed_order.size(),
 		"Path nodes: %d" % _path_node_ids.size(),
 		"Path cost: %.2f" % _path_total_cost,
 		"Waypoint: %d / %d" % [current_waypoint_display, _path_points.size()],
-		"Hotkeys: 1=A*  2=BFS  3=DFS  4=UCS  5=Greedy  6=IDDFS",
-		"         P=benchmark all  7/8=speed  F3=overlay  H=highlight",
+		"Hotkeys: 0=All  1=A*  2=BFS  3=DFS  4=UCS  5=Greedy  6=IDDFS",
+		"         7/8=speed  F3=overlay  H=highlight",
 	]
-	if _benchmark_summary_text != "":
-		lines.append("")
-		lines.append(_benchmark_summary_text)
 	_debug_label.text = "\n".join(lines)
-
-
-func _format_benchmark_summary(payload: Dictionary) -> String:
-	var header := "Benchmark Summary"
-	var meta := "Graph: %d nodes, %d directed edges | Start->Goal: %d -> %d" % [
-		int(payload.get("graph_node_count", 0)),
-		int(payload.get("graph_edge_count", 0)),
-		int(payload.get("start_id", -1)),
-		int(payload.get("goal_id", -1)),
-	]
-	var lines := [
-		header,
-		meta,
-		"Algo     Found  Time(ms)  PathNodes  Cost     VisitedN  VisitedE  Discovered",
-	]
-	for row_variant in payload.get("rows", []):
-		var row: Dictionary = row_variant
-		var algo := _pad_right(str(row.get("algorithm", "")), 8)
-		var found := _pad_right("yes" if bool(row.get("found", false)) else "no", 6)
-		var elapsed := _pad_left("%.2f" % float(row.get("elapsed_ms", 0.0)), 8)
-		var path_nodes := _pad_left(str(int(row.get("path_nodes", 0))), 10)
-		var cost := _pad_left("%.2f" % float(row.get("path_cost", 0.0)), 8)
-		var visited_vertices := _pad_left(str(int(row.get("visited_vertices", 0))), 9)
-		var visited_edges := _pad_left(str(int(row.get("visited_edges", 0))), 9)
-		var discovered := _pad_left(str(int(row.get("discovered_vertices", 0))), 11)
-		lines.append("%s %s %s %s %s %s %s %s" % [
-			algo,
-			found,
-			elapsed,
-			path_nodes,
-			cost,
-			visited_vertices,
-			visited_edges,
-			discovered,
-		])
-	return "\n".join(lines)
-
-
-func _pad_right(value: String, width: int) -> String:
-	if value.length() >= width:
-		return value.substr(0, width)
-	return value + " ".repeat(width - value.length())
-
-
-func _pad_left(value: String, width: int) -> String:
-	if value.length() >= width:
-		return value.substr(0, width)
-	return " ".repeat(width - value.length()) + value
 
 
 func _adjust_search_speed(delta_steps: int) -> void:
