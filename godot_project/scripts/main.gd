@@ -65,24 +65,21 @@ func _setup_hud() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			var result := _get_camera_center_raycast()
-			if not result.is_empty():
-				if _pending_selection == "start":
+		var result := _get_camera_center_raycast()
+		if not result.is_empty():
+			if _pending_selection == "start" and event.button_index == MOUSE_BUTTON_LEFT:
+				if path_bot: path_bot.call("set_custom_start", result.position)
+				_pending_selection = ""
+			elif _pending_selection == "goal" and event.button_index == MOUSE_BUTTON_RIGHT:
+				if path_bot: path_bot.call("set_custom_goal", result.position)
+				_pending_selection = ""
+			elif _pending_selection == "" or _pending_selection == "point":
+				if event.button_index == MOUSE_BUTTON_LEFT:
 					if path_bot: path_bot.call("set_custom_start", result.position)
 					_pending_selection = ""
-					_next_click_is_start = false
-				elif _pending_selection == "goal":
+				elif event.button_index == MOUSE_BUTTON_RIGHT:
 					if path_bot: path_bot.call("set_custom_goal", result.position)
 					_pending_selection = ""
-					_next_click_is_start = true
-				else:
-					if _next_click_is_start:
-						if path_bot: path_bot.call("set_custom_start", result.position)
-						_next_click_is_start = false
-					else:
-						if path_bot: path_bot.call("set_custom_goal", result.position)
-						_next_click_is_start = true
 
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
@@ -279,19 +276,12 @@ func _show_algorithm_menu() -> void:
 	header_actions.add_theme_constant_override("separation", 24)
 	content.add_child(header_actions)
 	
-	var btn_start := Button.new()
-	btn_start.text = "Chọn điểm ĐẦU (Click để ẩn menu)"
-	btn_start.custom_minimum_size = Vector2(240, 42)
-	btn_start.add_theme_color_override("font_color", Color(0.1, 0.5, 0.1))
-	btn_start.pressed.connect(_on_set_start_from_menu)
-	header_actions.add_child(btn_start)
-	
-	var btn_goal := Button.new()
-	btn_goal.text = "Chọn điểm CUỐI (Click để ẩn menu)"
-	btn_goal.custom_minimum_size = Vector2(240, 42)
-	btn_goal.add_theme_color_override("font_color", Color(0.7, 0.1, 0.1))
-	btn_goal.pressed.connect(_on_set_goal_from_menu)
-	header_actions.add_child(btn_goal)
+	var btn_select := Button.new()
+	btn_select.text = "Chọn điểm Start/End (↙ Click để ẩn menu)"
+	btn_select.custom_minimum_size = Vector2(360, 42)
+	btn_select.add_theme_color_override("font_color", Color(0.08, 0.35, 0.65))
+	btn_select.pressed.connect(_on_set_point_from_menu)
+	header_actions.add_child(btn_select)
 
 	var table_frame := PanelContainer.new()
 	var table_style := StyleBoxFlat.new()
@@ -359,6 +349,14 @@ func _on_set_goal_from_menu() -> void:
 		_algorithm_menu_layer.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	print("Main: menu closed to select goal point")
+
+
+func _on_set_point_from_menu() -> void:
+	_pending_selection = "point"
+	if is_instance_valid(_algorithm_menu_layer):
+		_algorithm_menu_layer.queue_free()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	print("Main: menu closed - click L=Start R=End to select points")
 
 
 func _on_algorithm_selected(algorithm_id: int) -> void:

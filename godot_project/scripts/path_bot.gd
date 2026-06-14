@@ -31,7 +31,7 @@ enum SearchAlgorithm {
 	DFS,
 	UCS,
 	GREEDY,
-	IDDFS,
+	HILL_CLIMBING,
 }
 
 const ALGORITHM_SEQUENCE := [
@@ -40,6 +40,7 @@ const ALGORITHM_SEQUENCE := [
 	SearchAlgorithm.DFS,
 	SearchAlgorithm.UCS,
 	SearchAlgorithm.GREEDY,
+	SearchAlgorithm.HILL_CLIMBING,
 ]
 
 @export var start_marker_path: NodePath
@@ -47,7 +48,7 @@ const ALGORITHM_SEQUENCE := [
 @export_range(1, 64, 1) var search_steps_per_tick := 30
 @export_range(0.01, 1.0, 0.01) var search_tick_delay := SINGLE_RUN_TICK_DELAY
 @export_range(1, 64, 1) var visual_update_interval := 10
-@export_enum("A*", "BFS", "DFS", "UCS", "Greedy", "IDDFS") var search_algorithm: int = SearchAlgorithm.ASTAR
+@export_enum("A*", "BFS", "DFS", "UCS", "Greedy", "HillClimbing") var search_algorithm: int = SearchAlgorithm.ASTAR
 
 @onready var debug_root: Node3D = $Debug
 @onready var all_nodes_markers: MultiMeshInstance3D = $Debug/AllNodesMarkers
@@ -153,7 +154,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_5:
 				_set_search_algorithm(SearchAlgorithm.GREEDY)
 			KEY_6:
-				_set_search_algorithm(SearchAlgorithm.IDDFS)
+				_set_search_algorithm(SearchAlgorithm.HILL_CLIMBING)
 			KEY_0:
 				start_search_with_all()
 			KEY_7:
@@ -281,10 +282,13 @@ func _create_multimesh(mesh: Mesh, capacity: int) -> MultiMesh:
 
 
 func _load_navigation_graph() -> void:
-	var graph_path := ProjectSettings.globalize_path("res://").path_join("../data/navigation_graph.json").simplify_path()
+	var graph_path := "res://assets/navigation_graph.json"
 	var file := FileAccess.open(graph_path, FileAccess.READ)
 	if file == null:
-		push_error("Unable to open navigation graph: %s" % graph_path)
+		var fallback_path := ProjectSettings.globalize_path("res://").path_join("../data/navigation_graph.json").simplify_path()
+		file = FileAccess.open(fallback_path, FileAccess.READ)
+	if file == null:
+		push_error("Unable to open navigation graph")
 		return
 	var parsed: Variant = JSON.parse_string(file.get_as_text())
 	if typeof(parsed) != TYPE_DICTIONARY:
@@ -394,9 +398,9 @@ func _reset_search_state() -> void:
 
 
 func _start_local_search() -> void:
-	if search_algorithm == SearchAlgorithm.IDDFS:
+	if search_algorithm == SearchAlgorithm.HILL_CLIMBING:
 		print("PathBot: searching from node %d to node %d with %s" % [_search_start_id, _search_goal_id, _get_algorithm_name()])
-		_run_iddfs_search()
+		_run_hill_climbing_search()
 		return
 
 	_g_score[_search_start_id] = 0.0
@@ -417,7 +421,7 @@ func _snap_marker_to_nearest_node(marker: Marker3D, label: String) -> int:
 
 
 func _step_search() -> void:
-	if not _search_started or search_algorithm == SearchAlgorithm.IDDFS:
+	if not _search_started or search_algorithm == SearchAlgorithm.HILL_CLIMBING:
 		return
 	for _i in range(search_steps_per_tick):
 		if _frontier_membership.is_empty():
@@ -458,7 +462,7 @@ func _step_search() -> void:
 						_g_score[neighbor_id] = tentative_g
 						_f_score[neighbor_id] = _frontier_priority(neighbor_id, tentative_g)
 						_push_frontier(neighbor_id)
-				SearchAlgorithm.BFS, SearchAlgorithm.DFS, SearchAlgorithm.IDDFS:
+				SearchAlgorithm.BFS, SearchAlgorithm.DFS:
 					if _frontier_membership.has(neighbor_id) or neighbor_id == _search_start_id or _came_from.has(neighbor_id):
 						continue
 					_came_from[neighbor_id] = current_id
@@ -470,34 +474,43 @@ func _step_search() -> void:
 			_refresh_debug_visuals()
 
 
-func _run_iddfs_search() -> void:
-	var max_depth := _graph_positions.size()
-	var found := false
+func _run_hill_climbing_search() -> void:
+	const MAX_RESTARTS := 6
+	_came_from.clear()
+	_g_score.clear()
 	_search_closed_order.clear()
 	_closed_membership.clear()
 	_frontier_membership.clear()
-	_search_frontier.clear()
-	_came_from.clear()
-	_g_score.clear()
+	_discovered_vertex_count = 0
+	_visited_vertex_count = 0
+	_visited_edge_count = 0
 
-	var ops := 0
-	for depth_limit in range(max_depth + 1):
-		var iteration_closed: Array[int] = []
-		var iteration_parents: Dictionary = {}
-		var depth_seen: Dictionary = {_search_start_id: 0}
-		var path_membership: Dictionary = {_search_start_id: true}
-		var stack: Array[Dictionary] = [{
-			"id": _search_start_id,
-			"depth": 0,
-			"next_index": 0,
-			"entered": false,
-		}]
-		_discovered_vertex_count += 1
+	var found := false
+	var best_came_from: Dictionary = {}
+	var best_g_score: Dictionary = {}
 
-		while not stack.is_empty():
+	for restart_num in range(MAX_RESTARTS + 1):
+		if found:
+			break
+		if not _search_started or _awaiting_algorithm_selection:
+			return
+
+		var current_id := _search_start_id
+		var visited: Dictionary = {current_id: true}
+		var local_came_from: Dictionary = {}
+		var local_g: Dictionary = {current_id: 0.0}
+		var ops := 0
+
+		for _step in range(_graph_positions.size() * 2):
+			if current_id == _search_goal_id:
+				found = true
+				best_came_from = local_came_from
+				best_g_score = local_g
+				break
+
 			if not _search_started or _awaiting_algorithm_selection:
 				return
-				
+
 			ops += 1
 			if ops >= search_steps_per_tick:
 				ops = 0
@@ -506,85 +519,54 @@ func _run_iddfs_search() -> void:
 				else:
 					await get_tree().process_frame
 
+			_closed_membership[current_id] = true
+			if not _search_closed_order.has(current_id):
+				_search_closed_order.append(current_id)
+			_visited_vertex_count += 1
 			_visual_tick += 1
 			if _visual_tick % visual_update_interval == 0:
 				_refresh_debug_visuals()
 
-			var frame: Dictionary = stack[stack.size() - 1]
-			var current_id: int = int(frame["id"])
-			var current_depth: int = int(frame["depth"])
-			var entered: bool = bool(frame["entered"])
-
-			if not entered:
-				frame["entered"] = true
-				stack[stack.size() - 1] = frame
-				_visited_vertex_count += 1
-				iteration_closed.append(current_id)
-				if current_id == _search_goal_id:
-					_came_from = iteration_parents.duplicate()
-					_search_closed_order = iteration_closed.duplicate()
-					for visited_id in _search_closed_order:
-						_closed_membership[int(visited_id)] = true
-					found = true
-					break
-			if current_depth >= depth_limit:
-				path_membership.erase(current_id)
-				stack.pop_back()
-				continue
-
 			var neighbors: Array = _graph_neighbors.get(current_id, [])
-			var next_index: int = int(frame["next_index"])
-			if next_index >= neighbors.size():
-				path_membership.erase(current_id)
-				stack.pop_back()
-				continue
+			var candidates: Array = []
+			for neighbor_id_variant in neighbors:
+				var neighbor_id := int(neighbor_id_variant)
+				_visited_edge_count += 1
+				_discovered_vertex_count += 1
+				if not visited.has(neighbor_id):
+					candidates.append([_heuristic(neighbor_id, _search_goal_id), neighbor_id])
 
-			var neighbor_id := int(neighbors[next_index])
-			frame["next_index"] = next_index + 1
-			stack[stack.size() - 1] = frame
-			_visited_edge_count += 1
+			if candidates.is_empty():
+				break  # stuck — trigger restart
 
-			if path_membership.has(neighbor_id):
-				continue
+			candidates.sort()
 
-			var neighbor_depth := current_depth + 1
-			if neighbor_depth > depth_limit:
-				continue
+			# Lần đầu: luôn chọn tốt nhất. Lần restart: chọn ngẫu nhiên trong top-3
+			var pick_idx := 0
+			if restart_num > 0 and candidates.size() > 1:
+				pick_idx = randi() % mini(3, candidates.size())
 
-			var known_depth: int = int(depth_seen.get(neighbor_id, max_depth + 1))
-			if neighbor_depth >= known_depth:
-				continue
+			var best_id := int(candidates[pick_idx][1])
+			visited[best_id] = true
+			_frontier_membership[best_id] = true
+			local_came_from[best_id] = current_id
+			local_g[best_id] = float(local_g.get(current_id, 0.0)) + _distance_between(current_id, best_id)
+			current_id = best_id
 
-			depth_seen[neighbor_id] = neighbor_depth
-			iteration_parents[neighbor_id] = current_id
-			path_membership[neighbor_id] = true
-			_discovered_vertex_count += 1
-			stack.append({
-				"id": neighbor_id,
-				"depth": neighbor_depth,
-				"next_index": 0,
-				"entered": false,
-			})
-
-		if found:
-			break
-
-		_search_closed_order = iteration_closed.duplicate()
-		_closed_membership.clear()
-		for visited_id in _search_closed_order:
-			_closed_membership[int(visited_id)] = true
-		_refresh_debug_visuals()
+		if not found and restart_num < MAX_RESTARTS:
+			print("PathBot: Hill Climbing restart #%d" % (restart_num + 1))
 
 	if found:
+		_came_from = best_came_from
+		_g_score = best_g_score
 		_finalize_path()
 		return
 
 	_search_finished = true
 	_path_found = false
-	print("PathBot: no path found")
+	print("PathBot: Hill Climbing failed after %d restarts" % MAX_RESTARTS)
 	_refresh_debug_visuals()
 	_on_search_complete()
-
 
 func _push_frontier(node_id: int) -> void:
 	var is_new := not _frontier_membership.has(node_id)
@@ -612,17 +594,21 @@ func _pop_frontier_node() -> int:
 				picked_id = candidate_id
 				break
 		SearchAlgorithm.BFS:
+			var found_in_bfs := false
 			while _frontier_queue_head < _search_frontier.size():
 				var candidate_id := int(_search_frontier[_frontier_queue_head])
 				_frontier_queue_head += 1
-				if not _frontier_membership.has(candidate_id):
-					continue
-				picked_id = candidate_id
-				break
-			if _frontier_queue_head >= FRONTIER_QUEUE_COMPACT_INTERVAL and _frontier_queue_head * 2 >= _search_frontier.size():
+				if _frontier_membership.has(candidate_id):
+					picked_id = candidate_id
+					found_in_bfs = true
+					break
+			if not found_in_bfs and _frontier_queue_head >= FRONTIER_QUEUE_COMPACT_INTERVAL and _frontier_queue_head * 2 >= _search_frontier.size():
 				_search_frontier = _search_frontier.slice(_frontier_queue_head)
 				_frontier_queue_head = 0
-		SearchAlgorithm.DFS, SearchAlgorithm.IDDFS:
+			elif _frontier_queue_head >= FRONTIER_QUEUE_COMPACT_INTERVAL and _frontier_queue_head * 2 >= _search_frontier.size():
+				_search_frontier = _search_frontier.slice(_frontier_queue_head)
+				_frontier_queue_head = 0
+		SearchAlgorithm.DFS:
 			while not _search_frontier.is_empty():
 				var candidate_id := int(_search_frontier.pop_back())
 				if not _frontier_membership.has(candidate_id):
@@ -958,7 +944,7 @@ func get_algorithm_menu_rows() -> Array[Dictionary]:
 			"id": ALL_ALGORITHMS_ID,
 			"name": "Tất cả",
 			"shortcut": "0",
-			"description": "Chạy A*, BFS, DFS, UCS, Greedy và hiện bảng so sánh. IDDFS chạy riêng để tránh khóa game.",
+			"description": "Chạy A*, BFS, DFS, UCS, Greedy, HillClimbing và hiện bảng so sánh.",
 		},
 		{
 			"id": SearchAlgorithm.ASTAR,
@@ -991,10 +977,10 @@ func get_algorithm_menu_rows() -> Array[Dictionary]:
 			"description": "Chọn nút có heuristic tốt nhất, nhanh nhưng dễ lệch hướng.",
 		},
 		{
-			"id": SearchAlgorithm.IDDFS,
-			"name": "IDDFS",
+			"id": SearchAlgorithm.HILL_CLIMBING,
+			"name": "HillClimbing",
 			"shortcut": "6",
-			"description": "Lặp lại DFS với giới hạn độ sâu tăng dần.",
+			"description": "Chọn hàng xóm tốt nhất theo heuristic, nhanh nhưng có thể bị kẹt ở cực trị cục bộ.",
 		},
 	]
 
@@ -1011,8 +997,8 @@ func _get_algorithm_name() -> String:
 			return "UCS"
 		SearchAlgorithm.GREEDY:
 			return "Greedy"
-		SearchAlgorithm.IDDFS:
-			return "IDDFS"
+		SearchAlgorithm.HILL_CLIMBING:
+			return "HillClimbing"
 	return "Unknown"
 
 
@@ -1028,7 +1014,7 @@ func _get_algorithm_color(algorithm_id: int) -> Color:
 			return Color(0.92, 0.24, 0.36, 1.0)
 		SearchAlgorithm.GREEDY:
 			return Color(0.58, 0.34, 0.98, 1.0)
-		SearchAlgorithm.IDDFS:
+		SearchAlgorithm.HILL_CLIMBING:
 			return Color(0.96, 0.77, 0.12, 1.0)
 	return Color(0.15, 0.85, 1.0, 1.0)
 
