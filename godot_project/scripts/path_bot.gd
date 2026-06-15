@@ -1123,7 +1123,7 @@ func _update_debug_overlay() -> void:
 		"Path nodes: %d" % _path_node_ids.size(),
 		"Path cost: %.2f" % _path_total_cost,
 		"Waypoint: %d / %d" % [current_waypoint_display, _path_points.size()],
-		"Hotkeys: 0=All  1=A*  2=BFS  3=DFS  4=UCS  5=Greedy  6=IDDFS",
+		"Hotkeys: 0=All  1=A*  2=BFS  3=DFS  4=UCS  5=Greedy  6=HillClimbing",
 		"         7/8=speed  F3=overlay  H=highlight",
 	]
 	_debug_label.text = "\n".join(lines)

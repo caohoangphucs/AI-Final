@@ -31,7 +31,7 @@ cd /home/phuchoangsrc/AI/final/godot_project
 - `3`: đổi PathBot sang `DFS`
 - `4`: đổi PathBot sang `UCS`
 - `5`: đổi PathBot sang `Greedy`
-- `6`: đổi PathBot sang `IDDFS`
+- `6`: đổi PathBot sang `HillClimbing`
 - `7`: giảm tốc độ duyệt của PathBot
 - `8`: tăng tốc độ duyệt của PathBot
 - `F3`: bật/tắt overlay debug của PathBot
