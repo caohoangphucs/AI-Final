@@ -22,6 +22,10 @@ var _algorithm_menu_panel: PanelContainer
 var _comparison_layer: CanvasLayer
 var _pending_selection: String = ""
 var _next_click_is_start := true
+var _hud_label: Label
+
+const DEFAULT_HUD_TEXT := "Bấm [ESC] để vào Menu Chính\nBấm [X] để ẩn/hiện tường"
+const POINT_SELECTION_HUD_TEXT := "Click chuột trái để chọn điểm bắt đầu, phải để chọn điểm kết thúc"
 
 
 func _ready() -> void:
@@ -50,7 +54,7 @@ func _setup_hud() -> void:
 	hud.add_child(margin)
 	
 	var label := Label.new()
-	label.text = "Bấm [ESC] để vào Menu Chính\nBấm [X] để ẩn/hiện tường"
+	label.text = DEFAULT_HUD_TEXT
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.add_theme_font_size_override("font_size", 22)
 	label.add_theme_color_override("font_color", Color(1.0, 0.92, 0.2, 1.0))
@@ -61,6 +65,7 @@ func _setup_hud() -> void:
 	label.add_theme_constant_override("shadow_offset_y", 2)
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	margin.add_child(label)
+	_hud_label = label
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -70,16 +75,20 @@ func _unhandled_input(event: InputEvent) -> void:
 			if _pending_selection == "start" and event.button_index == MOUSE_BUTTON_LEFT:
 				if path_bot: path_bot.call("set_custom_start", result.position)
 				_pending_selection = ""
+				_update_hud_text()
 			elif _pending_selection == "goal" and event.button_index == MOUSE_BUTTON_RIGHT:
 				if path_bot: path_bot.call("set_custom_goal", result.position)
 				_pending_selection = ""
+				_update_hud_text()
 			elif _pending_selection == "" or _pending_selection == "point":
 				if event.button_index == MOUSE_BUTTON_LEFT:
 					if path_bot: path_bot.call("set_custom_start", result.position)
 					_pending_selection = ""
+					_update_hud_text()
 				elif event.button_index == MOUSE_BUTTON_RIGHT:
 					if path_bot: path_bot.call("set_custom_goal", result.position)
 					_pending_selection = ""
+					_update_hud_text()
 
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
@@ -151,6 +160,8 @@ func _show_algorithm_menu() -> void:
 	if path_bot == null:
 		return
 	path_bot.call("return_to_menu_state")
+	_pending_selection = ""
+	_update_hud_text()
 	if is_instance_valid(_algorithm_menu_layer):
 		_algorithm_menu_layer.queue_free()
 	if is_instance_valid(_comparison_layer):
@@ -337,6 +348,7 @@ func _show_algorithm_menu() -> void:
 
 func _on_set_start_from_menu() -> void:
 	_pending_selection = "start"
+	_update_hud_text()
 	if is_instance_valid(_algorithm_menu_layer):
 		_algorithm_menu_layer.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -345,6 +357,7 @@ func _on_set_start_from_menu() -> void:
 
 func _on_set_goal_from_menu() -> void:
 	_pending_selection = "goal"
+	_update_hud_text()
 	if is_instance_valid(_algorithm_menu_layer):
 		_algorithm_menu_layer.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -353,6 +366,7 @@ func _on_set_goal_from_menu() -> void:
 
 func _on_set_point_from_menu() -> void:
 	_pending_selection = "point"
+	_update_hud_text()
 	if is_instance_valid(_algorithm_menu_layer):
 		_algorithm_menu_layer.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -360,6 +374,8 @@ func _on_set_point_from_menu() -> void:
 
 
 func _on_algorithm_selected(algorithm_id: int) -> void:
+	_pending_selection = ""
+	_update_hud_text()
 	if path_bot != null:
 		if algorithm_id == -1:
 			path_bot.call("start_search_with_all")
@@ -368,6 +384,15 @@ func _on_algorithm_selected(algorithm_id: int) -> void:
 	if is_instance_valid(_algorithm_menu_layer):
 		_algorithm_menu_layer.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func _update_hud_text() -> void:
+	if _hud_label == null:
+		return
+	if _pending_selection == "start" or _pending_selection == "goal" or _pending_selection == "point":
+		_hud_label.text = POINT_SELECTION_HUD_TEXT
+	else:
+		_hud_label.text = DEFAULT_HUD_TEXT
 
 
 func _make_text_label(text: String, font_size := 15, bold := false, min_width := 0.0, wrap := true) -> Label:
