@@ -65,6 +65,8 @@ var _all_nodes_highlight_material: StandardMaterial3D
 var _body_material: StandardMaterial3D
 var _graph_positions: Dictionary = {}
 var _graph_neighbors: Dictionary = {}
+var _graph_node_kinds: Dictionary = {}
+var _graph_node_labels: Dictionary = {}
 var _search_frontier: Array[int] = []
 var _priority_frontier_heap: Array = []
 var _frontier_membership: Dictionary = {}
@@ -108,6 +110,7 @@ var _default_search_steps_per_tick := 0
 var _default_visual_update_interval := 0
 var _start_highlight: MeshInstance3D
 var _goal_highlight: MeshInstance3D
+var _current_navigation_node_id := -1
 
 
 func _ready() -> void:
@@ -234,7 +237,7 @@ func _setup_debug_overlay() -> void:
 	panel_style.corner_radius_bottom_right = 16
 	panel_style.corner_radius_bottom_left = 16
 	_debug_panel.add_theme_stylebox_override("panel", panel_style)
-	_debug_panel.custom_minimum_size = Vector2(760.0, 118.0)
+	_debug_panel.custom_minimum_size = Vector2(95.0, 118.0)
 	_debug_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_debug_canvas.add_child(_debug_panel)
 
@@ -247,7 +250,7 @@ func _setup_debug_overlay() -> void:
 	_debug_panel.add_child(debug_margin)
 
 	_debug_label = Label.new()
-	_debug_label.size = Vector2(724.0, 94.0)
+	_debug_label.size = Vector2(77.0, 94.0)
 	_debug_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	_debug_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	_debug_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
@@ -301,6 +304,8 @@ func _load_navigation_graph() -> void:
 		var pos := Vector3(float(pos_arr[0]), float(pos_arr[2]), -float(pos_arr[1]))
 		_graph_positions[node_id] = pos
 		_graph_neighbors[node_id] = node_data.get("neighbors", [])
+		_graph_node_kinds[node_id] = node_data.get("kinds", [])
+		_graph_node_labels[node_id] = node_data.get("labels", [])
 	print("PathBot: loaded %d navigation nodes" % _graph_positions.size())
 
 
@@ -313,6 +318,7 @@ func _snap_to_start() -> void:
 		else:
 			global_position = start_marker.global_position
 		_travel_points = [global_position + Vector3(0.0, 0.1, 0.0)]
+		_current_navigation_node_id = _search_start_id
 
 
 func _begin_search() -> void:
@@ -395,6 +401,7 @@ func _reset_search_state() -> void:
 	global_position = _graph_positions[_search_start_id]
 	_travel_points = [global_position + Vector3(0.0, 0.1, 0.0)]
 	_current_search_started_usec = Time.get_ticks_usec()
+	_current_navigation_node_id = _search_start_id
 
 
 func _start_local_search() -> void:
@@ -664,6 +671,9 @@ func _follow_path(delta: float) -> void:
 		_current_waypoint_idx += 1
 		_record_travel_point(target)
 		_refresh_traveled_visual()
+		var reached_idx := _current_waypoint_idx - 1
+		if reached_idx >= 0 and reached_idx < _path_node_ids.size():
+			_current_navigation_node_id = _path_node_ids[reached_idx]
 		if _current_waypoint_idx >= _path_points.size():
 			print("PathBot: destination reached")
 		return
@@ -923,6 +933,7 @@ func return_to_menu_state() -> void:
 	_path_points.clear()
 	_request_debug_overlay_refresh()
 	_refresh_debug_visuals()
+	_current_navigation_node_id = _search_start_id
 
 
 func start_search_with_all() -> void:
@@ -1135,3 +1146,64 @@ func _adjust_search_speed(delta_steps: int) -> void:
 	if previous_steps != search_steps_per_tick:
 		print("PathBot: search speed = %d steps/tick" % search_steps_per_tick)
 		_update_debug_overlay()
+
+
+func _is_indoor_node(node_id: int) -> bool:
+	var kinds: Array = _graph_node_kinds.get(node_id, [])
+	for kind_variant in kinds:
+		var kind := str(kind_variant)
+		if kind == "ground_path" or kind == "outdoor_stair" or kind == "ground_access" or kind == "entry_stair":
+			return false
+		if kind == "corridor" or kind == "stair_access" or kind == "stair_step" or kind == "stair_landing" or kind == "roof_access" or kind == "access":
+			return true
+	return false
+
+
+func _get_floor_label(node_id: int) -> String:
+	var labels: Array = _graph_node_labels.get(node_id, [])
+	for label_variant in labels:
+		var label := str(label_variant)
+		var marker := "_F"
+		var idx := label.find(marker)
+		if idx == -1:
+			continue
+		var floor_text := ""
+		var cursor := idx + marker.length()
+		while cursor < label.length():
+			var ch := label.substr(cursor, 1)
+			if ch < "0" or ch > "9":
+				break
+			floor_text += ch
+			cursor += 1
+		if floor_text != "":
+			return "Tầng %s" % floor_text
+	return "Tòa nhà"
+
+
+func _get_current_navigation_node_id() -> int:
+	if _current_navigation_node_id != -1 and _graph_positions.has(_current_navigation_node_id):
+		return _current_navigation_node_id
+	if _search_finished and _path_found and not _path_node_ids.is_empty():
+		return int(_path_node_ids[min(_current_waypoint_idx, _path_node_ids.size() - 1)])
+	if _search_start_id != -1:
+		return _search_start_id
+	return _find_nearest_node_id(global_position)
+
+
+func get_minimap_snapshot() -> Dictionary:
+	var current_node_id := _get_current_navigation_node_id()
+	var indoor := current_node_id != -1 and _is_indoor_node(current_node_id)
+	return {
+		"visible": not _awaiting_algorithm_selection,
+		"mode": "3d" if indoor else "2d",
+		"mode_label": "Minimap 3D" if indoor else "Minimap 2D",
+		"floor_label": _get_floor_label(current_node_id) if indoor else "Ngoài trời",
+		"bot_position": global_position,
+		"start_position": _graph_positions.get(_search_start_id, global_position),
+		"goal_position": _graph_positions.get(_search_goal_id, global_position),
+		"path_points": _path_points.duplicate(),
+		"travel_points": _travel_points.duplicate(),
+		"search_active": _search_started and not _search_finished,
+		"path_found": _path_found,
+		"status": _get_search_status(),
+	}

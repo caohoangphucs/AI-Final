@@ -14,6 +14,7 @@ const FLY_ACCEL := 18.0
 
 var _pitch := 0.0
 var _fly_mode := true
+var _capture_resume_at_msec := 0
 
 
 func _ready() -> void:
@@ -30,13 +31,21 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	if event is InputEventMouseButton and event.pressed and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		if Time.get_ticks_msec() < _capture_resume_at_msec:
+			return
+		if get_viewport().gui_get_hovered_control() != null:
+			return
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F:
 		_fly_mode = not _fly_mode
 		velocity = Vector3.ZERO
 		print("Player: fly mode %s" % ("ON" if _fly_mode else "OFF"))
+
+
+func suspend_mouse_capture(duration_sec := 0.25) -> void:
+	_capture_resume_at_msec = Time.get_ticks_msec() + int(duration_sec * 1000.0)
 
 
 func _physics_process(delta: float) -> void:
