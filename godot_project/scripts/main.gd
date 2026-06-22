@@ -308,7 +308,7 @@ func _show_algorithm_menu() -> void:
 	chooser_margin.add_child(chooser_box)
 
 	var chooser_eyebrow := Label.new()
-	chooser_eyebrow.text = "CAMPUS RUNNER"
+	chooser_eyebrow.text = "MÔ PHỎNG TÌM ĐƯỜNG ĐI TRONG KHÔNG GIAN 3D Ở TRƯỜNG HỌC"
 	chooser_eyebrow.add_theme_font_size_override("font_size", 14)
 	chooser_eyebrow.add_theme_color_override("font_color", Color(0.95, 0.81, 0.34, 1.0))
 	chooser_box.add_child(chooser_eyebrow)
@@ -330,7 +330,7 @@ func _show_algorithm_menu() -> void:
 	chooser_actions.add_theme_constant_override("separation", 18)
 	chooser_box.add_child(chooser_actions)
 
-	var chooser_play := _make_menu_tab_button("Chơi game", true)
+	var chooser_play := _make_menu_tab_button("Chạy mô phỏng", true)
 	chooser_play.custom_minimum_size = Vector2(220, 56)
 	chooser_play.pressed.connect(func() -> void:
 		_switch_menu_section("play")
@@ -349,7 +349,7 @@ func _show_algorithm_menu() -> void:
 	menu_tabs.visible = _menu_section != ""
 	content.add_child(menu_tabs)
 
-	var play_tab := _make_menu_tab_button("Chơi game", _menu_section == "play")
+	var play_tab := _make_menu_tab_button("Chạy mô phỏng", _menu_section == "play")
 	play_tab.pressed.connect(func() -> void:
 		_switch_menu_section("play")
 	)
@@ -394,7 +394,7 @@ func _show_algorithm_menu() -> void:
 	hero_row.add_child(hero_copy)
 
 	var eyebrow := Label.new()
-	eyebrow.text = "CAMPUS RUNNER • NAVIGATION LAB"
+	eyebrow.text = "MÔ PHỎNG TÌM ĐƯỜNG ĐI TRONG KHÔNG GIAN 3D Ở TRƯỜNG HỌC • NAVIGATION LAB"
 	eyebrow.add_theme_font_size_override("font_size", 14)
 	eyebrow.add_theme_color_override("font_color", Color(0.95, 0.81, 0.34, 1.0))
 	hero_copy.add_child(eyebrow)
