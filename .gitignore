@@ -30,3 +30,5 @@ godot_project/.import/
 godot_project/.mono/
 godot_project/bin/
 #godot_project/Campus Runner.exe
+
+*.tpz
