@@ -32,3 +32,9 @@ godot_project/bin/
 #godot_project/Campus Runner.exe
 
 *.tpz
+
+*.mp4
+*.pyc
+*.zip
+.env
+venv/
